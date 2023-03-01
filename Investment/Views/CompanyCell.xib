@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Bold.ttf">
+            <string>Montserrat-Bold</string>
+        </array>
+        <array key="Montserrat-SemiBold.ttf">
+            <string>Montserrat-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReusableCell" rowHeight="68" id="ds1-hH-oIJ" customClass="CompanyCell" customModule="Investment" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="328" height="68"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ds1-hH-oIJ" id="Ba1-dZ-BIU">
+                <rect key="frame" x="0.0" y="0.0" width="328" height="68"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fIS-ir-XSZ">
+                        <rect key="frame" x="8" y="8" width="52" height="52"/>
+                        <color key="tintColor" red="0.1019607843" green="0.1019607843" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="52" id="Fpy-qT-c4D"/>
+                            <constraint firstAttribute="width" constant="52" id="pVc-WK-jsy"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OST-c5-tP1">
+                        <rect key="frame" x="72" y="14" width="7" height="26"/>
+                        <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="18"/>
+                        <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfG-Kx-d5h">
+                        <rect key="frame" x="72" y="40" width="5" height="14"/>
+                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="12"/>
+                        <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BP3-fR-NX7">
+                        <rect key="frame" x="304" y="14" width="7" height="22"/>
+                        <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="18"/>
+                        <color key="textColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zf7-t4-yWo">
+                        <rect key="frame" x="311" y="36" width="5" height="18"/>
+                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="12"/>
+                        <color key="textColor" red="0.14117647058823529" green="0.69803921568627447" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jxe-t1-ygZ">
+                        <rect key="frame" x="85" y="17" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="Isw-gi-Bi7"/>
+                            <constraint firstAttribute="width" constant="16" id="umO-KK-HQC"/>
+                        </constraints>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="Hate">
+                            <color key="titleColor" red="0.72941176470000002" green="0.72941176470000002" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="favouriteButtonPressed:" destination="ds1-hH-oIJ" eventType="touchUpInside" id="Amv-vg-j5f"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="GfG-Kx-d5h" secondAttribute="bottom" constant="14" id="0mP-AY-ipQ"/>
+                    <constraint firstItem="fIS-ir-XSZ" firstAttribute="top" secondItem="Ba1-dZ-BIU" secondAttribute="top" constant="8" id="3Wm-fx-OLr"/>
+                    <constraint firstItem="OST-c5-tP1" firstAttribute="bottom" secondItem="GfG-Kx-d5h" secondAttribute="top" id="4fq-xE-jTN"/>
+                    <constraint firstItem="Jxe-t1-ygZ" firstAttribute="leading" secondItem="OST-c5-tP1" secondAttribute="trailing" constant="6" id="6Sl-Ss-1e1"/>
+                    <constraint firstItem="BP3-fR-NX7" firstAttribute="top" secondItem="Ba1-dZ-BIU" secondAttribute="top" constant="14" id="ARN-kR-XOY"/>
+                    <constraint firstAttribute="bottom" secondItem="Jxe-t1-ygZ" secondAttribute="bottom" constant="35" id="MXv-Rr-6VC"/>
+                    <constraint firstItem="OST-c5-tP1" firstAttribute="top" secondItem="Ba1-dZ-BIU" secondAttribute="top" constant="14" id="Oqa-GL-9fL"/>
+                    <constraint firstItem="OST-c5-tP1" firstAttribute="leading" secondItem="fIS-ir-XSZ" secondAttribute="trailing" constant="12" id="RkH-f4-ZYP"/>
+                    <constraint firstItem="fIS-ir-XSZ" firstAttribute="leading" secondItem="Ba1-dZ-BIU" secondAttribute="leading" constant="8" id="Rlw-Av-cPC"/>
+                    <constraint firstAttribute="trailing" secondItem="Zf7-t4-yWo" secondAttribute="trailing" constant="12" id="SDw-nX-T3j"/>
+                    <constraint firstAttribute="trailing" secondItem="BP3-fR-NX7" secondAttribute="trailing" constant="17" id="TgS-Lp-FJA"/>
+                    <constraint firstAttribute="bottom" secondItem="Zf7-t4-yWo" secondAttribute="bottom" constant="14" id="Vjh-aX-ydE"/>
+                    <constraint firstItem="OST-c5-tP1" firstAttribute="leading" secondItem="fIS-ir-XSZ" secondAttribute="trailing" constant="12" id="c2P-FM-CKX"/>
+                    <constraint firstItem="Jxe-t1-ygZ" firstAttribute="top" secondItem="Ba1-dZ-BIU" secondAttribute="top" constant="17" id="dTA-US-NfA"/>
+                    <constraint firstItem="GfG-Kx-d5h" firstAttribute="leading" secondItem="fIS-ir-XSZ" secondAttribute="trailing" constant="12" id="mVn-4f-y8b"/>
+                    <constraint firstAttribute="bottom" secondItem="fIS-ir-XSZ" secondAttribute="bottom" constant="8" id="tIb-Ac-BBL"/>
+                    <constraint firstItem="Zf7-t4-yWo" firstAttribute="top" secondItem="BP3-fR-NX7" secondAttribute="bottom" id="xgB-3k-aq3"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="changes" destination="Zf7-t4-yWo" id="FD9-qC-Cbr"/>
+                <outlet property="companyImage" destination="fIS-ir-XSZ" id="fVN-fw-DyD"/>
+                <outlet property="companyName" destination="GfG-Kx-d5h" id="dqF-o7-PZl"/>
+                <outlet property="cost" destination="BP3-fR-NX7" id="tMz-QC-XBP"/>
+                <outlet property="favouriteButton" destination="Jxe-t1-ygZ" id="PBT-9m-Bwk"/>
+                <outlet property="label" destination="OST-c5-tP1" id="ed5-RX-VEN"/>
+            </connections>
+            <point key="canvasLocation" x="-183.20610687022901" y="-121.12676056338029"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Hate" width="16" height="16"/>
+    </resources>
+</document>
