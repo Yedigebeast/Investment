@@ -1,0 +1,6 @@
+framework module Pods_Investment {
+  umbrella header "Pods-Investment-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,35 @@
+PODS:
+  - CocoaLumberjack (3.8.0):
+    - CocoaLumberjack/Core (= 3.8.0)
+  - CocoaLumberjack/Core (3.8.0)
+  - Kingfisher (7.6.2)
+  - SVGKit (3.1.0):
+    - CocoaLumberjack (~> 3.0)
+
+DEPENDENCIES:
+  - Kingfisher (~> 7.6)
+  - SVGKit (from `https://github.com/SVGKit/SVGKit.git`, branch `3.x`)
+
+SPEC REPOS:
+  trunk:
+    - CocoaLumberjack
+    - Kingfisher
+
+EXTERNAL SOURCES:
+  SVGKit:
+    :branch: 3.x
+    :git: https://github.com/SVGKit/SVGKit.git
+
+CHECKOUT OPTIONS:
+  SVGKit:
+    :commit: 8c290ceee19254f6d0da1940201d5efa31b48f9f
+    :git: https://github.com/SVGKit/SVGKit.git
+
+SPEC CHECKSUMS:
+  CocoaLumberjack: 78abfb691154e2a9df8ded4350d504ee19d90732
+  Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
+  SVGKit: 3c8468aab0026048532a3b27a0c81cdd939f0649
+
+PODFILE CHECKSUM: ec4ef1518249c6841e8fbb499b263cb99227ea83
+
+COCOAPODS: 1.11.3

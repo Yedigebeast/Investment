@@ -88,17 +88,14 @@ extension ViewController: UITableViewDataSource {
         cell.companyName.text = companies[indexPath.row].companyName
         cell.label.text = companies[indexPath.row].ticker
         
-        print(companies[indexPath.row].ticker, " ", favourites[companies[indexPath.row].ticker])
-        print("That is all bro")
-        
         if favourites[companies[indexPath.row].ticker] == true {
             
-            cell.favouriteButton.imageView?.image = UIImage(named: "Like")
+            cell.favouriteButton.setImage(UIImage(named: "Like"), for: .normal)
             
         } else {
             
-            cell.favouriteButton.imageView?.image = UIImage(named: "Hate")
-            
+            cell.favouriteButton.setImage(UIImage(named: "Hate"), for: .normal)
+
         }
         
         if indexPath.row % 2 == 0 {
@@ -197,9 +194,7 @@ extension ViewController: CompanyCellDelegate {
             favourites[companies[tag].ticker] = true
             
         }
-        
-        print(favourites)
-        
+                
         tableView.reloadData()
         
     }
