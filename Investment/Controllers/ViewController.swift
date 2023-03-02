@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     var companies: [Company] = []
     var favourites = [Favourite]()
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var chosedStocksButton = true
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var favouriteButton: UIButton!
@@ -38,6 +39,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+
         companyManager.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
@@ -49,7 +52,6 @@ class ViewController: UIViewController {
         tableView.showsHorizontalScrollIndicator = false
         
         loadItems()
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
                 
         companyManager.getTickerInfo()
               
@@ -61,6 +63,12 @@ class ViewController: UIViewController {
         stocksButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 28)
         stocksButton.setTitleColor(UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0), for: .normal)
         favouriteButton.setTitleColor(UIColor(red: 0.73, green: 0.73, blue: 0.73, alpha: 1.0), for: .normal)
+        chosedStocksButton = true
+        
+        companies.removeAll()
+        companyManager.getTickerInfo()
+        
+        tableView.reloadData()
         
     }
     
@@ -70,7 +78,28 @@ class ViewController: UIViewController {
         favouriteButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 28)
         favouriteButton.setTitleColor(UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0), for: .normal)
         stocksButton.setTitleColor(UIColor(red: 0.73, green: 0.73, blue: 0.73, alpha: 1.0), for: .normal)
-   
+        chosedStocksButton = false
+        
+        var companies1: [Company] = []
+        
+        for i in companies {
+            
+            for j in favourites {
+                
+                if i.ticker == j.ticker {
+                    
+                    companies1.append(i)
+                    
+                }
+                    
+            }
+            
+        }
+        
+        companies = companies1
+        
+        tableView.reloadData()
+        
     }
     
 }
@@ -114,20 +143,20 @@ extension ViewController: UITableViewDataSource {
         } else {
             
             cell.favouriteButton.setImage(UIImage(named: "Hate"), for: .normal)
-
+            
         }
         
         if indexPath.row % 2 == 0 {
             
             cell.backgroundColor = UIColor(red: 0.94, green: 0.96, blue: 0.97, alpha: 1.0)
-
+            
         } else {
             
             cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             
         }
         
-            
+        
         let url = URL(string: companies[indexPath.row].imageLink)!
         let file = companies[indexPath.row].imageLink.suffix(3)
         
@@ -221,6 +250,13 @@ extension ViewController: CompanyCellDelegate {
             
             context.delete(favourites[id])
             favourites.remove(at: id)
+            
+            if chosedStocksButton == false {
+                
+                companies.remove(at: tag)
+                
+            }
+            
             
         } else {
             
