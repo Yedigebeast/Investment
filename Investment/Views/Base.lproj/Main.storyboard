@@ -30,10 +30,10 @@
                                 </connections>
                             </searchBar>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0bh-3s-WmJ">
-                                <rect key="frame" x="20" y="159" width="207" height="47"/>
+                                <rect key="frame" x="20" y="159" width="182" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLu-7p-Zd6">
-                                        <rect key="frame" x="0.0" y="0.0" width="98" height="47"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="87" height="45"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="28"/>
                                         <color key="tintColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -43,7 +43,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPm-6t-ZS1">
-                                        <rect key="frame" x="118" y="0.0" width="89" height="47"/>
+                                        <rect key="frame" x="107" y="0.0" width="75" height="45"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="18"/>
                                         <color key="tintColor" red="0.72941176470588232" green="0.72941176470588232" blue="0.72941176470588232" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -55,7 +55,7 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IGl-FQ-L4t">
-                                <rect key="frame" x="16" y="206" width="361" height="646"/>
+                                <rect key="frame" x="16" y="204" width="361" height="648"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -75,6 +75,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="jjd-EZ-PZx"/>
                     <connections>
+                        <outlet property="favouriteButton" destination="gPm-6t-ZS1" id="dOv-LV-YyS"/>
+                        <outlet property="stocksButton" destination="hLu-7p-Zd6" id="L6p-hu-go9"/>
                         <outlet property="tableView" destination="IGl-FQ-L4t" id="1ge-sd-k5a"/>
                         <segue destination="dKd-31-h1t" kind="show" identifier="goToDetails" id="iiE-pf-FJD"/>
                     </connections>

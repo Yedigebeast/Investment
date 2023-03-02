@@ -78,7 +78,6 @@
 				F261D11273AF7F5F7EBF856C /* Pods-Investment.debug.xcconfig */,
 				93F5EF84F44A9E1DB436582B /* Pods-Investment.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -113,6 +112,7 @@
 		FE3A3AE7299A38AD00DD812A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FE741148299A2FA1008A68EF /* Investment.xcdatamodeld */,
 				FE09548129A8BFB0005F7CB6 /* Company.swift */,
 				FEEA7EC429AA079C0083DF6B /* CompanyData.swift */,
 				FEEA7EC229AA04230083DF6B /* CompanyManager.swift */,
@@ -145,16 +145,23 @@
 				FE741141299A2FA1008A68EF /* SceneDelegate.swift */,
 				FEEA7EC029A9FEC60083DF6B /* Secret.swift */,
 				FE09547D29A8BEC5005F7CB6 /* Constants.swift */,
+				FE741150299A2FA2008A68EF /* Info.plist */,
 				FE3A3AE7299A38AD00DD812A /* Models */,
 				FE3A3AE5299A389A00DD812A /* Views */,
 				FE3A3AE6299A38A500DD812A /* Controllers */,
 				FE3A3AE4299A388F00DD812A /* fonts */,
-				FE74114B299A2FA2008A68EF /* Assets.xcassets */,
-				FE74114D299A2FA2008A68EF /* LaunchScreen.storyboard */,
-				FE741150299A2FA2008A68EF /* Info.plist */,
-				FE741148299A2FA1008A68EF /* Investment.xcdatamodeld */,
+				FEEA7ECA29B077410083DF6B /* Supporting Files */,
 			);
 			path = Investment;
+			sourceTree = "<group>";
+		};
+		FEEA7ECA29B077410083DF6B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FE74114B299A2FA2008A68EF /* Assets.xcassets */,
+				FE74114D299A2FA2008A68EF /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

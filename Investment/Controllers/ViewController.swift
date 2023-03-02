@@ -8,14 +8,18 @@
 import UIKit
 import Kingfisher
 import SVGKit
+import CoreData
 
 class ViewController: UIViewController {
 
     var companyManager = CompanyManager()
     var companies: [Company] = []
-    var favourites: [String : Bool] = [:]
+    var favourites = [Favourite]()
+    var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var favouriteButton: UIButton!
+    @IBOutlet weak var stocksButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -44,24 +48,28 @@ class ViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
         
-        for ticker in companyManager.tickersOfCompanies {
-            
-            companyManager.tickerSelected = ticker
-            companyManager.getTickerInfo()
-            
-        }
+        loadItems()
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
                 
+        companyManager.getTickerInfo()
+              
     }
 
     @IBAction func StocksButtonPressed(_ sender: UIButton) {
     
-        
+        favouriteButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 18)
+        stocksButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 28)
+        stocksButton.setTitleColor(UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0), for: .normal)
+        favouriteButton.setTitleColor(UIColor(red: 0.73, green: 0.73, blue: 0.73, alpha: 1.0), for: .normal)
         
     }
     
     @IBAction func FavouriteButtonPressed(_ sender: UIButton) {
         
-        
+        stocksButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 18)
+        favouriteButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 28)
+        favouriteButton.setTitleColor(UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0), for: .normal)
+        stocksButton.setTitleColor(UIColor(red: 0.73, green: 0.73, blue: 0.73, alpha: 1.0), for: .normal)
    
     }
     
@@ -88,7 +96,18 @@ extension ViewController: UITableViewDataSource {
         cell.companyName.text = companies[indexPath.row].companyName
         cell.label.text = companies[indexPath.row].ticker
         
-        if favourites[companies[indexPath.row].ticker] == true {
+        var have = false
+        for item in favourites {
+            
+            if item.ticker == companies[indexPath.row].ticker {
+                
+                have = true
+                
+            }
+            
+        }
+        
+        if have == true {
             
             cell.favouriteButton.setImage(UIImage(named: "Like"), for: .normal)
             
@@ -143,7 +162,7 @@ extension ViewController: UITableViewDelegate {
         
         if segue.identifier == Constants.segueIdentifier {
             
-            
+            // preparing to the next page
             
         }
         
@@ -185,41 +204,104 @@ extension ViewController: CompanyCellDelegate {
     
     func cellFavouriteButtonPressed(tag: Int) {
                 
-        if favourites[companies[tag].ticker] == true {
+        var have = false
+        var id = -1
+        for i in 0..<favourites.count {
             
-            favourites[companies[tag].ticker] = false
+            if favourites[i].ticker == companies[tag].ticker {
+                
+                have = true
+                id = i
+                
+            }
+            
+        }
+        
+        if have == true {
+            
+            context.delete(favourites[id])
+            favourites.remove(at: id)
             
         } else {
             
-            favourites[companies[tag].ticker] = true
+            var newItem = Favourite(context: context)
+            newItem.ticker = companies[tag].ticker
+            
+            favourites.append(newItem)
             
         }
-                
+              
+        saveItems()
         tableView.reloadData()
         
     }
     
 }
 
+//MARK: - Model Manipulation Methods
 
-
+extension ViewController {
+    
+    func loadItems() {
+        
+        let request: NSFetchRequest<Favourite> = Favourite.fetchRequest()
+        
+        do {
+            
+            favourites = try context.fetch(request)
+            
+        } catch {
+            
+            print("Error loading context \(error)")
+            
+        }
+                
+    }
+    
+    func saveItems() {
+        
+        do {
+            
+            try context.save()
+            
+        } catch {
+            
+            print("Error saving context \(error)")
+            
+        }
+        
+    }
+    
+}
 
 //MARK: - Download SVG image
 
 extension UIImageView {
+    
     func downloadedsvg(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
+        
         contentMode = mode
+        
         URLSession.shared.dataTask(with: url) { data, response, error in
+            
             guard
+                
                 let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
                 let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
                 let data = data, error == nil,
                 let receivedicon: SVGKImage = SVGKImage(data: data),
                 let image = receivedicon.uiImage
-                else { return }
+            
+            else { return }
+           
             DispatchQueue.main.async() {
+               
                 self.image = image
+           
             }
+            
         }.resume()
+        
     }
+    
 }

@@ -18,13 +18,19 @@ struct CompanyManager {
     
     var delegate: CompanyManagerDelegate?
     let baseURL = "https://finnhub.io/api/v1/stock/profile2?symbol="
-    var tickersOfCompanies: [String] = ["YNDX", "AAPL", "MSFT", "AMZN", "GOOGL", "TSLA", "NVDA", "BRK.B", "JPM", "JNJ", "V", "UNH", "HD", "PG", "BAC", "DIS", "PYPL", "MA", "NFLX", "ADBE", "CRM", "CMCSA"] // "XOM", "PFE", "CSCO", "TMO", "VZ", "INTC", "PEP", "KO", "ABT", "MRK", "ACN", "CVX", "AVGO", "COST", "WMT", "WFC", "ABBV", "NKE", "T", "DHR", "MCD", "LLY", "TXN", "MDT", "NEE", "LIN", "ORCL", "HON", "PM", "LOW", "INTU", "C", "MS", "QCOM", "UNP", "RTX", "SBUX"]
+    var tickersOfCompanies: [String] = ["YNDX", "AAPL", "MSFT", "AMZN", "GOOGL", "TSLA", "NVDA", "BRK.B", "JPM", "JNJ", "V", "UNH", "HD", "PG", "BAC"] // "DIS", "PYPL", "MA", "NFLX", "ADBE", "CRM", "CMCSA", "XOM", "PFE", "CSCO", "TMO", "VZ", "INTC", "PEP", "KO", "ABT", "MRK", "ACN", "CVX", "AVGO", "COST", "WMT", "WFC", "ABBV", "NKE", "T", "DHR", "MCD", "LLY", "TXN", "MDT", "NEE", "LIN", "ORCL", "HON", "PM", "LOW", "INTU", "C", "MS", "QCOM", "UNP", "RTX", "SBUX"]
     var tickerSelected = "AAPL"
     
-    func getTickerInfo (){
+    mutating func getTickerInfo (){
         
-        let url = "\(baseURL)\(tickerSelected)&token=\(Secret.token)"
-        performRequest(with: url)
+        for ticker in tickersOfCompanies {
+            
+            self.tickerSelected = ticker
+            let url = "\(baseURL)\(tickerSelected)&token=\(Secret.token)"
+            performRequest(with: url)
+            
+        }
+        
     }
     
     func performRequest (with urlString: String){
