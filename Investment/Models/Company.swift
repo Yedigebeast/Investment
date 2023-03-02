@@ -13,5 +13,7 @@ struct Company {
     var ticker: String
     var companyName: String
     var imageLink: String
+    var currentPrice: String
+    var changePrice: String
     
 }

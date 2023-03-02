@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1D27F99DE12072BEA1F64CFF /* Pods_Investment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5C0FC9D7584F9B691341407 /* Pods_Investment.framework */; };
+		FE07605229B0E1160091EA1F /* PriceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE07605129B0E1160091EA1F /* PriceManager.swift */; };
+		FE07605429B0E41A0091EA1F /* PriceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE07605329B0E41A0091EA1F /* PriceData.swift */; };
+		FE07605629B0E4A70091EA1F /* Price.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE07605529B0E4A70091EA1F /* Price.swift */; };
 		FE09547E29A8BEC5005F7CB6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09547D29A8BEC5005F7CB6 /* Constants.swift */; };
 		FE09548229A8BFB0005F7CB6 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09548129A8BFB0005F7CB6 /* Company.swift */; };
 		FE09548429A8C126005F7CB6 /* CompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09548329A8C126005F7CB6 /* CompanyCell.swift */; };
@@ -31,6 +34,9 @@
 		93F5EF84F44A9E1DB436582B /* Pods-Investment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Investment.release.xcconfig"; path = "Target Support Files/Pods-Investment/Pods-Investment.release.xcconfig"; sourceTree = "<group>"; };
 		B5C0FC9D7584F9B691341407 /* Pods_Investment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Investment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F261D11273AF7F5F7EBF856C /* Pods-Investment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Investment.debug.xcconfig"; path = "Target Support Files/Pods-Investment/Pods-Investment.debug.xcconfig"; sourceTree = "<group>"; };
+		FE07605129B0E1160091EA1F /* PriceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceManager.swift; sourceTree = "<group>"; };
+		FE07605329B0E41A0091EA1F /* PriceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceData.swift; sourceTree = "<group>"; };
+		FE07605529B0E4A70091EA1F /* Price.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Price.swift; sourceTree = "<group>"; };
 		FE09547D29A8BEC5005F7CB6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../../../../../Documents/Constants.swift; sourceTree = "<group>"; };
 		FE09548129A8BFB0005F7CB6 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		FE09548329A8C126005F7CB6 /* CompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
@@ -114,8 +120,11 @@
 			children = (
 				FE741148299A2FA1008A68EF /* Investment.xcdatamodeld */,
 				FE09548129A8BFB0005F7CB6 /* Company.swift */,
+				FE07605529B0E4A70091EA1F /* Price.swift */,
 				FEEA7EC429AA079C0083DF6B /* CompanyData.swift */,
+				FE07605329B0E41A0091EA1F /* PriceData.swift */,
 				FEEA7EC229AA04230083DF6B /* CompanyManager.swift */,
+				FE07605129B0E1160091EA1F /* PriceManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -283,9 +292,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEEA7EC329AA04230083DF6B /* CompanyManager.swift in Sources */,
+				FE07605629B0E4A70091EA1F /* Price.swift in Sources */,
 				FE09547E29A8BEC5005F7CB6 /* Constants.swift in Sources */,
 				FE74114A299A2FA1008A68EF /* Investment.xcdatamodeld in Sources */,
+				FE07605229B0E1160091EA1F /* PriceManager.swift in Sources */,
 				FEEA7EC929AB92170083DF6B /* DetailsViewController.swift in Sources */,
+				FE07605429B0E41A0091EA1F /* PriceData.swift in Sources */,
 				FE741144299A2FA1008A68EF /* ViewController.swift in Sources */,
 				FE09548429A8C126005F7CB6 /* CompanyCell.swift in Sources */,
 				FE741140299A2FA1008A68EF /* AppDelegate.swift in Sources */,

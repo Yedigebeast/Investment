@@ -13,10 +13,15 @@ import CoreData
 class ViewController: UIViewController {
 
     var companyManager = CompanyManager()
+    var priceManager = PriceManager()
+    
     var companies: [Company] = []
     var favourites = [Favourite]()
-    var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var chosedStocksButton = true
+    
+    var tickersOfCompanies: [String] = ["AAPL", "MSFT", "AMZN", "GOOGL", "TSLA", "NVDA", "BRK.A", "JPM", "JNJ", "V", "UNH", "HD", "PG", "BAC", "DIS"] // "PYPL", "MA", "NFLX", "ADBE", "CRM", "CMCSA", "XOM", "PFE", "CSCO", "TMO", "VZ", "INTC", "PEP", "KO", "ABT", "MRK", "ACN", "CVX", "AVGO", "COST", "WMT", "WFC", "ABBV", "NKE", "T", "DHR", "MCD", "LLY", "TXN", "MDT", "NEE", "LIN", "ORCL", "HON", "PM", "LOW", "INTU", "C", "MS", "QCOM", "UNP", "RTX", "SBUX"]
+    
+    var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var favouriteButton: UIButton!
@@ -42,6 +47,7 @@ class ViewController: UIViewController {
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
 
         companyManager.delegate = self
+        priceManager.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -52,8 +58,22 @@ class ViewController: UIViewController {
         tableView.showsHorizontalScrollIndicator = false
         
         loadItems()
-                
-        companyManager.getTickerInfo()
+        
+        for ticker in tickersOfCompanies {
+            
+            companies.append(Company(ticker: ticker, companyName: "-", imageLink: "-", currentPrice: "-", changePrice: "-"))
+            
+        }
+        
+        for ticker in tickersOfCompanies {
+            
+            companyManager.tickerSelected = ticker
+            companyManager.getTickerInfo()
+            
+            priceManager.tickerSelected = ticker
+            priceManager.getPriceInfo()
+            
+        }
               
     }
 
@@ -66,7 +86,22 @@ class ViewController: UIViewController {
         chosedStocksButton = true
         
         companies.removeAll()
-        companyManager.getTickerInfo()
+        
+        for ticker in tickersOfCompanies {
+            
+            companies.append(Company(ticker: ticker, companyName: "-", imageLink: "-", currentPrice: "-", changePrice: "-"))
+            
+        }
+        
+        for ticker in tickersOfCompanies {
+            
+            companyManager.tickerSelected = ticker
+            companyManager.getTickerInfo()
+            
+            priceManager.tickerSelected = ticker
+            priceManager.getPriceInfo()
+            
+        }
         
         tableView.reloadData()
         
@@ -118,55 +153,75 @@ extension ViewController: UITableViewDataSource {
                 
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath) as! CompanyCell
         
-        cell.delegate = self
-        cell.favouriteButton.tag = indexPath.row
-        cell.layer.cornerRadius = cell.frame.size.height / 4
-        
-        cell.companyName.text = companies[indexPath.row].companyName
-        cell.label.text = companies[indexPath.row].ticker
-        
-        var have = false
-        for item in favourites {
+        if (companies[indexPath.row].companyName != "-" && companies[indexPath.row].currentPrice != "-"){
             
-            if item.ticker == companies[indexPath.row].ticker {
+            cell.delegate = self
+            cell.favouriteButton.tag = indexPath.row
+            cell.layer.cornerRadius = cell.frame.size.height / 4
+            
+            cell.companyName.text = companies[indexPath.row].companyName
+            cell.label.text = companies[indexPath.row].ticker
+            cell.cost.text = companies[indexPath.row].currentPrice
+            cell.changes.text = companies[indexPath.row].changePrice
+               
+//            print(companies[indexPath.row].ticker, " ", companies[indexPath.row].changePrice.first!)
+            
+            if companies[indexPath.row].changePrice.prefix(1) == "-" {
                 
-                have = true
+                cell.changes.textColor = UIColor(red: 0.7, green: 0.14, blue: 0.14, alpha: 1.0)
+                
+            } else {
+                
+                cell.changes.textColor = UIColor(red: 0.14, green: 0.7, blue: 0.36, alpha: 1.0)
                 
             }
             
-        }
-        
-        if have == true {
+            //print(companies[indexPath.row].ticker, " ", companies[indexPath.row].companyName, " ", companies[indexPath.row].imageLink, " ", companies[indexPath.row].currentPrice, " ", companies[indexPath.row].changePrice)
             
-            cell.favouriteButton.setImage(UIImage(named: "Like"), for: .normal)
+            var have: Bool = false
+            for item in favourites {
+                
+                if item.ticker == companies[indexPath.row].ticker {
+                    
+                    have = true
+                    
+                }
+                
+            }
             
-        } else {
+            if have == true {
+                
+                cell.favouriteButton.setImage(UIImage(named: "Like"), for: .normal)
+                
+            } else {
+                
+                cell.favouriteButton.setImage(UIImage(named: "Hate"), for: .normal)
+                
+            }
             
-            cell.favouriteButton.setImage(UIImage(named: "Hate"), for: .normal)
+            if indexPath.row % 2 == 0 {
+                
+                cell.backgroundColor = UIColor(red: 0.94, green: 0.96, blue: 0.97, alpha: 1.0)
+                
+            } else {
+                
+                cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                
+            }
             
-        }
-        
-        if indexPath.row % 2 == 0 {
             
-            cell.backgroundColor = UIColor(red: 0.94, green: 0.96, blue: 0.97, alpha: 1.0)
+            let url = URL(string: companies[indexPath.row].imageLink)!
+            let file = companies[indexPath.row].imageLink.suffix(3)
             
-        } else {
-            
-            cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-            
-        }
-        
-        
-        let url = URL(string: companies[indexPath.row].imageLink)!
-        let file = companies[indexPath.row].imageLink.suffix(3)
-        
-        if file == "svg" {
-            
-            cell.companyImage.downloadedsvg(from: url)
-            
-        } else {
-            
-            cell.companyImage.kf.setImage(with: url)
+            if file == "svg" {
+                
+                cell.companyImage.downloadedsvg(from: url)
+                
+            } else {
+                
+                cell.companyImage.kf.setImage(with: url)
+                
+            }
             
         }
                 
@@ -206,12 +261,40 @@ extension ViewController: CompanyManagerDelegate {
     func didUpdateCompany(_ companyManager: CompanyManager, company: Company) {
         
         DispatchQueue.main.async {
-                        
-            self.companies.append(Company(ticker: company.ticker, companyName: company.companyName, imageLink: company.imageLink))
             
-            if self.companies.count == companyManager.tickersOfCompanies.count {
+            //print(company.ticker, " ", company.companyName, " ", company.imageLink)
+            
+            //print(company.ticker, company.companyName, " ", company.imageLink)
+            
+            var canReload: Bool = true
+            
+            for i in 0..<self.companies.count {
+            
+                if (self.companies[i].ticker == company.ticker) {
+                    
+                    self.companies[i].companyName = company.companyName
+                    self.companies[i].imageLink = company.imageLink
+                    
+                }
+                
+                if (self.companies[i].companyName == "-" || self.companies[i].currentPrice == "-"){
+                    
+                    canReload = false
+                    
+                }
+                
+            }
+            
+//            for i in 0..<self.companies.count {
+//                
+//                print(self.companies[i].ticker, " ", self.companies[i].companyName, " ", self.companies[i].imageLink, " ", self.companies[i].currentPrice, " ", self.companies[i].changePrice)
+//
+//            }
+
+            if canReload == true {
                 
                 self.tableView.reloadData()
+                //print("table was reloaded")
                 
             }
             
@@ -220,6 +303,69 @@ extension ViewController: CompanyManagerDelegate {
     }
     
     func didFailWithError(error: Error) {
+        
+        print(error)
+        
+    }
+    
+}
+
+//MARK: - PriceManager Delegate Methods
+
+extension ViewController: PriceManagerDelegate {
+    
+    func didUpdatePrice(_ priceManager: PriceManager, price: Price, ticker: String) {
+        
+        DispatchQueue.main.async {
+            
+            //print(ticker, " ", price.currentPrice, " ", price.percentChange)
+            
+            var canReload: Bool = true
+            
+            for i in 0..<self.companies.count {
+            
+                if (self.companies[i].ticker == ticker) {
+                    
+                    self.companies[i].currentPrice = "$\(price.currentPrice)"
+                    
+                    if price.change >= 0 {
+                        
+                        self.companies[i].changePrice = "+$\(price.change) (\(price.percentChange)%)"
+                        
+                    } else {
+                        
+                        self.companies[i].changePrice = "-$\(-1 * price.change) (\(-1 * price.percentChange)%)"
+
+                    }
+                    
+                }
+                
+                if (self.companies[i].companyName == "-" || self.companies[i].currentPrice == "-"){
+                    
+                    canReload = false
+                    
+                }
+                
+            }
+            
+//            for i in 0..<self.companies.count {
+//
+//                print(self.companies[i].ticker, " ", self.companies[i].companyName, " ", self.companies[i].imageLink, " ", self.companies[i].currentPrice, " ", self.companies[i].changePrice)
+//
+//            }
+
+            if canReload == true {
+                
+                self.tableView.reloadData()
+                //print("table was reloaded")
+                
+            }
+            
+        }
+        
+    }
+    
+    func functionPriceManagerDidFailWithError(error: Error) {
         
         print(error)
         
@@ -260,7 +406,7 @@ extension ViewController: CompanyCellDelegate {
             
         } else {
             
-            var newItem = Favourite(context: context)
+            let newItem = Favourite(context: context)
             newItem.ticker = companies[tag].ticker
             
             favourites.append(newItem)

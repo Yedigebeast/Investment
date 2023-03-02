@@ -5,7 +5,7 @@
 //  Created by Yedige Ashirbek on 25.02.2023.
 //
 
-import UIKit
+import Foundation
 
 protocol CompanyManagerDelegate {
     
@@ -18,18 +18,12 @@ struct CompanyManager {
     
     var delegate: CompanyManagerDelegate?
     let baseURL = "https://finnhub.io/api/v1/stock/profile2?symbol="
-    var tickersOfCompanies: [String] = ["YNDX", "AAPL", "MSFT", "AMZN", "GOOGL", "TSLA", "NVDA", "BRK.B", "JPM", "JNJ", "V", "UNH", "HD", "PG", "BAC"] // "DIS", "PYPL", "MA", "NFLX", "ADBE", "CRM", "CMCSA", "XOM", "PFE", "CSCO", "TMO", "VZ", "INTC", "PEP", "KO", "ABT", "MRK", "ACN", "CVX", "AVGO", "COST", "WMT", "WFC", "ABBV", "NKE", "T", "DHR", "MCD", "LLY", "TXN", "MDT", "NEE", "LIN", "ORCL", "HON", "PM", "LOW", "INTU", "C", "MS", "QCOM", "UNP", "RTX", "SBUX"]
     var tickerSelected = "AAPL"
     
     mutating func getTickerInfo (){
         
-        for ticker in tickersOfCompanies {
-            
-            self.tickerSelected = ticker
-            let url = "\(baseURL)\(tickerSelected)&token=\(Secret.token)"
-            performRequest(with: url)
-            
-        }
+        let url = "\(baseURL)\(tickerSelected)&token=\(Secret.token)"
+        performRequest(with: url)
         
     }
     
@@ -75,7 +69,7 @@ struct CompanyManager {
             let ticker = decodedData.ticker
             let imageLink = decodedData.logo
             
-            let company = Company(ticker: ticker, companyName: companyName, imageLink: imageLink)
+            let company = Company(ticker: ticker, companyName: companyName, imageLink: imageLink, currentPrice: "$100", changePrice: "+0,5%")
             
             return company
             
