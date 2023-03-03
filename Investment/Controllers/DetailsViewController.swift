@@ -9,8 +9,12 @@ import UIKit
 
 class DetailsViewController: UIViewController {
         
+    @IBOutlet weak var detailsNavigationBar: UINavigationItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
     }
     

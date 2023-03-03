@@ -11,21 +11,23 @@ import SVGKit
 import CoreData
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var favouriteButton: UIButton!
+    @IBOutlet weak var stocksButton: UIButton!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     var companyManager = CompanyManager()
     var priceManager = PriceManager()
     
     var companies: [Company] = []
+    var baseCompanies: [Company] = []
     var favourites = [Favourite]()
     var chosedStocksButton = true
     
     var tickersOfCompanies: [String] = ["AAPL", "MSFT", "AMZN", "GOOGL", "TSLA", "NVDA", "BRK.A", "JPM", "JNJ", "V", "UNH", "HD", "PG", "BAC", "DIS"] // "PYPL", "MA", "NFLX", "ADBE", "CRM", "CMCSA", "XOM", "PFE", "CSCO", "TMO", "VZ", "INTC", "PEP", "KO", "ABT", "MRK", "ACN", "CVX", "AVGO", "COST", "WMT", "WFC", "ABBV", "NKE", "T", "DHR", "MCD", "LLY", "TXN", "MDT", "NEE", "LIN", "ORCL", "HON", "PM", "LOW", "INTU", "C", "MS", "QCOM", "UNP", "RTX", "SBUX"]
     
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var favouriteButton: UIButton!
-    @IBOutlet weak var stocksButton: UIButton!
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -44,12 +46,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-
+        //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        
         companyManager.delegate = self
         priceManager.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
+        searchBar.delegate = self
         
         tableView.rowHeight = 68
         tableView.register(UINib(nibName: Constants.cellNibName, bundle: nil), forCellReuseIdentifier: Constants.cellIdentifier)
@@ -74,8 +77,13 @@ class ViewController: UIViewController {
             priceManager.getPriceInfo()
             
         }
-              
+        
     }
+}
+
+//MARK: - Buttons Pressed
+
+extension ViewController {
 
     @IBAction func StocksButtonPressed(_ sender: UIButton) {
     
@@ -84,24 +92,10 @@ class ViewController: UIViewController {
         stocksButton.setTitleColor(UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0), for: .normal)
         favouriteButton.setTitleColor(UIColor(red: 0.73, green: 0.73, blue: 0.73, alpha: 1.0), for: .normal)
         chosedStocksButton = true
-        
+                
         companies.removeAll()
         
-        for ticker in tickersOfCompanies {
-            
-            companies.append(Company(ticker: ticker, companyName: "-", imageLink: "-", currentPrice: "-", changePrice: "-"))
-            
-        }
-        
-        for ticker in tickersOfCompanies {
-            
-            companyManager.tickerSelected = ticker
-            companyManager.getTickerInfo()
-            
-            priceManager.tickerSelected = ticker
-            priceManager.getPriceInfo()
-            
-        }
+        companies = baseCompanies
         
         tableView.reloadData()
         
@@ -114,7 +108,7 @@ class ViewController: UIViewController {
         favouriteButton.setTitleColor(UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0), for: .normal)
         stocksButton.setTitleColor(UIColor(red: 0.73, green: 0.73, blue: 0.73, alpha: 1.0), for: .normal)
         chosedStocksButton = false
-        
+
         var companies1: [Company] = []
         
         for i in companies {
@@ -142,7 +136,7 @@ class ViewController: UIViewController {
 //MARK: - TableView DataSource Methods
 
 extension ViewController: UITableViewDataSource {
-        
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return companies.count
@@ -163,9 +157,7 @@ extension ViewController: UITableViewDataSource {
             cell.label.text = companies[indexPath.row].ticker
             cell.cost.text = companies[indexPath.row].currentPrice
             cell.changes.text = companies[indexPath.row].changePrice
-               
-//            print(companies[indexPath.row].ticker, " ", companies[indexPath.row].changePrice.first!)
-            
+                           
             if companies[indexPath.row].changePrice.prefix(1) == "-" {
                 
                 cell.changes.textColor = UIColor(red: 0.7, green: 0.14, blue: 0.14, alpha: 1.0)
@@ -175,8 +167,6 @@ extension ViewController: UITableViewDataSource {
                 cell.changes.textColor = UIColor(red: 0.14, green: 0.7, blue: 0.36, alpha: 1.0)
                 
             }
-            
-            //print(companies[indexPath.row].ticker, " ", companies[indexPath.row].companyName, " ", companies[indexPath.row].imageLink, " ", companies[indexPath.row].currentPrice, " ", companies[indexPath.row].changePrice)
             
             var have: Bool = false
             for item in favourites {
@@ -254,6 +244,39 @@ extension ViewController: UITableViewDelegate {
     
 }
 
+//MARK: - UISearchbar Delegate Methods
+
+extension ViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        
+        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        print(baseCompanies)
+        companies = baseCompanies
+        
+        if (searchText != ""){
+        
+            companies = companies.filter{
+                
+                $0.ticker.lowercased().contains(searchText.lowercased()) || 
+                $0.companyName.lowercased().contains(searchText.lowercased())
+                
+            }
+            print(companies)
+            
+        }
+        
+        tableView.reloadData()
+        
+    }
+    
+}
+
 //MARK: - CompanyManager Delegate Methods
 
 extension ViewController: CompanyManagerDelegate {
@@ -261,10 +284,6 @@ extension ViewController: CompanyManagerDelegate {
     func didUpdateCompany(_ companyManager: CompanyManager, company: Company) {
         
         DispatchQueue.main.async {
-            
-            //print(company.ticker, " ", company.companyName, " ", company.imageLink)
-            
-            //print(company.ticker, company.companyName, " ", company.imageLink)
             
             var canReload: Bool = true
             
@@ -285,16 +304,10 @@ extension ViewController: CompanyManagerDelegate {
                 
             }
             
-//            for i in 0..<self.companies.count {
-//                
-//                print(self.companies[i].ticker, " ", self.companies[i].companyName, " ", self.companies[i].imageLink, " ", self.companies[i].currentPrice, " ", self.companies[i].changePrice)
-//
-//            }
-
             if canReload == true {
                 
+                self.baseCompanies = self.companies
                 self.tableView.reloadData()
-                //print("table was reloaded")
                 
             }
             
@@ -317,9 +330,7 @@ extension ViewController: PriceManagerDelegate {
     func didUpdatePrice(_ priceManager: PriceManager, price: Price, ticker: String) {
         
         DispatchQueue.main.async {
-            
-            //print(ticker, " ", price.currentPrice, " ", price.percentChange)
-            
+                        
             var canReload: Bool = true
             
             for i in 0..<self.companies.count {
@@ -347,17 +358,11 @@ extension ViewController: PriceManagerDelegate {
                 }
                 
             }
-            
-//            for i in 0..<self.companies.count {
-//
-//                print(self.companies[i].ticker, " ", self.companies[i].companyName, " ", self.companies[i].imageLink, " ", self.companies[i].currentPrice, " ", self.companies[i].changePrice)
-//
-//            }
 
             if canReload == true {
                 
+                self.baseCompanies = self.companies
                 self.tableView.reloadData()
-                //print("table was reloaded")
                 
             }
             

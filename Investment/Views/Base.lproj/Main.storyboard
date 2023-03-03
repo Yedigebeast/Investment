@@ -76,6 +76,7 @@
                     <navigationItem key="navigationItem" id="jjd-EZ-PZx"/>
                     <connections>
                         <outlet property="favouriteButton" destination="gPm-6t-ZS1" id="dOv-LV-YyS"/>
+                        <outlet property="searchBar" destination="IJz-kj-CYR" id="0JP-bq-KcR"/>
                         <outlet property="stocksButton" destination="hLu-7p-Zd6" id="L6p-hu-go9"/>
                         <outlet property="tableView" destination="IGl-FQ-L4t" id="1ge-sd-k5a"/>
                         <segue destination="dKd-31-h1t" kind="show" identifier="goToDetails" id="iiE-pf-FJD"/>
@@ -96,6 +97,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="sg9-ic-oWr"/>
+                    <connections>
+                        <outlet property="detailsNavigationBar" destination="sg9-ic-oWr" id="Rn1-uQ-QiD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uzd-tx-673" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
