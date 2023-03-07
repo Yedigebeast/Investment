@@ -389,15 +389,21 @@ extension ViewController: PriceManagerDelegate {
             
                 if (self.companies[i].ticker == ticker) {
                     
-                    self.companies[i].currentPrice = "$\(price.currentPrice)"
+                    var s = addingSpaceInNumber(price: "\(price.currentPrice)")
+                    
+                    self.companies[i].currentPrice = "$\(s)"
                     
                     if price.change >= 0 {
                         
-                        self.companies[i].changePrice = "+$\(price.change) (\(price.percentChange)%)"
+                        s = addingSpaceInNumber(price: "\(price.change)")
+                        let s1 = addingSpaceInNumber(price: "\(price.percentChange)")
+                        self.companies[i].changePrice = "+$\(s) (\(s1)%)"
                         
                     } else {
                         
-                        self.companies[i].changePrice = "-$\(-1 * price.change) (\(-1 * price.percentChange)%)"
+                        s = addingSpaceInNumber(price: "\(-1 * price.change)")
+                        let s1 = addingSpaceInNumber(price: "\(-1 * price.percentChange)")
+                        self.companies[i].changePrice = "-$\(s) (\(s1)%)"
 
                     }
                     
@@ -427,6 +433,54 @@ extension ViewController: PriceManagerDelegate {
         print(error)
         
     }
+    
+}
+
+func addingSpaceInNumber (price: String) -> String {
+    
+    var cntr: Int = 0
+    var saw: Bool = false
+    var p = price
+    
+    for i in stride(from: price.count - 1, through: 0, by: -1) {
+        
+        if p.characterAtIndex(index: i) == "." {
+            
+            saw = true
+            
+        }
+        
+        if let character = p.characterAtIndex(index: i){
+            
+            if "0" <= character && character <= "9" {
+                
+                if saw == true {
+                    
+                    cntr += 1
+                    
+                }
+                
+            }
+            
+        }
+        
+        if cntr == 3 && i != 0 {
+            
+            p.insert(" ", at: p.index(p.startIndex, offsetBy: i))
+            cntr = 0
+            
+        }
+
+    }
+    
+    if p.suffix(2) == ".0" {
+        
+        p = String(p.dropLast())
+        p = String(p.dropLast())
+        
+    }
+    
+    return p
     
 }
 
@@ -541,6 +595,30 @@ extension UIImageView {
             
         }.resume()
         
+    }
+    
+}
+
+//MARK: - Get the symbol at index in string
+
+extension String {
+    
+    func characterAtIndex(index: Int) -> Character? {
+        
+        var cur = 0
+        for char in self {
+            
+            if cur == index {
+                
+                return char
+                
+            }
+            
+            cur += 1
+            
+        }
+        
+        return nil
     }
     
 }
