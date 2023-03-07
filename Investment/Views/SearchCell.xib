@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-SemiBold.ttf">
+            <string>Montserrat-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ReusableCollectionViewCell" id="BOh-Lt-zPh" customClass="SearchCell" customModule="Investment" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="188" height="40"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="MJx-rC-VAO">
+                <rect key="frame" x="0.0" y="0.0" width="188" height="40"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WTQ-et-U3K">
+                        <rect key="frame" x="0.0" y="0.0" width="188" height="40"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WZK-kk-hYu">
+                                <rect key="frame" x="16" y="12" width="156" height="16"/>
+                                <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="12"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Apple">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94117647058823528" green="0.95686274509803915" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="WZK-kk-hYu" secondAttribute="bottom" constant="12" id="3DW-fK-LBw"/>
+                            <constraint firstItem="WZK-kk-hYu" firstAttribute="leading" secondItem="WTQ-et-U3K" secondAttribute="leading" constant="16" id="5TK-MF-fja"/>
+                            <constraint firstItem="WZK-kk-hYu" firstAttribute="top" secondItem="WTQ-et-U3K" secondAttribute="top" constant="12" id="HAZ-6Y-TLm"/>
+                            <constraint firstAttribute="trailing" secondItem="WZK-kk-hYu" secondAttribute="trailing" constant="16" id="ddC-ew-rmy"/>
+                            <constraint firstAttribute="height" constant="40" id="pVh-vE-WiB"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="WTQ-et-U3K" secondAttribute="trailing" id="Lsd-jh-le8"/>
+                    <constraint firstItem="WTQ-et-U3K" firstAttribute="top" secondItem="MJx-rC-VAO" secondAttribute="top" id="QgV-H1-608"/>
+                    <constraint firstItem="WTQ-et-U3K" firstAttribute="leading" secondItem="MJx-rC-VAO" secondAttribute="leading" id="cUw-Jz-REW"/>
+                    <constraint firstAttribute="bottom" secondItem="WTQ-et-U3K" secondAttribute="bottom" id="hsu-U2-CMM"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="188" height="40"/>
+            <connections>
+                <outlet property="backgroundView" destination="WTQ-et-U3K" id="d9B-Vi-fFr"/>
+                <outlet property="celLabel" destination="WZK-kk-hYu" id="9Xe-DO-05t"/>
+            </connections>
+            <point key="canvasLocation" x="233.58778625954199" y="-59.154929577464792"/>
+        </collectionViewCell>
+    </objects>
+</document>

@@ -22,7 +22,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var previousSearchesLabel: UILabel!
     @IBOutlet weak var previousSearchesCollectionView: UICollectionView!
     
-    
     var companyManager = CompanyManager()
     var priceManager = PriceManager()
     
@@ -59,6 +58,13 @@ class ViewController: UIViewController {
         popularRequestsCollectionView.isHidden = true
         previousSearchesLabel.isHidden = true
         previousSearchesCollectionView.isHidden = true
+        
+        popularRequestsCollectionView.register(UINib(nibName: Constants.collectionViewCellNibName, bundle: nil), forCellWithReuseIdentifier: Constants.collectionViewCellIdentifier)
+        previousSearchesCollectionView.register(UINib(nibName: Constants.collectionViewCellNibName, bundle: nil), forCellWithReuseIdentifier: Constants.collectionViewCellIdentifier)
+        popularRequestsCollectionView.delegate = self
+        previousSearchesCollectionView.delegate = self
+        popularRequestsCollectionView.dataSource = self
+        previousSearchesCollectionView.dataSource = self
         
         companyManager.delegate = self
         priceManager.delegate = self
@@ -256,6 +262,35 @@ extension ViewController: UITableViewDelegate {
     
 }
 
+//MARK: - CollectionView DataSource Methods
+
+extension ViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return tickersOfCompanies.count
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell =  popularRequestsCollectionView.dequeueReusableCell(withReuseIdentifier: Constants.collectionViewCellIdentifier, for: indexPath) as! SearchCell
+        
+        cell.celLabel.setTitle(tickersOfCompanies[indexPath.row], for: .normal)
+        return cell
+        
+    }
+    
+}
+
+//MARK: - CollectionView Delegate Methods
+
+extension ViewController: UICollectionViewDelegate {
+    
+    
+    
+}
+
 //MARK: - UISearchbar Delegate Methods
 
 extension ViewController: UISearchBarDelegate {
@@ -287,6 +322,8 @@ extension ViewController: UISearchBarDelegate {
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         
+        searchBar.text = ""
+        
         tableView.isHidden = true
         stocksButton.isHidden = true
         favouriteButton.isHidden = true
@@ -317,7 +354,6 @@ extension ViewController: UISearchBarDelegate {
         previousSearchesCollectionView.isHidden = true
         
         tableView.reloadData()
-        searchBar.text = ""
 
         return true
         
@@ -455,9 +491,7 @@ func addingSpaceInNumber (price: String) -> String {
             if "0" <= character && character <= "9" {
                 
                 if saw == true {
-                    
                     cntr += 1
-                    
                 }
                 
             }

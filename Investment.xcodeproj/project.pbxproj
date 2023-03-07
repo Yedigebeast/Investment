@@ -24,6 +24,8 @@
 		FE74114F299A2FA2008A68EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE74114D299A2FA2008A68EF /* LaunchScreen.storyboard */; };
 		FE7FB83629A7AEC5009896F2 /* CompanyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE7FB83529A7AEC5009896F2 /* CompanyCell.xib */; };
 		FE7FB83829A7B113009896F2 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE7FB83729A7B113009896F2 /* Montserrat-SemiBold.ttf */; };
+		FEA3E96F29B77FC100DE2A0A /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEA3E96E29B77FC100DE2A0A /* SearchCell.xib */; };
+		FEA3E97129B77FD600DE2A0A /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3E97029B77FD600DE2A0A /* SearchCell.swift */; };
 		FEEA7EC129A9FEC60083DF6B /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEA7EC029A9FEC60083DF6B /* Secret.swift */; };
 		FEEA7EC329AA04230083DF6B /* CompanyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEA7EC229AA04230083DF6B /* CompanyManager.swift */; };
 		FEEA7EC529AA079C0083DF6B /* CompanyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEA7EC429AA079C0083DF6B /* CompanyData.swift */; };
@@ -52,6 +54,8 @@
 		FE741150299A2FA2008A68EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE7FB83529A7AEC5009896F2 /* CompanyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompanyCell.xib; sourceTree = "<group>"; };
 		FE7FB83729A7B113009896F2 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		FEA3E96E29B77FC100DE2A0A /* SearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
+		FEA3E97029B77FD600DE2A0A /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		FEEA7EC029A9FEC60083DF6B /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		FEEA7EC229AA04230083DF6B /* CompanyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyManager.swift; sourceTree = "<group>"; };
 		FEEA7EC429AA079C0083DF6B /* CompanyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyData.swift; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 				FE741145299A2FA1008A68EF /* Main.storyboard */,
 				FE7FB83529A7AEC5009896F2 /* CompanyCell.xib */,
 				FE09548329A8C126005F7CB6 /* CompanyCell.swift */,
+				FEA3E96E29B77FC100DE2A0A /* SearchCell.xib */,
+				FEA3E97029B77FD600DE2A0A /* SearchCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -237,6 +243,7 @@
 				FE10FD1429A7AA06009932BB /* Montserrat-Bold.ttf in Resources */,
 				FE74114F299A2FA2008A68EF /* LaunchScreen.storyboard in Resources */,
 				FE7FB83629A7AEC5009896F2 /* CompanyCell.xib in Resources */,
+				FEA3E96F29B77FC100DE2A0A /* SearchCell.xib in Resources */,
 				FE74114C299A2FA2008A68EF /* Assets.xcassets in Resources */,
 				FE741147299A2FA1008A68EF /* Main.storyboard in Resources */,
 			);
@@ -292,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEEA7EC329AA04230083DF6B /* CompanyManager.swift in Sources */,
+				FEA3E97129B77FD600DE2A0A /* SearchCell.swift in Sources */,
 				FE07605629B0E4A70091EA1F /* Price.swift in Sources */,
 				FE09547E29A8BEC5005F7CB6 /* Constants.swift in Sources */,
 				FE74114A299A2FA1008A68EF /* Investment.xcdatamodeld in Sources */,
