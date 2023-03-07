@@ -17,6 +17,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var stocksButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    @IBOutlet weak var popularRequestsLabel: UILabel!
+    @IBOutlet weak var popularRequestsCollectionView: UICollectionView!
+    @IBOutlet weak var previousSearchesLabel: UILabel!
+    @IBOutlet weak var previousSearchesCollectionView: UICollectionView!
+    
+    
     var companyManager = CompanyManager()
     var priceManager = PriceManager()
     
@@ -24,6 +30,7 @@ class ViewController: UIViewController {
     var baseCompanies: [Company] = []
     var favourites = [Favourite]()
     var chosedStocksButton = true
+    var searchButtonWasClicked = false
     
     var tickersOfCompanies: [String] = ["AAPL", "MSFT", "AMZN", "GOOGL", "TSLA", "NVDA", "BRK.A", "JPM", "JNJ", "V", "UNH", "HD", "PG", "BAC", "DIS"] // "PYPL", "MA", "NFLX", "ADBE", "CRM", "CMCSA", "XOM", "PFE", "CSCO", "TMO", "VZ", "INTC", "PEP", "KO", "ABT", "MRK", "ACN", "CVX", "AVGO", "COST", "WMT", "WFC", "ABBV", "NKE", "T", "DHR", "MCD", "LLY", "TXN", "MDT", "NEE", "LIN", "ORCL", "HON", "PM", "LOW", "INTU", "C", "MS", "QCOM", "UNP", "RTX", "SBUX"]
     
@@ -47,6 +54,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        
+        popularRequestsLabel.isHidden = true
+        popularRequestsCollectionView.isHidden = true
+        previousSearchesLabel.isHidden = true
+        previousSearchesCollectionView.isHidden = true
         
         companyManager.delegate = self
         priceManager.delegate = self
@@ -250,29 +262,69 @@ extension ViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        
-        
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        print(baseCompanies)
+        //print(baseCompanies)
+        DispatchQueue.main.async {
+            searchBar.resignFirstResponder()
+        }
         companies = baseCompanies
+        searchButtonWasClicked = true
         
-        if (searchText != ""){
-        
+        if (searchBar.text != ""){
+            
             companies = companies.filter{
                 
-                $0.ticker.lowercased().contains(searchText.lowercased()) || 
-                $0.companyName.lowercased().contains(searchText.lowercased())
+                $0.ticker.lowercased().contains(searchBar.text!.lowercased()) ||
+                $0.companyName.lowercased().contains(searchBar.text!.lowercased())
                 
             }
-            print(companies)
+            //print(companies)
             
         }
         
         tableView.reloadData()
         
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        
+        tableView.isHidden = true
+        stocksButton.isHidden = true
+        favouriteButton.isHidden = true
+        
+        popularRequestsLabel.isHidden = false
+        popularRequestsCollectionView.isHidden = false
+        previousSearchesLabel.isHidden = false
+        previousSearchesCollectionView.isHidden = false
+        return true
+        
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        
+        if searchButtonWasClicked == false{
+            
+            companies = baseCompanies
+            
+        }
+        searchButtonWasClicked = false
+        tableView.isHidden = false
+        stocksButton.isHidden = false
+        favouriteButton.isHidden = false
+        
+        popularRequestsLabel.isHidden = true
+        popularRequestsCollectionView.isHidden = true
+        previousSearchesLabel.isHidden = true
+        previousSearchesCollectionView.isHidden = true
+        
+        tableView.reloadData()
+        searchBar.text = ""
+
+        return true
+        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+                
     }
     
 }

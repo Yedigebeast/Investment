@@ -8,5 +8,6 @@ target 'Investment' do
   # Pods for Investment
   pod 'Kingfisher', '~> 7.6'
   pod 'SVGKit', :git => 'https://github.com/SVGKit/SVGKit.git', :branch => '3.x'
+  pod 'IQKeyboardManagerSwift', '6.5.0'
 
 end

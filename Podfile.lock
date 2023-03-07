@@ -2,17 +2,20 @@ PODS:
   - CocoaLumberjack (3.8.0):
     - CocoaLumberjack/Core (= 3.8.0)
   - CocoaLumberjack/Core (3.8.0)
+  - IQKeyboardManagerSwift (6.5.0)
   - Kingfisher (7.6.2)
   - SVGKit (3.1.0):
     - CocoaLumberjack (~> 3.0)
 
 DEPENDENCIES:
+  - IQKeyboardManagerSwift (= 6.5.0)
   - Kingfisher (~> 7.6)
   - SVGKit (from `https://github.com/SVGKit/SVGKit.git`, branch `3.x`)
 
 SPEC REPOS:
   trunk:
     - CocoaLumberjack
+    - IQKeyboardManagerSwift
     - Kingfisher
 
 EXTERNAL SOURCES:
@@ -27,9 +30,10 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 78abfb691154e2a9df8ded4350d504ee19d90732
+  IQKeyboardManagerSwift: 6cd19976c6e871907c4ed9127c2d3affdd4defc2
   Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
   SVGKit: 3c8468aab0026048532a3b27a0c81cdd939f0649
 
-PODFILE CHECKSUM: ec4ef1518249c6841e8fbb499b263cb99227ea83
+PODFILE CHECKSUM: f0473471ceccc5470e46400db789a71ab02e1efc
 
 COCOAPODS: 1.11.3
