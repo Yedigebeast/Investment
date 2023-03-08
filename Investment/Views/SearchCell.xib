@@ -16,33 +16,44 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ReusableCollectionViewCell" id="BOh-Lt-zPh" customClass="SearchCell" customModule="Investment" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="98" height="40"/>
+            <rect key="frame" x="0.0" y="0.0" width="203" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="MJx-rC-VAO">
-                <rect key="frame" x="0.0" y="0.0" width="98" height="40"/>
+                <rect key="frame" x="0.0" y="0.0" width="203" height="40"/>
                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RW6-vs-Dyd">
-                        <rect key="frame" x="16" y="12" width="66" height="16"/>
-                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="12"/>
-                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                        <state key="normal" title="Apple"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2G-bZ-IKS">
+                        <rect key="frame" x="0.0" y="0.0" width="203" height="40"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="  "/>
+                        <connections>
+                            <action selector="searchButtonPressed:" destination="BOh-Lt-zPh" eventType="touchUpInside" id="JXy-A8-DR3"/>
+                        </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apple" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkJ-Cg-e18">
+                        <rect key="frame" x="16" y="12" width="171" height="16"/>
+                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" red="0.94117647059999998" green="0.95686274510000002" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="RW6-vs-Dyd" firstAttribute="leading" secondItem="MJx-rC-VAO" secondAttribute="leading" constant="16" id="cc0-i1-wTj"/>
-                    <constraint firstItem="RW6-vs-Dyd" firstAttribute="top" secondItem="MJx-rC-VAO" secondAttribute="top" constant="12" id="d8U-kf-K8I"/>
-                    <constraint firstAttribute="bottom" secondItem="RW6-vs-Dyd" secondAttribute="bottom" constant="12" id="rhB-hy-cnU"/>
-                    <constraint firstAttribute="trailing" secondItem="RW6-vs-Dyd" secondAttribute="trailing" constant="16" id="w3M-O7-vwt"/>
+                    <constraint firstItem="hkJ-Cg-e18" firstAttribute="leading" secondItem="MJx-rC-VAO" secondAttribute="leading" constant="16" id="2uz-Ad-1hK"/>
+                    <constraint firstAttribute="bottom" secondItem="hkJ-Cg-e18" secondAttribute="bottom" constant="12" id="BXO-Xx-zUf"/>
+                    <constraint firstAttribute="bottom" secondItem="r2G-bZ-IKS" secondAttribute="bottom" id="DXi-qQ-7xs"/>
+                    <constraint firstItem="r2G-bZ-IKS" firstAttribute="top" secondItem="MJx-rC-VAO" secondAttribute="top" id="WSj-7u-lhl"/>
+                    <constraint firstItem="hkJ-Cg-e18" firstAttribute="top" secondItem="MJx-rC-VAO" secondAttribute="top" constant="12" id="XMR-UI-e7l"/>
+                    <constraint firstAttribute="trailing" secondItem="r2G-bZ-IKS" secondAttribute="trailing" id="bCF-ew-wso"/>
+                    <constraint firstItem="r2G-bZ-IKS" firstAttribute="leading" secondItem="MJx-rC-VAO" secondAttribute="leading" id="rmc-Xl-LCr"/>
+                    <constraint firstAttribute="trailing" secondItem="hkJ-Cg-e18" secondAttribute="trailing" constant="16" id="wWj-fV-bII"/>
                 </constraints>
             </collectionViewCellContentView>
-            <size key="customSize" width="98" height="40"/>
+            <size key="customSize" width="203" height="40"/>
             <connections>
-                <outlet property="cellLabel" destination="RW6-vs-Dyd" id="nVI-b0-hCM"/>
+                <outlet property="cellLabel" destination="hkJ-Cg-e18" id="qdC-hg-ddi"/>
             </connections>
-            <point key="canvasLocation" x="300.76335877862596" y="-59.154929577464792"/>
+            <point key="canvasLocation" x="220.61068702290075" y="-59.154929577464792"/>
         </collectionViewCell>
     </objects>
 </document>

@@ -10,11 +10,17 @@ import UIKit
 
 class SearchCell: UICollectionViewCell {
     
-    @IBOutlet weak var cellLabel: UIButton!
+    @IBOutlet weak var cellLabel: UILabel!
     
     override func awakeFromNib() {
         
         super.awakeFromNib()
+        
+    }
+    
+    @IBAction func searchButtonPressed(_ sender: UIButton) {
+        
+        
         
     }
     

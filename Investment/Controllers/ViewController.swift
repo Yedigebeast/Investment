@@ -32,7 +32,8 @@ class ViewController: UIViewController {
     var searchButtonWasClicked = false
     
     var tickersOfCompanies: [String] = ["AAPL", "MSFT", "AMZN", "GOOGL", "TSLA", "NVDA", "BRK.A", "JPM", "JNJ", "V", "UNH", "HD", "PG", "BAC", "DIS"] // "PYPL", "MA", "NFLX", "ADBE", "CRM", "CMCSA", "XOM", "PFE", "CSCO", "TMO", "VZ", "INTC", "PEP", "KO", "ABT", "MRK", "ACN", "CVX", "AVGO", "COST", "WMT", "WFC", "ABBV", "NKE", "T", "DHR", "MCD", "LLY", "TXN", "MDT", "NEE", "LIN", "ORCL", "HON", "PM", "LOW", "INTU", "C", "MS", "QCOM", "UNP", "RTX", "SBUX"]
-        
+    var searches: [String] = ["Apple", "Amazon", "Google", "Tesla", "Microsoft", "First Solar", "Alibaba", "Facebook", "Mastercard", "AMD", "Intel", "GM"]
+    
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewWillAppear(_ animated: Bool) {
@@ -166,7 +167,7 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-                
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIdentifier, for: indexPath) as! CompanyCell
         
         if (companies[indexPath.row].companyName != "-" && companies[indexPath.row].currentPrice != "-"){
@@ -179,7 +180,7 @@ extension ViewController: UITableViewDataSource {
             cell.label.text = companies[indexPath.row].ticker
             cell.cost.text = companies[indexPath.row].currentPrice
             cell.changes.text = companies[indexPath.row].changePrice
-                           
+            
             if companies[indexPath.row].changePrice.prefix(1) == "-" {
                 
                 cell.changes.textColor = UIColor(red: 0.7, green: 0.14, blue: 0.14, alpha: 1.0)
@@ -236,7 +237,7 @@ extension ViewController: UITableViewDataSource {
             }
             
         }
-                
+        
         return cell
         
     }
@@ -272,7 +273,7 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return tickersOfCompanies.count
+        return searches.count
         
     }
     
@@ -280,10 +281,9 @@ extension ViewController: UICollectionViewDataSource {
         
         let cell = popularRequestsCollectionView.dequeueReusableCell(withReuseIdentifier: Constants.collectionViewCellIdentifier, for: indexPath) as! SearchCell
         
-        cell.cellLabel.setTitle(tickersOfCompanies[indexPath.row], for: .normal)
-        cell.layer.cornerRadius = 25
-        cell.frame.size.height = 40
-        
+        cell.cellLabel.text = (searches[indexPath.row])
+        cell.layer.cornerRadius = 20
+
         return cell
         
     }
@@ -294,15 +294,30 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        return 0
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+
+        return 8
+
+    }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        
+
         return 4
+
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let cellWidth = searches[indexPath.row]
+        print("Width of the cell with the text \(searches[indexPath.row]) at index \(indexPath.row) is equal to \(cellWidth.getStringwidth(height: 40, font: UIFont(name: "Montserrat-SemiBold", size: 12)!) + 32)")
+        return CGSize(width: (cellWidth.getStringwidth(height: 16, font: UIFont(name: "Montserrat-SemiBold", size: 12)!)) + 32.2, height: 40)
+        //return CGSize(width: 100, height: 40)
         
     }
     
@@ -668,9 +683,7 @@ extension String {
         for char in self {
             
             if cur == index {
-                
                 return char
-                
             }
             
             cur += 1
@@ -678,6 +691,20 @@ extension String {
         }
         
         return nil
+    }
+    
+}
+
+//MARK: - Get String width
+
+extension String {
+    
+    func getStringwidth(height: CGFloat, font: UIFont) -> CGFloat {
+        
+        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
+        let boundingBox = self.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedString.Key.font: font], context: nil)
+        return boundingBox.width
+        
     }
     
 }
