@@ -32,7 +32,7 @@ class ViewController: UIViewController {
     var searchButtonWasClicked = false
     
     var tickersOfCompanies: [String] = ["AAPL", "MSFT", "AMZN", "GOOGL", "TSLA", "NVDA", "BRK.A", "JPM", "JNJ", "V", "UNH", "HD", "PG", "BAC", "DIS"] // "PYPL", "MA", "NFLX", "ADBE", "CRM", "CMCSA", "XOM", "PFE", "CSCO", "TMO", "VZ", "INTC", "PEP", "KO", "ABT", "MRK", "ACN", "CVX", "AVGO", "COST", "WMT", "WFC", "ABBV", "NKE", "T", "DHR", "MCD", "LLY", "TXN", "MDT", "NEE", "LIN", "ORCL", "HON", "PM", "LOW", "INTU", "C", "MS", "QCOM", "UNP", "RTX", "SBUX"]
-    
+        
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,6 +61,10 @@ class ViewController: UIViewController {
         
         popularRequestsCollectionView.register(UINib(nibName: Constants.collectionViewCellNibName, bundle: nil), forCellWithReuseIdentifier: Constants.collectionViewCellIdentifier)
         previousSearchesCollectionView.register(UINib(nibName: Constants.collectionViewCellNibName, bundle: nil), forCellWithReuseIdentifier: Constants.collectionViewCellIdentifier)
+        popularRequestsCollectionView.showsVerticalScrollIndicator = false
+        popularRequestsCollectionView.showsHorizontalScrollIndicator = false
+        previousSearchesCollectionView.showsVerticalScrollIndicator = false
+        previousSearchesCollectionView.showsHorizontalScrollIndicator = false
         popularRequestsCollectionView.delegate = self
         previousSearchesCollectionView.delegate = self
         popularRequestsCollectionView.dataSource = self
@@ -169,7 +173,7 @@ extension ViewController: UITableViewDataSource {
             
             cell.delegate = self
             cell.favouriteButton.tag = indexPath.row
-            cell.layer.cornerRadius = cell.frame.size.height / 4
+            cell.layer.cornerRadius = 16
             
             cell.companyName.text = companies[indexPath.row].companyName
             cell.label.text = companies[indexPath.row].ticker
@@ -274,10 +278,31 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell =  popularRequestsCollectionView.dequeueReusableCell(withReuseIdentifier: Constants.collectionViewCellIdentifier, for: indexPath) as! SearchCell
+        let cell = popularRequestsCollectionView.dequeueReusableCell(withReuseIdentifier: Constants.collectionViewCellIdentifier, for: indexPath) as! SearchCell
         
-        cell.celLabel.setTitle(tickersOfCompanies[indexPath.row], for: .normal)
+        cell.cellLabel.setTitle(tickersOfCompanies[indexPath.row], for: .normal)
+        cell.layer.cornerRadius = 25
+        cell.frame.size.height = 40
+        
         return cell
+        
+    }
+    
+}
+
+//MARK: - Collection View Delegate Flow Layout Methods
+
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 0
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 4
         
     }
     
@@ -360,7 +385,7 @@ extension ViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-                
+        
     }
     
 }

@@ -10,8 +10,8 @@ import UIKit
 
 class SearchCell: UICollectionViewCell {
     
-    @IBOutlet weak var celLabel: UIButton!
-   
+    @IBOutlet weak var cellLabel: UIButton!
+    
     override func awakeFromNib() {
         
         super.awakeFromNib()
