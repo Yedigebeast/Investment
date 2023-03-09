@@ -12,6 +12,9 @@
         <array key="Montserrat-Bold.ttf">
             <string>Montserrat-Bold</string>
         </array>
+        <array key="Montserrat-SemiBold.ttf">
+            <string>Montserrat-SemiBold</string>
+        </array>
     </customFonts>
     <scenes>
         <!--View Controller-->
@@ -23,8 +26,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" text="" placeholder="Find company or ticker" translatesAutoresizingMaskIntoConstraints="NO" id="IJz-kj-CYR">
-                                <rect key="frame" x="0.0" y="103" width="393" height="56"/>
+                                <rect key="frame" x="16" y="103" width="361" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="nwV-se-xGC"/>
                                 </connections>
@@ -54,6 +61,16 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFb-rs-EaX">
+                                <rect key="frame" x="303" y="159" width="70" height="47"/>
+                                <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="12"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Show More"/>
+                                <connections>
+                                    <action selector="showMoreButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2D8-VH-Ny7"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular requests" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5v6-Oh-bGp">
                                 <rect key="frame" x="20" y="167" width="161" height="22"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="18"/>
@@ -102,12 +119,15 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="IJz-kj-CYR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1f6-vB-Cf0"/>
+                            <constraint firstItem="IJz-kj-CYR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="1f6-vB-Cf0"/>
                             <constraint firstItem="IGl-FQ-L4t" firstAttribute="top" secondItem="0bh-3s-WmJ" secondAttribute="bottom" id="5nL-sO-sPn"/>
                             <constraint firstItem="VAJ-RR-aFi" firstAttribute="top" secondItem="5v6-Oh-bGp" secondAttribute="bottom" constant="11" id="6sR-tC-uOg"/>
                             <constraint firstItem="IGl-FQ-L4t" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-16" id="8Ss-gC-hvB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dFb-rs-EaX" secondAttribute="trailing" constant="20" id="8iY-k7-iaE"/>
                             <constraint firstItem="5v6-Oh-bGp" firstAttribute="top" secondItem="IJz-kj-CYR" secondAttribute="bottom" constant="8" id="DAo-IU-O3g"/>
+                            <constraint firstItem="IGl-FQ-L4t" firstAttribute="top" secondItem="dFb-rs-EaX" secondAttribute="bottom" id="HlC-pu-xBV"/>
                             <constraint firstItem="y8K-cj-gvH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Kse-Hp-Fd8"/>
+                            <constraint firstItem="dFb-rs-EaX" firstAttribute="top" secondItem="IJz-kj-CYR" secondAttribute="bottom" id="NqW-o8-4hM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Pxc-zr-e3G" secondAttribute="trailing" id="Nub-Ev-S0t"/>
                             <constraint firstAttribute="bottom" secondItem="IGl-FQ-L4t" secondAttribute="bottom" id="SEo-44-wzf"/>
                             <constraint firstItem="Pxc-zr-e3G" firstAttribute="top" secondItem="y8K-cj-gvH" secondAttribute="bottom" constant="11" id="SWw-OO-Nly"/>
@@ -121,8 +141,9 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VAJ-RR-aFi" secondAttribute="trailing" id="eY1-oc-YpT"/>
                             <constraint firstItem="0bh-3s-WmJ" firstAttribute="top" secondItem="IJz-kj-CYR" secondAttribute="bottom" id="lEG-PN-bsY"/>
                             <constraint firstItem="0bh-3s-WmJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="u4W-aA-UIS"/>
+                            <constraint firstItem="dFb-rs-EaX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0bh-3s-WmJ" secondAttribute="trailing" constant="8" symbolic="YES" id="vVC-Yb-6JA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="y8K-cj-gvH" secondAttribute="trailing" symbolic="YES" id="wsi-R5-IZT"/>
-                            <constraint firstItem="IJz-kj-CYR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="wxo-03-Gx8"/>
+                            <constraint firstItem="IJz-kj-CYR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-16" id="wxo-03-Gx8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jjd-EZ-PZx"/>
@@ -133,6 +154,7 @@
                         <outlet property="previousSearchesCollectionView" destination="Pxc-zr-e3G" id="yNs-pc-Hch"/>
                         <outlet property="previousSearchesLabel" destination="y8K-cj-gvH" id="hx4-Y3-dpB"/>
                         <outlet property="searchBar" destination="IJz-kj-CYR" id="0JP-bq-KcR"/>
+                        <outlet property="showMoreButton" destination="dFb-rs-EaX" id="9Ri-8p-q4Q"/>
                         <outlet property="stocksButton" destination="hLu-7p-Zd6" id="L6p-hu-go9"/>
                         <outlet property="tableView" destination="IGl-FQ-L4t" id="1ge-sd-k5a"/>
                         <segue destination="dKd-31-h1t" kind="show" identifier="goToDetails" id="iiE-pf-FJD"/>
@@ -164,6 +186,7 @@
         <!--Navigation Controller-->
         <scene sceneID="acg-6g-jkP">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1oi-7d-5Q3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tzC-BZ-zKm" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qAl-QQ-kmJ">
@@ -175,7 +198,6 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Es5-i4-sNK"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1oi-7d-5Q3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="130.53435114503816" y="-34.507042253521128"/>
         </scene>
