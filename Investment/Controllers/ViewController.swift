@@ -17,11 +17,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var stocksButton: UIButton!
     @IBOutlet weak var showMoreButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var stackView: UIStackView!
     
     @IBOutlet weak var popularRequestsLabel: UILabel!
     @IBOutlet weak var popularRequestsCollectionView: UICollectionView!
     @IBOutlet weak var previousSearchesLabel: UILabel!
     @IBOutlet weak var previousSearchesCollectionView: UICollectionView!
+           
+    var buttonsConstraint: NSLayoutConstraint!
+    var buttonsConstraint1: NSLayoutConstraint!
     
     var companyManager = CompanyManager()
     var priceManager = PriceManager()
@@ -54,6 +58,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        
+        buttonsConstraint = NSLayoutConstraint(item: stackView, attribute: .top, relatedBy: .equal, toItem: searchBar, attribute: .top, multiplier: 1, constant: 0)
+        buttonsConstraint1 = NSLayoutConstraint(item: stackView, attribute: .top, relatedBy: .equal, toItem: searchBar, attribute: .bottom, multiplier: 1, constant: 0)
                 
         searchBar.searchTextField.font = UIFont(name: "Montserrat-Semibold", size: 16)
         searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Find company or ticker", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
@@ -268,6 +275,28 @@ extension ViewController: UITableViewDataSource {
 //MARK: - TableView Delegate Methods
 
 extension ViewController: UITableViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if (scrollView.contentOffset.y > 0.0){
+            
+            searchBar.isHidden = true
+            buttonsConstraint1.isActive = false
+            buttonsConstraint.isActive = true
+            
+        }
+        
+        if (scrollView.contentOffset.y <= 0.0) {
+                        
+            searchBar.isHidden = false
+            buttonsConstraint.isActive = false
+            buttonsConstraint1.isActive = true
+            
+        }
+        
+        //print("scrolls table view \(scrollView.contentOffset.y)")
+        
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
