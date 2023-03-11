@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var favouriteButton: UIButton!
     @IBOutlet weak var stocksButton: UIButton!
     @IBOutlet weak var showMoreButton: UIButton!
+    @IBOutlet weak var goBack: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var stackView: UIStackView!
     
@@ -59,18 +60,19 @@ class ViewController: UIViewController {
         
         //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
-        buttonsConstraint = NSLayoutConstraint(item: stackView, attribute: .top, relatedBy: .equal, toItem: searchBar, attribute: .top, multiplier: 1, constant: 0)
-        buttonsConstraint1 = NSLayoutConstraint(item: stackView, attribute: .top, relatedBy: .equal, toItem: searchBar, attribute: .bottom, multiplier: 1, constant: 0)
+        buttonsConstraint = NSLayoutConstraint(item: stackView!, attribute: .top, relatedBy: .equal, toItem: searchBar, attribute: .top, multiplier: 1, constant: 0)
+        buttonsConstraint1 = NSLayoutConstraint(item: stackView!, attribute: .top, relatedBy: .equal, toItem: searchBar, attribute: .bottom, multiplier: 1, constant: 0)
                 
         searchBar.searchTextField.font = UIFont(name: "Montserrat-Semibold", size: 16)
         searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Find company or ticker", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
-        searchBar.setImage(UIImage(named: "searchGlass"), for: UISearchBar.Icon.search, state: .normal)
+        searchBar.setImage(UIImage(named: "white"), for: UISearchBar.Icon.search, state: .normal)
         searchBar.setImage(UIImage(named: "cancel"), for: UISearchBar.Icon.clear, state: .normal)
         searchBar.layer.borderWidth = 1
         searchBar.clipsToBounds = true
         searchBar.layer.cornerRadius = searchBar.frame.height / 2
         searchBar.searchTextField.backgroundColor = .white
         searchBar.searchTextPositionAdjustment = UIOffset(horizontal: 13, vertical: 0)
+        searchBar.setPositionAdjustment(UIOffset(horizontal: -15, vertical: 1), for: UISearchBar.Icon.clear)
         
         popularRequestsLabel.isHidden = true
         popularRequestsCollectionView.isHidden = true
@@ -126,12 +128,42 @@ class ViewController: UIViewController {
 
 extension ViewController {
 
+    @IBAction func goBackButtonPressed(_ sender: UIButton){
+        
+        DispatchQueue.main.async {
+            self.searchBar.resignFirstResponder()
+        }
+        
+        searchBar.text = ""
+        goBack.setImage(UIImage(named: "searchGlass"), for: .normal)
+        
+        favouriteButton.isHidden = false
+        stocksButton.isHidden = false
+        tableView.isHidden = false
+        popularRequestsLabel.isHidden = true
+        previousSearchesLabel.isHidden = true
+        popularRequestsCollectionView.isHidden = true
+        previousSearchesCollectionView.isHidden = true
+        showMoreButton.isHidden = true
+        
+        companies = baseCompanies
+        tableView.reloadData()
+        
+    }
+    
     @IBAction func showMoreButtonPressed(_ sender: UIButton) {
+        
+        DispatchQueue.main.async {
+            self.searchBar.resignFirstResponder()
+        }
+        
+        searchBar.text = ""
+        goBack.setImage(UIImage(named: "searchGlass"), for: .normal)
         
         favouriteButton.isHidden = false
         showMoreButton.isHidden = true
+        
         companies = baseCompanies
-        searchBar.text = ""
         tableView.reloadData()
         
     }
@@ -281,6 +313,7 @@ extension ViewController: UITableViewDelegate {
         if (scrollView.contentOffset.y > 0.0){
             
             searchBar.isHidden = true
+            goBack.isHidden = true
             buttonsConstraint1.isActive = false
             buttonsConstraint.isActive = true
             
@@ -289,6 +322,7 @@ extension ViewController: UITableViewDelegate {
         if (scrollView.contentOffset.y <= 0.0) {
                         
             searchBar.isHidden = false
+            goBack.isHidden = false
             buttonsConstraint.isActive = false
             buttonsConstraint1.isActive = true
             
@@ -380,6 +414,7 @@ extension ViewController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
 
         searchBar.text = ""
+        goBack.setImage(UIImage(named: "back"), for: .normal)
 
         tableView.isHidden = true
         stocksButton.isHidden = true
@@ -392,6 +427,12 @@ extension ViewController: UISearchBarDelegate {
         previousSearchesCollectionView.isHidden = false
         return true
 
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        
+        return true
+        
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

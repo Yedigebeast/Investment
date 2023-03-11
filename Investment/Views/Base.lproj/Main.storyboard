@@ -27,6 +27,7 @@
                         <subviews>
                             <searchBar contentMode="redraw" text="" placeholder="Find company or ticker" translatesAutoresizingMaskIntoConstraints="NO" id="IJz-kj-CYR">
                                 <rect key="frame" x="16" y="103" width="361" height="56"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <scopeButtonTitles>
                                     <string>Title</string>
@@ -36,6 +37,15 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="nwV-se-xGC"/>
                                 </connections>
                             </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zvd-Tt-GXw">
+                                <rect key="frame" x="36" y="122" width="21" height="18"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title=" " image="searchGlass"/>
+                                <connections>
+                                    <action selector="goBackButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zQa-MN-i9X"/>
+                                </connections>
+                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0bh-3s-WmJ">
                                 <rect key="frame" x="20" y="159" width="207" height="47"/>
                                 <subviews>
@@ -129,6 +139,7 @@
                             <constraint firstItem="y8K-cj-gvH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Kse-Hp-Fd8"/>
                             <constraint firstItem="dFb-rs-EaX" firstAttribute="top" secondItem="IJz-kj-CYR" secondAttribute="bottom" id="NqW-o8-4hM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Pxc-zr-e3G" secondAttribute="trailing" id="Nub-Ev-S0t"/>
+                            <constraint firstItem="zvd-Tt-GXw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="36" id="O6I-bR-MtS"/>
                             <constraint firstAttribute="bottom" secondItem="IGl-FQ-L4t" secondAttribute="bottom" id="SEo-44-wzf"/>
                             <constraint firstItem="Pxc-zr-e3G" firstAttribute="top" secondItem="y8K-cj-gvH" secondAttribute="bottom" constant="11" id="SWw-OO-Nly"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5v6-Oh-bGp" secondAttribute="trailing" symbolic="YES" id="Uoo-0Q-X93"/>
@@ -139,16 +150,18 @@
                             <constraint firstItem="y8K-cj-gvH" firstAttribute="top" secondItem="VAJ-RR-aFi" secondAttribute="bottom" constant="28" id="dND-dj-e6j"/>
                             <constraint firstItem="IJz-kj-CYR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dq2-Pv-lNc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VAJ-RR-aFi" secondAttribute="trailing" id="eY1-oc-YpT"/>
+                            <constraint firstItem="zvd-Tt-GXw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="19" id="g4Z-Ks-aIl"/>
                             <constraint firstItem="0bh-3s-WmJ" firstAttribute="top" secondItem="IJz-kj-CYR" secondAttribute="bottom" id="lEG-PN-bsY"/>
                             <constraint firstItem="0bh-3s-WmJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="u4W-aA-UIS"/>
                             <constraint firstItem="dFb-rs-EaX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0bh-3s-WmJ" secondAttribute="trailing" constant="8" symbolic="YES" id="vVC-Yb-6JA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="y8K-cj-gvH" secondAttribute="trailing" symbolic="YES" id="wsi-R5-IZT"/>
-                            <constraint firstItem="IJz-kj-CYR" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-16" id="wxo-03-Gx8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IJz-kj-CYR" secondAttribute="trailing" constant="16" id="wxo-03-Gx8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" style="editor" id="jjd-EZ-PZx"/>
                     <connections>
                         <outlet property="favouriteButton" destination="gPm-6t-ZS1" id="dOv-LV-YyS"/>
+                        <outlet property="goBack" destination="zvd-Tt-GXw" id="DeC-Zs-84T"/>
                         <outlet property="popularRequestsCollectionView" destination="VAJ-RR-aFi" id="9st-wi-k9I"/>
                         <outlet property="popularRequestsLabel" destination="5v6-Oh-bGp" id="Yuu-Al-hHm"/>
                         <outlet property="previousSearchesCollectionView" destination="Pxc-zr-e3G" id="yNs-pc-Hch"/>
@@ -204,6 +217,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="searchGlass" width="17" height="18"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
