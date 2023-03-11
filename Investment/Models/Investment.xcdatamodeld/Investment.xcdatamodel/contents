@@ -3,4 +3,8 @@
     <entity name="Favourite" representedClassName=".Favourite" syncable="YES" codeGenerationType="class">
         <attribute name="ticker" attributeType="String" defaultValueString="yedige"/>
     </entity>
+    <entity name="PreviousSearchResults" representedClassName=".PreviousSearchResults" syncable="YES" codeGenerationType="class">
+        <attribute name="index" attributeType="Integer 16" defaultValueString="0" allowsCloudEncryption="YES" usesScalarValueType="YES"/>
+        <attribute name="search" attributeType="String" defaultValueString="yedige"/>
+    </entity>
 </model>

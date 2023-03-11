@@ -37,8 +37,8 @@ class ViewController: UIViewController {
     var chosedStocksButton = true
     
     var tickersOfCompanies: [String] = ["AAPL", "MSFT", "AMZN", "GOOGL", "TSLA", "NVDA", "BRK.A", "JPM", "JNJ", "V", "UNH", "HD", "PG", "BAC", "DIS"] // "PYPL", "MA", "NFLX", "ADBE", "CRM", "CMCSA", "XOM", "PFE", "CSCO", "TMO", "VZ", "INTC", "PEP", "KO", "ABT", "MRK", "ACN", "CVX", "AVGO", "COST", "WMT", "WFC", "ABBV", "NKE", "T", "DHR", "MCD", "LLY", "TXN", "MDT", "NEE", "LIN", "ORCL", "HON", "PM", "LOW", "INTU", "C", "MS", "QCOM", "UNP", "RTX", "SBUX"]
-    var popularSearches: [String] = ["Apple", "Amazon", "Google", "Tesla", "Microsoft", "Nvidia", "Visa", "Gamble"]
-    var previousSearches: [String] = ["Disney"]
+    var popularSearches: [String] = ["Apple", "Amazon", "Googl", "Tesla", "Microsoft", "Nvidia", "Visa", "Gamble"]
+    var previousSearches = [PreviousSearchResults]()
     
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -107,6 +107,7 @@ class ViewController: UIViewController {
         tableView.showsHorizontalScrollIndicator = false
         
         loadItems()
+        loadSearches()
         
         for ticker in tickersOfCompanies {
             
@@ -374,20 +375,31 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        //print("cellForItemAt: ", collectionView.tag, " ", indexPath.row)
+        
         let cell = popularRequestsCollectionView.dequeueReusableCell(withReuseIdentifier: Constants.collectionViewCellIdentifier, for: indexPath) as! SearchCell
                 
         cell.delegate = self
-        cell.button.tag = indexPath.row
         cell.collectionViewTag = collectionView.tag
         cell.layer.cornerRadius = 20
         
         if collectionView.tag == 1 {
             
+            cell.button.tag = indexPath.row
             cell.cellLabel.text = (popularSearches[indexPath.row])
             
         } else {
             
-            cell.cellLabel.text = (previousSearches[indexPath.row])
+            for i in 0..<previousSearches.count {
+                
+                if previousSearches[i].index == previousSearches.count - indexPath.row - 1 {
+                    
+                    cell.cellLabel.text = previousSearches[i].search
+                    cell.button.tag = i
+                    
+                }
+                
+            }
 
         }
 
@@ -411,24 +423,6 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 
         return 4
 
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        var cellWidth = ""
-        
-        if collectionView.tag == 1 {
-            
-            cellWidth = popularSearches[indexPath.row]
-            
-        } else {
-            
-            cellWidth = previousSearches[indexPath.row]
-            
-        }
-        
-        return CGSize(width: (cellWidth.getStringwidth(height: 16, font: UIFont(name: "Montserrat-SemiBold", size: 12)!)) + 32.2, height: 40)
-        
     }
     
 }
@@ -464,6 +458,77 @@ extension ViewController: UISearchBarDelegate {
     }
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        
+        if (searchBar.text != ""){
+            
+            var have = -1
+            for i in 0..<previousSearches.count {
+                
+                if previousSearches[i].search!.lowercased() == searchBar.text!.lowercased() {
+                    
+                    have = i
+                    
+                }
+                
+            }
+            
+            if (have == -1){
+                
+                let newSearchResult = PreviousSearchResults(context: context)
+                newSearchResult.search = searchBar.text!
+                var mx: Int = -1
+                for i in previousSearches {
+                    
+                    mx = max(mx, Int(i.index))
+                    
+                }
+                newSearchResult.index = Int16(mx + 1)
+                previousSearches.append(newSearchResult)
+                
+                if previousSearches.count == 11 {
+                    
+                    var id = 0
+                    for i in 0..<previousSearches.count {
+                        
+                        if previousSearches[i].index == 0 {
+                            
+                            id = i
+                            
+                        }
+                        
+                    }
+                    
+                    context.delete(previousSearches[id])
+                    previousSearches.remove(at: id)
+                    
+                    for i in 0..<previousSearches.count {
+                        
+                        previousSearches[i].index = previousSearches[i].index - 1
+                        
+                    }
+                    
+                }
+                
+            } else if have != -1 {
+                
+                for i in 0..<previousSearches.count {
+                    
+                    if previousSearches[i].index > previousSearches[have].index {
+                        
+                        previousSearches[i].index = previousSearches[i].index - 1
+                        
+                    }
+                    
+                }
+                
+                previousSearches[have].index = Int16(previousSearches.count - 1)
+                
+            }
+            
+            saveItems()
+            previousSearchesCollectionView.reloadData()
+            
+        }
         
         return true
         
@@ -683,9 +748,30 @@ extension ViewController: SearchCellDelegate {
             
         } else {
             
-            searchBar.text = previousSearches[tag]
+            searchBar.text = previousSearches[tag].search
             
         }
+        
+        companies = baseCompanies
+        
+        companies = companies.filter{
+            
+            $0.ticker.lowercased().contains(searchBar.text!.lowercased()) ||
+            $0.companyName.lowercased().contains(searchBar.text!.lowercased())
+            
+        }
+        
+        tableView.isHidden = false
+        stocksButton.isHidden = false
+        favouriteButton.isHidden = true
+        showMoreButton.isHidden = false
+        
+        popularRequestsLabel.isHidden = true
+        popularRequestsCollectionView.isHidden = true
+        previousSearchesLabel.isHidden = true
+        previousSearchesCollectionView.isHidden = true
+        
+        tableView.reloadData()
         
     }
     
@@ -767,6 +853,22 @@ extension ViewController {
         } catch {
             
             print("Error saving context \(error)")
+            
+        }
+        
+    }
+    
+    func loadSearches() {
+        
+        let request: NSFetchRequest<PreviousSearchResults> = PreviousSearchResults.fetchRequest()
+        
+        do {
+            
+            previousSearches = try context.fetch(request)
+            
+        } catch {
+            
+            print("Error loading context \(error)")
             
         }
         
