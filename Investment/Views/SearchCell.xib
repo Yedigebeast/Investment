@@ -51,6 +51,7 @@
             </collectionViewCellContentView>
             <size key="customSize" width="203" height="40"/>
             <connections>
+                <outlet property="button" destination="r2G-bZ-IKS" id="jws-at-Zqx"/>
                 <outlet property="cellLabel" destination="hkJ-Cg-e18" id="qdC-hg-ddi"/>
             </connections>
             <point key="canvasLocation" x="220.61068702290075" y="-59.154929577464792"/>

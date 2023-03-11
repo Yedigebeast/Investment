@@ -37,7 +37,8 @@ class ViewController: UIViewController {
     var chosedStocksButton = true
     
     var tickersOfCompanies: [String] = ["AAPL", "MSFT", "AMZN", "GOOGL", "TSLA", "NVDA", "BRK.A", "JPM", "JNJ", "V", "UNH", "HD", "PG", "BAC", "DIS"] // "PYPL", "MA", "NFLX", "ADBE", "CRM", "CMCSA", "XOM", "PFE", "CSCO", "TMO", "VZ", "INTC", "PEP", "KO", "ABT", "MRK", "ACN", "CVX", "AVGO", "COST", "WMT", "WFC", "ABBV", "NKE", "T", "DHR", "MCD", "LLY", "TXN", "MDT", "NEE", "LIN", "ORCL", "HON", "PM", "LOW", "INTU", "C", "MS", "QCOM", "UNP", "RTX", "SBUX"]
-    var searches: [String] = ["Apple", "Amazon", "Google", "Tesla", "Microsoft", "First Solar", "Alibaba", "Facebook", "Mastercard", "AMD", "Intel", "GM"]
+    var popularSearches: [String] = ["Apple", "Amazon", "Google", "Tesla", "Microsoft", "Nvidia", "Visa", "Gamble"]
+    var previousSearches: [String] = ["Disney"]
     
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -82,6 +83,8 @@ class ViewController: UIViewController {
         
         popularRequestsCollectionView.register(UINib(nibName: Constants.collectionViewCellNibName, bundle: nil), forCellWithReuseIdentifier: Constants.collectionViewCellIdentifier)
         previousSearchesCollectionView.register(UINib(nibName: Constants.collectionViewCellNibName, bundle: nil), forCellWithReuseIdentifier: Constants.collectionViewCellIdentifier)
+        popularRequestsCollectionView.tag = 1
+        previousSearchesCollectionView.tag = 2
         popularRequestsCollectionView.showsVerticalScrollIndicator = false
         popularRequestsCollectionView.showsHorizontalScrollIndicator = false
         previousSearchesCollectionView.showsVerticalScrollIndicator = false
@@ -357,16 +360,36 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return searches.count
+        if collectionView.tag == 1 {
+            
+            return popularSearches.count
+            
+        } else {
+            
+            return previousSearches.count
+            
+        }
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = popularRequestsCollectionView.dequeueReusableCell(withReuseIdentifier: Constants.collectionViewCellIdentifier, for: indexPath) as! SearchCell
-        
-        cell.cellLabel.text = (searches[indexPath.row])
+                
+        cell.delegate = self
+        cell.button.tag = indexPath.row
+        cell.collectionViewTag = collectionView.tag
         cell.layer.cornerRadius = 20
+        
+        if collectionView.tag == 1 {
+            
+            cell.cellLabel.text = (popularSearches[indexPath.row])
+            
+        } else {
+            
+            cell.cellLabel.text = (previousSearches[indexPath.row])
+
+        }
 
         return cell
         
@@ -392,7 +415,18 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let cellWidth = searches[indexPath.row]
+        var cellWidth = ""
+        
+        if collectionView.tag == 1 {
+            
+            cellWidth = popularSearches[indexPath.row]
+            
+        } else {
+            
+            cellWidth = previousSearches[indexPath.row]
+            
+        }
+        
         return CGSize(width: (cellWidth.getStringwidth(height: 16, font: UIFont(name: "Montserrat-SemiBold", size: 12)!)) + 32.2, height: 40)
         
     }
@@ -634,6 +668,26 @@ func addingSpaceInNumber (price: String) -> String {
     }
     
     return p
+    
+}
+
+//MARK: - SearchCell Delegate
+
+extension ViewController: SearchCellDelegate {
+    
+    func searchCellPressed(tag: Int, viewTag: Int) {
+
+        if viewTag == 1 {
+            
+            searchBar.text = popularSearches[tag]
+            
+        } else {
+            
+            searchBar.text = previousSearches[tag]
+            
+        }
+        
+    }
     
 }
 
