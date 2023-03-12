@@ -27,7 +27,9 @@ class ViewController: UIViewController {
            
     var buttonsConstraint: NSLayoutConstraint!
     var buttonsConstraint1: NSLayoutConstraint!
-    
+    var buttonsConstraint3: NSLayoutConstraint!
+    var buttonsConstraint4: NSLayoutConstraint!
+
     var companyManager = CompanyManager()
     var priceManager = PriceManager()
     
@@ -61,8 +63,10 @@ class ViewController: UIViewController {
         
         //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
-        buttonsConstraint = NSLayoutConstraint(item: stackView!, attribute: .top, relatedBy: .equal, toItem: searchBar, attribute: .top, multiplier: 1, constant: 0)
-        buttonsConstraint1 = NSLayoutConstraint(item: stackView!, attribute: .top, relatedBy: .equal, toItem: searchBar, attribute: .bottom, multiplier: 1, constant: 0)
+        buttonsConstraint = NSLayoutConstraint(item: stackView!, attribute: .top, relatedBy: .equal, toItem: searchBar, attribute: .top, multiplier: 1, constant: 12)
+        buttonsConstraint1 = NSLayoutConstraint(item: stackView!, attribute: .top, relatedBy: .equal, toItem: searchBar, attribute: .bottom, multiplier: 1, constant: 20)
+        buttonsConstraint3 = NSLayoutConstraint(item: tableView!, attribute: .top, relatedBy: .equal, toItem: stackView, attribute: .bottom, multiplier: 1, constant: 16)
+        buttonsConstraint4 = NSLayoutConstraint(item: tableView!, attribute: .top, relatedBy: .equal, toItem: stackView, attribute: .bottom, multiplier: 1, constant: 12)
                 
         searchBar.searchTextField.font = UIFont(name: "Montserrat-Semibold", size: 16)
         searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Find company or ticker", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
@@ -100,7 +104,7 @@ class ViewController: UIViewController {
         tableView.delegate = self
         searchBar.delegate = self
         
-        tableView.rowHeight = 68
+        tableView.rowHeight = 76
         tableView.register(UINib(nibName: Constants.cellNibName, bundle: nil), forCellReuseIdentifier: Constants.cellIdentifier)
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
@@ -239,6 +243,7 @@ extension ViewController: UITableViewDataSource {
             cell.delegate = self
             cell.favouriteButton.tag = indexPath.row
             cell.layer.cornerRadius = 16
+            cell.frame.size.width = view.frame.size.width - 32
             
             cell.companyName.text = companies[indexPath.row].companyName
             cell.label.text = companies[indexPath.row].ticker
@@ -286,7 +291,6 @@ extension ViewController: UITableViewDataSource {
                 
             }
             
-            
             let url = URL(string: companies[indexPath.row].imageLink)!
             let file = companies[indexPath.row].imageLink.suffix(3)
             
@@ -299,6 +303,21 @@ extension ViewController: UITableViewDataSource {
                 cell.companyImage.kf.setImage(with: url)
                 
             }
+            
+            cell.selectedBackgroundView = {
+               
+                let selectedBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: cell.frame.size.width, height: 68))
+                selectedBackgroundView.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
+                selectedBackgroundView.layer.cornerRadius = 16
+                return selectedBackgroundView
+                
+            }()
+            
+            let maskLayer = CALayer()
+            maskLayer.cornerRadius = 16
+            maskLayer.backgroundColor = cell.backgroundColor?.cgColor
+            maskLayer.frame = CGRect(x: cell.bounds.origin.x, y: cell.bounds.origin.y, width: cell.bounds.width, height: cell.bounds.height).insetBy(dx: 0, dy: 4)
+            cell.layer.mask = maskLayer
             
         }
         
@@ -318,17 +337,23 @@ extension ViewController: UITableViewDelegate {
             
             searchBar.isHidden = true
             goBack.isHidden = true
+            
             buttonsConstraint1.isActive = false
+            buttonsConstraint3.isActive = false
             buttonsConstraint.isActive = true
+            buttonsConstraint4.isActive = true
             
         }
         
         if (scrollView.contentOffset.y <= 0.0) {
-                        
+            
+            buttonsConstraint.isActive = false
+            buttonsConstraint4.isActive = false
+            buttonsConstraint1.isActive = true
+            buttonsConstraint3.isActive = true
+            
             searchBar.isHidden = false
             goBack.isHidden = false
-            buttonsConstraint.isActive = false
-            buttonsConstraint1.isActive = true
             
         }
         
@@ -443,6 +468,14 @@ extension ViewController: UISearchBarDelegate {
 
         searchBar.text = ""
         goBack.setImage(UIImage(named: "back"), for: .normal)
+        
+        companies = baseCompanies
+
+        favouriteButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 18)
+        stocksButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 28)
+        stocksButton.setTitleColor(UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0), for: .normal)
+        favouriteButton.setTitleColor(UIColor(red: 0.73, green: 0.73, blue: 0.73, alpha: 1.0), for: .normal)
+        chosedStocksButton = true
 
         tableView.isHidden = true
         stocksButton.isHidden = true
@@ -535,15 +568,7 @@ extension ViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-                
-        companies = baseCompanies
-        
-        favouriteButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 18)
-        stocksButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 28)
-        stocksButton.setTitleColor(UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0), for: .normal)
-        favouriteButton.setTitleColor(UIColor(red: 0.73, green: 0.73, blue: 0.73, alpha: 1.0), for: .normal)
-        chosedStocksButton = true
-        
+            
         if (searchBar.text != ""){
             
             companies = companies.filter{
