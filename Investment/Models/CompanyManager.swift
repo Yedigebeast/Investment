@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol CompanyManagerDelegate {
     
@@ -69,7 +70,7 @@ struct CompanyManager {
             let ticker = decodedData.ticker
             let imageLink = decodedData.logo
             
-            let company = Company(ticker: ticker, companyName: companyName, imageLink: imageLink, currentPrice: "$100", changePrice: "+0,5%")
+            let company = Company(ticker: ticker, companyName: companyName, imageLink: imageLink, currentPrice: "$100", changePrice: "+0,5%", img: UIImageView(frame: CGRect(x: 0, y: 0, width: 52, height: 52)))
             
             return company
             

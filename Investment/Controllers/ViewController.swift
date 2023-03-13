@@ -36,11 +36,11 @@ class ViewController: UIViewController {
     var companies: [Company] = []
     var baseCompanies: [Company] = []
     var favourites = [Favourite]()
+    var previousSearches = [PreviousSearchResults]()
+        
     var chosedStocksButton = true
-    
     var tickersOfCompanies: [String] = ["AAPL", "MSFT", "AMZN", "GOOGL", "TSLA", "NVDA", "BRK.A", "JPM", "JNJ", "V", "UNH", "HD", "PG", "BAC", "DIS"] // "PYPL", "MA", "NFLX", "ADBE", "CRM", "CMCSA", "XOM", "PFE", "CSCO", "TMO", "VZ", "INTC", "PEP", "KO", "ABT", "MRK", "ACN", "CVX", "AVGO", "COST", "WMT", "WFC", "ABBV", "NKE", "T", "DHR", "MCD", "LLY", "TXN", "MDT", "NEE", "LIN", "ORCL", "HON", "PM", "LOW", "INTU", "C", "MS", "QCOM", "UNP", "RTX", "SBUX"]
     var popularSearches: [String] = ["Apple", "Amazon", "Googl", "Tesla", "Microsoft", "Nvidia", "Visa", "Gamble"]
-    var previousSearches = [PreviousSearchResults]()
     
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -64,9 +64,9 @@ class ViewController: UIViewController {
         //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
         buttonsConstraint = NSLayoutConstraint(item: stackView!, attribute: .top, relatedBy: .equal, toItem: searchBar, attribute: .top, multiplier: 1, constant: 12)
+        buttonsConstraint4 = NSLayoutConstraint(item: tableView!, attribute: .top, relatedBy: .equal, toItem: stackView, attribute: .bottom, multiplier: 1, constant: 12)
         buttonsConstraint1 = NSLayoutConstraint(item: stackView!, attribute: .top, relatedBy: .equal, toItem: searchBar, attribute: .bottom, multiplier: 1, constant: 20)
         buttonsConstraint3 = NSLayoutConstraint(item: tableView!, attribute: .top, relatedBy: .equal, toItem: stackView, attribute: .bottom, multiplier: 1, constant: 16)
-        buttonsConstraint4 = NSLayoutConstraint(item: tableView!, attribute: .top, relatedBy: .equal, toItem: stackView, attribute: .bottom, multiplier: 1, constant: 12)
                 
         searchBar.searchTextField.font = UIFont(name: "Montserrat-Semibold", size: 16)
         searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Find company or ticker", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
@@ -115,7 +115,7 @@ class ViewController: UIViewController {
         
         for ticker in tickersOfCompanies {
             
-            companies.append(Company(ticker: ticker, companyName: "-", imageLink: "-", currentPrice: "-", changePrice: "-"))
+            companies.append(Company(ticker: ticker, companyName: "-", imageLink: "-", currentPrice: "-", changePrice: "-", img: UIImageView(frame: CGRect(x: 0, y: 0, width: 52, height: 52))))
             
         }
         
@@ -300,8 +300,20 @@ extension ViewController: UITableViewDataSource {
             
             if file == "svg" {
                 
-                cell.companyImage.downloadedsvg(from: url)
+                if companies[indexPath.row].img.image == nil {
+                    
+                    companies[indexPath.row].img.downloadedsvg(from: url)
+                    
+                }
                 
+                cell.companyImage.image = companies[indexPath.row].img.image
+                
+                if cell.companyImage.image == nil {
+                    
+                    cell.companyImage.downloadedsvg(from: url)
+                    
+                }
+                                
             } else {
                 
                 cell.companyImage.kf.setImage(with: url)
