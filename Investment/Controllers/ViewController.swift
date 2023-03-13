@@ -144,6 +144,8 @@ extension ViewController {
         
         searchBar.text = ""
         goBack.setImage(UIImage(named: "searchGlass"), for: .normal)
+        stocksButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 28)
+        stocksButton.isUserInteractionEnabled = true
         
         favouriteButton.isHidden = false
         stocksButton.isHidden = false
@@ -167,6 +169,8 @@ extension ViewController {
         
         searchBar.text = ""
         goBack.setImage(UIImage(named: "searchGlass"), for: .normal)
+        stocksButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 28)
+        stocksButton.isUserInteractionEnabled = true
         
         favouriteButton.isHidden = false
         showMoreButton.isHidden = true
@@ -472,10 +476,11 @@ extension ViewController: UISearchBarDelegate {
         companies = baseCompanies
 
         favouriteButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 18)
-        stocksButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 28)
+        stocksButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 18)
         stocksButton.setTitleColor(UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0), for: .normal)
         favouriteButton.setTitleColor(UIColor(red: 0.73, green: 0.73, blue: 0.73, alpha: 1.0), for: .normal)
         chosedStocksButton = true
+        stocksButton.isUserInteractionEnabled = false
 
         tableView.isHidden = true
         stocksButton.isHidden = true
@@ -570,6 +575,8 @@ extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
             
         if (searchBar.text != ""){
+            
+            companies = baseCompanies
             
             companies = companies.filter{
                 
