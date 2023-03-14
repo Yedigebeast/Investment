@@ -25,10 +25,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var previousSearchesLabel: UILabel!
     @IBOutlet weak var previousSearchesCollectionView: UICollectionView!
            
-    var buttonsConstraint: NSLayoutConstraint!
-    var buttonsConstraint1: NSLayoutConstraint!
-    var buttonsConstraint3: NSLayoutConstraint!
-    var buttonsConstraint4: NSLayoutConstraint!
+    @IBOutlet weak var constraint1: NSLayoutConstraint!
+    @IBOutlet weak var constraint2: NSLayoutConstraint!
+    @IBOutlet weak var searchbarHeight: NSLayoutConstraint!
+    
 
     var companyManager = CompanyManager()
     var priceManager = PriceManager()
@@ -39,6 +39,7 @@ class ViewController: UIViewController {
     var previousSearches = [PreviousSearchResults]()
         
     var chosedStocksButton = true
+    var isGoBackButtonHidden = true
     var tickersOfCompanies: [String] = ["AAPL", "MSFT", "AMZN", "GOOGL", "TSLA", "NVDA", "BRK.A", "JPM", "JNJ", "V", "UNH", "HD", "PG", "BAC", "DIS"] // "PYPL", "MA", "NFLX", "ADBE", "CRM", "CMCSA", "XOM", "PFE", "CSCO", "TMO", "VZ", "INTC", "PEP", "KO", "ABT", "MRK", "ACN", "CVX", "AVGO", "COST", "WMT", "WFC", "ABBV", "NKE", "T", "DHR", "MCD", "LLY", "TXN", "MDT", "NEE", "LIN", "ORCL", "HON", "PM", "LOW", "INTU", "C", "MS", "QCOM", "UNP", "RTX", "SBUX"]
     var popularSearches: [String] = ["Apple", "Amazon", "Googl", "Tesla", "Microsoft", "Nvidia", "Visa", "Gamble"]
     
@@ -62,28 +63,25 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-        
-        buttonsConstraint = NSLayoutConstraint(item: stackView!, attribute: .top, relatedBy: .equal, toItem: searchBar, attribute: .top, multiplier: 1, constant: 12)
-        buttonsConstraint4 = NSLayoutConstraint(item: tableView!, attribute: .top, relatedBy: .equal, toItem: stackView, attribute: .bottom, multiplier: 1, constant: 12)
-        buttonsConstraint1 = NSLayoutConstraint(item: stackView!, attribute: .top, relatedBy: .equal, toItem: searchBar, attribute: .bottom, multiplier: 1, constant: 20)
-        buttonsConstraint3 = NSLayoutConstraint(item: tableView!, attribute: .top, relatedBy: .equal, toItem: stackView, attribute: .bottom, multiplier: 1, constant: 16)
-                
+       
         searchBar.searchTextField.font = UIFont(name: "Montserrat-Semibold", size: 16)
         searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Find company or ticker", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
-        searchBar.setImage(UIImage(named: "white"), for: UISearchBar.Icon.search, state: .normal)
+        searchBar.setImage(UIImage(named: "searchGlass"), for: UISearchBar.Icon.search, state: .normal)
         searchBar.setImage(UIImage(named: "cancel"), for: UISearchBar.Icon.clear, state: .normal)
         searchBar.layer.borderWidth = 1
         searchBar.clipsToBounds = true
         searchBar.layer.cornerRadius = searchBar.frame.height / 2
         searchBar.searchTextField.backgroundColor = .white
         searchBar.searchTextPositionAdjustment = UIOffset(horizontal: 13, vertical: 0)
-        searchBar.setPositionAdjustment(UIOffset(horizontal: -15, vertical: 1), for: UISearchBar.Icon.clear)
+        searchBar.setPositionAdjustment(UIOffset(horizontal: -10, vertical: 1), for: UISearchBar.Icon.clear)
+        searchBar.setPositionAdjustment(UIOffset(horizontal: 10, vertical: 1), for: UISearchBar.Icon.search)
         
         popularRequestsLabel.isHidden = true
         popularRequestsCollectionView.isHidden = true
         previousSearchesLabel.isHidden = true
         previousSearchesCollectionView.isHidden = true
         showMoreButton.isHidden = true
+        goBack.isHidden = true
         
         popularRequestsCollectionView.register(UINib(nibName: Constants.collectionViewCellNibName, bundle: nil), forCellWithReuseIdentifier: Constants.collectionViewCellIdentifier)
         previousSearchesCollectionView.register(UINib(nibName: Constants.collectionViewCellNibName, bundle: nil), forCellWithReuseIdentifier: Constants.collectionViewCellIdentifier)
@@ -143,7 +141,6 @@ extension ViewController {
         }
         
         searchBar.text = ""
-        goBack.setImage(UIImage(named: "searchGlass"), for: .normal)
         stocksButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 28)
         stocksButton.isUserInteractionEnabled = true
         
@@ -155,6 +152,10 @@ extension ViewController {
         popularRequestsCollectionView.isHidden = true
         previousSearchesCollectionView.isHidden = true
         showMoreButton.isHidden = true
+        goBack.isHidden = true
+        isGoBackButtonHidden = true
+        
+        searchBar.setImage(UIImage(named: "searchGlass"), for: UISearchBar.Icon.search, state: .normal)
         
         companies = baseCompanies
         tableView.reloadData()
@@ -168,12 +169,15 @@ extension ViewController {
         }
         
         searchBar.text = ""
-        goBack.setImage(UIImage(named: "searchGlass"), for: .normal)
         stocksButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 28)
         stocksButton.isUserInteractionEnabled = true
         
         favouriteButton.isHidden = false
         showMoreButton.isHidden = true
+        goBack.isHidden = true
+        isGoBackButtonHidden = true
+        
+        searchBar.setImage(UIImage(named: "searchGlass"), for: UISearchBar.Icon.search, state: .normal)
         
         companies = baseCompanies
         tableView.reloadData()
@@ -348,32 +352,39 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        if (scrollView.contentOffset.y > 0.0){
+                
+        if (scrollView.contentOffset.y <= 0){
+            
+            searchBar.isHidden = false
+            goBack.isHidden = isGoBackButtonHidden
+            searchbarHeight.constant = 56
+
+            constraint1.constant = 76
+            constraint2.constant = 16
+            
+        } else if (0 <= scrollView.contentOffset.y && scrollView.contentOffset.y <= 56.0){
+            
+            searchBar.isHidden = false
+            goBack.isHidden = true
+            searchbarHeight.constant = 56 - scrollView.contentOffset.y
+
+            constraint1.constant = searchbarHeight.constant + 20
+            constraint2.constant = 16
+            
+        } else if (scrollView.contentOffset.y > 56.0) {
             
             searchBar.isHidden = true
             goBack.isHidden = true
+            searchbarHeight.constant = 0
             
-            buttonsConstraint1.isActive = false
-            buttonsConstraint3.isActive = false
-            buttonsConstraint.isActive = true
-            buttonsConstraint4.isActive = true
-            
+            constraint1.constant = 12
+            constraint2.constant = 12
+
         }
         
-        if (scrollView.contentOffset.y <= 0.0) {
-            
-            buttonsConstraint.isActive = false
-            buttonsConstraint4.isActive = false
-            buttonsConstraint1.isActive = true
-            buttonsConstraint3.isActive = true
-            
-            searchBar.isHidden = false
-            goBack.isHidden = false
-            
-        }
+        searchBar.layer.cornerRadius = searchbarHeight.constant / 2
         
-        //print("scrolls table view \(scrollView.contentOffset.y)")
+//        print("scrolls table view \(scrollView.contentOffset.y), the distance between safearea.top and tableview.top is \(constraint1.constant)")
         
     }
     
@@ -483,8 +494,16 @@ extension ViewController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
 
         searchBar.text = ""
-        goBack.setImage(UIImage(named: "back"), for: .normal)
+        searchBar.isHidden = false
+        searchbarHeight.constant = 56
+        searchBar.layer.cornerRadius = searchbarHeight.constant / 2
+
+        constraint1.constant = 76
+        constraint2.constant = 16
         
+        let index = tableView.indexPathForRow(at: CGPoint(x: 0, y: 0))
+        tableView.scrollToRow(at: index!, at: .top, animated: true)
+                
         companies = baseCompanies
 
         favouriteButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 18)
@@ -503,6 +522,11 @@ extension ViewController: UISearchBarDelegate {
         popularRequestsCollectionView.isHidden = false
         previousSearchesLabel.isHidden = false
         previousSearchesCollectionView.isHidden = false
+        goBack.isHidden = false
+        isGoBackButtonHidden = false
+        
+        searchBar.setImage(UIImage(named: "white"), for: UISearchBar.Icon.search, state: .normal)
+        
         return true
 
     }
