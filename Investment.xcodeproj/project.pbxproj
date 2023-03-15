@@ -15,6 +15,8 @@
 		FE09548229A8BFB0005F7CB6 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09548129A8BFB0005F7CB6 /* Company.swift */; };
 		FE09548429A8C126005F7CB6 /* CompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09548329A8C126005F7CB6 /* CompanyCell.swift */; };
 		FE10FD1429A7AA06009932BB /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE10FD1329A7AA06009932BB /* Montserrat-Bold.ttf */; };
+		FE440B7C29C1C55900ADFF6A /* collectionVButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE440B7B29C1C55900ADFF6A /* collectionVButton.swift */; };
+		FE440B7E29C1C7DF00ADFF6A /* DetailsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE440B7D29C1C7DF00ADFF6A /* DetailsCollectionViewCell.xib */; };
 		FE741140299A2FA1008A68EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE74113F299A2FA1008A68EF /* AppDelegate.swift */; };
 		FE741142299A2FA1008A68EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE741141299A2FA1008A68EF /* SceneDelegate.swift */; };
 		FE741144299A2FA1008A68EF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE741143299A2FA1008A68EF /* ViewController.swift */; };
@@ -24,6 +26,7 @@
 		FE74114F299A2FA2008A68EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE74114D299A2FA2008A68EF /* LaunchScreen.storyboard */; };
 		FE7FB83629A7AEC5009896F2 /* CompanyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE7FB83529A7AEC5009896F2 /* CompanyCell.xib */; };
 		FE7FB83829A7B113009896F2 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE7FB83729A7B113009896F2 /* Montserrat-SemiBold.ttf */; };
+		FE8ADBFF29C1D00400479FB1 /* DetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8ADBFE29C1D00400479FB1 /* DetailsCollectionViewCell.swift */; };
 		FEA3E96F29B77FC100DE2A0A /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEA3E96E29B77FC100DE2A0A /* SearchCell.xib */; };
 		FEA3E97129B77FD600DE2A0A /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3E97029B77FD600DE2A0A /* SearchCell.swift */; };
 		FEEA7EC129A9FEC60083DF6B /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEA7EC029A9FEC60083DF6B /* Secret.swift */; };
@@ -43,6 +46,8 @@
 		FE09548129A8BFB0005F7CB6 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		FE09548329A8C126005F7CB6 /* CompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
 		FE10FD1329A7AA06009932BB /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		FE440B7B29C1C55900ADFF6A /* collectionVButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = collectionVButton.swift; sourceTree = "<group>"; };
+		FE440B7D29C1C7DF00ADFF6A /* DetailsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsCollectionViewCell.xib; sourceTree = "<group>"; };
 		FE74113C299A2FA1008A68EF /* Investment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Investment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE74113F299A2FA1008A68EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE741141299A2FA1008A68EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +59,7 @@
 		FE741150299A2FA2008A68EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE7FB83529A7AEC5009896F2 /* CompanyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompanyCell.xib; sourceTree = "<group>"; };
 		FE7FB83729A7B113009896F2 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		FE8ADBFE29C1D00400479FB1 /* DetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewCell.swift; sourceTree = "<group>"; };
 		FEA3E96E29B77FC100DE2A0A /* SearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
 		FEA3E97029B77FD600DE2A0A /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		FEEA7EC029A9FEC60083DF6B /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
@@ -108,6 +114,8 @@
 				FE09548329A8C126005F7CB6 /* CompanyCell.swift */,
 				FEA3E96E29B77FC100DE2A0A /* SearchCell.xib */,
 				FEA3E97029B77FD600DE2A0A /* SearchCell.swift */,
+				FE440B7D29C1C7DF00ADFF6A /* DetailsCollectionViewCell.xib */,
+				FE8ADBFE29C1D00400479FB1 /* DetailsCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -127,6 +135,7 @@
 				FE741148299A2FA1008A68EF /* Investment.xcdatamodeld */,
 				FE09548129A8BFB0005F7CB6 /* Company.swift */,
 				FE07605529B0E4A70091EA1F /* Price.swift */,
+				FE440B7B29C1C55900ADFF6A /* collectionVButton.swift */,
 				FEEA7EC429AA079C0083DF6B /* CompanyData.swift */,
 				FE07605329B0E41A0091EA1F /* PriceData.swift */,
 				FEEA7EC229AA04230083DF6B /* CompanyManager.swift */,
@@ -156,11 +165,11 @@
 		FE74113E299A2FA1008A68EF /* Investment */ = {
 			isa = PBXGroup;
 			children = (
+				FE741150299A2FA2008A68EF /* Info.plist */,
 				FE74113F299A2FA1008A68EF /* AppDelegate.swift */,
 				FE741141299A2FA1008A68EF /* SceneDelegate.swift */,
 				FEEA7EC029A9FEC60083DF6B /* Secret.swift */,
 				FE09547D29A8BEC5005F7CB6 /* Constants.swift */,
-				FE741150299A2FA2008A68EF /* Info.plist */,
 				FE3A3AE7299A38AD00DD812A /* Models */,
 				FE3A3AE5299A389A00DD812A /* Views */,
 				FE3A3AE6299A38A500DD812A /* Controllers */,
@@ -242,6 +251,7 @@
 				FE7FB83829A7B113009896F2 /* Montserrat-SemiBold.ttf in Resources */,
 				FE10FD1429A7AA06009932BB /* Montserrat-Bold.ttf in Resources */,
 				FE74114F299A2FA2008A68EF /* LaunchScreen.storyboard in Resources */,
+				FE440B7E29C1C7DF00ADFF6A /* DetailsCollectionViewCell.xib in Resources */,
 				FE7FB83629A7AEC5009896F2 /* CompanyCell.xib in Resources */,
 				FEA3E96F29B77FC100DE2A0A /* SearchCell.xib in Resources */,
 				FE74114C299A2FA2008A68EF /* Assets.xcassets in Resources */,
@@ -298,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE440B7C29C1C55900ADFF6A /* collectionVButton.swift in Sources */,
 				FEEA7EC329AA04230083DF6B /* CompanyManager.swift in Sources */,
 				FEA3E97129B77FD600DE2A0A /* SearchCell.swift in Sources */,
 				FE07605629B0E4A70091EA1F /* Price.swift in Sources */,
@@ -309,6 +320,7 @@
 				FE741144299A2FA1008A68EF /* ViewController.swift in Sources */,
 				FE09548429A8C126005F7CB6 /* CompanyCell.swift in Sources */,
 				FE741140299A2FA1008A68EF /* AppDelegate.swift in Sources */,
+				FE8ADBFF29C1D00400479FB1 /* DetailsCollectionViewCell.swift in Sources */,
 				FEEA7EC129A9FEC60083DF6B /* Secret.swift in Sources */,
 				FE741142299A2FA1008A68EF /* SceneDelegate.swift in Sources */,
 				FE09548229A8BFB0005F7CB6 /* Company.swift in Sources */,

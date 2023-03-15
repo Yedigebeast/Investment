@@ -239,11 +239,28 @@
                                     <action selector="favouriteButtonPressed:" destination="dKd-31-h1t" eventType="touchUpInside" id="M7K-2Q-sQY"/>
                                 </connections>
                             </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gAO-rU-NV3">
+                                <rect key="frame" x="20" y="141.66666666666666" width="373" height="24"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="LDa-YX-lWI"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rGJ-fg-GT4">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Kqq-Ua-kSF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="gAO-rU-NV3" firstAttribute="top" secondItem="ZK6-IY-tL9" secondAttribute="bottom" constant="24" id="8IA-Ua-WR9"/>
+                            <constraint firstItem="gAO-rU-NV3" firstAttribute="leading" secondItem="Kqq-Ua-kSF" secondAttribute="leading" constant="20" id="ABg-yj-ecT"/>
                             <constraint firstItem="Kqq-Ua-kSF" firstAttribute="trailing" secondItem="1QZ-kN-L1X" secondAttribute="trailing" constant="18" id="IqR-tZ-Jku"/>
+                            <constraint firstItem="Kqq-Ua-kSF" firstAttribute="trailing" secondItem="gAO-rU-NV3" secondAttribute="trailing" id="Jtx-Vv-uq7"/>
                             <constraint firstItem="ZK6-IY-tL9" firstAttribute="centerX" secondItem="Rf9-WV-qyh" secondAttribute="centerX" id="K7y-uz-lWK"/>
                             <constraint firstItem="ZK6-IY-tL9" firstAttribute="top" secondItem="Kqq-Ua-kSF" secondAttribute="top" constant="18" id="XLx-1b-vzh"/>
                             <constraint firstItem="1QZ-kN-L1X" firstAttribute="top" secondItem="Kqq-Ua-kSF" secondAttribute="top" constant="30" id="i1l-sU-NxB"/>
@@ -252,6 +269,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="collectionView" destination="gAO-rU-NV3" id="SSC-PQ-eiw"/>
                         <outlet property="promptLabel" destination="FTY-sN-TCG" id="pHw-37-Apj"/>
                         <outlet property="starButton" destination="1QZ-kN-L1X" id="Qrc-lk-2Aq"/>
                         <outlet property="titleLabel" destination="ZkE-1Q-BLI" id="uOK-dJ-shZ"/>
