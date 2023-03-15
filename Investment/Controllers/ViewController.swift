@@ -38,26 +38,13 @@ class ViewController: UIViewController {
     var favourites = [Favourite]()
     var previousSearches = [PreviousSearchResults]()
         
+    var tappedCellIndex: Int = 0
     var chosedStocksButton = true
     var isGoBackButtonHidden = true
     var tickersOfCompanies: [String] = ["AAPL", "MSFT", "AMZN", "GOOGL", "TSLA", "NVDA", "BRK.A", "JPM", "JNJ", "V", "UNH", "HD", "PG", "BAC", "DIS"] // "PYPL", "MA", "NFLX", "ADBE", "CRM", "CMCSA", "XOM", "PFE", "CSCO", "TMO", "VZ", "INTC", "PEP", "KO", "ABT", "MRK", "ACN", "CVX", "AVGO", "COST", "WMT", "WFC", "ABBV", "NKE", "T", "DHR", "MCD", "LLY", "TXN", "MDT", "NEE", "LIN", "ORCL", "HON", "PM", "LOW", "INTU", "C", "MS", "QCOM", "UNP", "RTX", "SBUX"]
     var popularSearches: [String] = ["Apple", "Amazon", "Googl", "Tesla", "Microsoft", "Nvidia", "Visa", "Gamble"]
     
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        
-        super.viewWillDisappear(animated)
-        navigationController?.isNavigationBarHidden = false
-        
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -390,6 +377,7 @@ extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        tappedCellIndex = indexPath.row
         performSegue(withIdentifier: Constants.segueIdentifier, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -399,8 +387,19 @@ extension ViewController: UITableViewDelegate {
         
         if segue.identifier == Constants.segueIdentifier {
             
-            // preparing to the next page
+            let destinationVC = segue.destination as! DetailsViewController
+            destinationVC.companyName = companies[tappedCellIndex].companyName
+            destinationVC.ticker = companies[tappedCellIndex].ticker
+            destinationVC.delegate = self
             
+            var have: Bool = false
+            for item in favourites {
+                if item.ticker == companies[tappedCellIndex].ticker {
+                    have = true
+                }
+            }
+            destinationVC.isTickerFavourite = have
+                        
         }
         
     }
@@ -882,6 +881,55 @@ extension ViewController: CompanyCellDelegate {
             newItem.ticker = companies[tag].ticker
             
             favourites.append(newItem)
+            
+        }
+              
+        saveItems()
+        tableView.reloadData()
+        
+    }
+    
+}
+
+//MARK: - Details View Controller Delegate Methods
+
+extension ViewController: DetailsViewControllerDelegate {
+   
+    func didUpdateFavouriteButton(isTickerFavourite: Bool, ticker: String) {
+        
+        var have = false
+        var id = -1
+        for i in 0..<favourites.count {
+            
+            if favourites[i].ticker == ticker {
+                
+                have = true
+                id = i
+                
+            }
+            
+        }
+        
+        if have == true {
+            
+            if isTickerFavourite == false {
+                
+                context.delete(favourites[id])
+                favourites.remove(at: id)
+                
+            }
+            
+            
+        } else {
+            
+            if isTickerFavourite == true {
+                
+                let newItem = Favourite(context: context)
+                newItem.ticker = ticker
+                
+                favourites.append(newItem)
+                
+            }
             
         }
               

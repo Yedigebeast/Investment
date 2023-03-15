@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tzC-BZ-zKm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -26,7 +26,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" text="" placeholder="Find company or ticker" translatesAutoresizingMaskIntoConstraints="NO" id="IJz-kj-CYR">
-                                <rect key="frame" x="16" y="103" width="361" height="56"/>
+                                <rect key="frame" x="16" y="59" width="361" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="ygv-e0-VHn"/>
                                 </constraints>
@@ -41,7 +41,7 @@
                                 </connections>
                             </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zvd-Tt-GXw">
-                                <rect key="frame" x="36" y="122" width="24" height="18"/>
+                                <rect key="frame" x="36" y="78" width="24" height="18"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title=" " image="back"/>
@@ -50,7 +50,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0bh-3s-WmJ">
-                                <rect key="frame" x="20" y="179" width="207" height="47"/>
+                                <rect key="frame" x="20" y="135" width="207" height="47"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLu-7p-Zd6">
                                         <rect key="frame" x="0.0" y="0.0" width="98" height="47"/>
@@ -75,7 +75,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFb-rs-EaX">
-                                <rect key="frame" x="303" y="179" width="70" height="51"/>
+                                <rect key="frame" x="303" y="135" width="70" height="51"/>
                                 <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="12"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -85,13 +85,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular requests" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5v6-Oh-bGp">
-                                <rect key="frame" x="20" y="179" width="161" height="22"/>
+                                <rect key="frame" x="20" y="135" width="161" height="22"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VAJ-RR-aFi">
-                                <rect key="frame" x="16" y="212" width="377" height="88"/>
+                                <rect key="frame" x="16" y="168" width="377" height="88"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="88" id="1zm-ZM-Z5R"/>
@@ -105,13 +105,13 @@
                                 <cells/>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You've searched for this" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8K-cj-gvH">
-                                <rect key="frame" x="19.999999999999986" y="328" width="224.66666666666663" height="22"/>
+                                <rect key="frame" x="19.999999999999986" y="284" width="224.66666666666663" height="22"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Pxc-zr-e3G">
-                                <rect key="frame" x="16" y="361" width="377" height="88"/>
+                                <rect key="frame" x="16" y="317" width="377" height="88"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="88" id="MFA-V8-qhV"/>
@@ -125,7 +125,7 @@
                                 <cells/>
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IGl-FQ-L4t">
-                                <rect key="frame" x="16" y="242" width="361" height="610"/>
+                                <rect key="frame" x="16" y="198" width="361" height="654"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -177,7 +177,7 @@
                         <outlet property="stackView" destination="0bh-3s-WmJ" id="b2w-B6-Yo0"/>
                         <outlet property="stocksButton" destination="hLu-7p-Zd6" id="L6p-hu-go9"/>
                         <outlet property="tableView" destination="IGl-FQ-L4t" id="1ge-sd-k5a"/>
-                        <segue destination="dKd-31-h1t" kind="show" identifier="goToDetails" id="iiE-pf-FJD"/>
+                        <segue destination="dKd-31-h1t" kind="presentation" identifier="goToDetails" animates="NO" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="iiE-pf-FJD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -191,38 +191,79 @@
                     <view key="view" contentMode="scaleToFill" id="Rf9-WV-qyh">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7JY-6t-INC">
+                                <rect key="frame" x="18" y="92" width="20" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="WOm-ZI-Yzf"/>
+                                    <constraint firstAttribute="width" constant="20" id="yFZ-en-B83"/>
+                                </constraints>
+                                <color key="tintColor" red="0.012532200380000001" green="0.031372549020000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="back">
+                                    <color key="titleColor" red="0.012532200380000001" green="0.031372549020000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="dKd-31-h1t" eventType="touchUpInside" id="xSO-5j-TvT"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ZK6-IY-tL9">
+                                <rect key="frame" x="165.66666666666666" y="77" width="62" height="40.666666666666657"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AAPL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZkE-1Q-BLI">
+                                        <rect key="frame" x="5" y="0.0" width="52" height="22"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apple Inc." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTY-sN-TCG">
+                                        <rect key="frame" x="0.0" y="26.000000000000004" width="62" height="14.666666666666668"/>
+                                        <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1QZ-kN-L1X">
+                                <rect key="frame" x="353" y="89" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="22" id="JgI-Hv-iH8"/>
+                                    <constraint firstAttribute="height" constant="22" id="pRr-mK-5fZ"/>
+                                </constraints>
+                                <color key="tintColor" red="0.012532200380000001" green="0.031372549020000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="Star 1">
+                                    <color key="titleColor" red="0.012532200380000001" green="0.031372549020000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="favouriteButtonPressed:" destination="dKd-31-h1t" eventType="touchUpInside" id="M7K-2Q-sQY"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Kqq-Ua-kSF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Kqq-Ua-kSF" firstAttribute="trailing" secondItem="1QZ-kN-L1X" secondAttribute="trailing" constant="18" id="IqR-tZ-Jku"/>
+                            <constraint firstItem="ZK6-IY-tL9" firstAttribute="centerX" secondItem="Rf9-WV-qyh" secondAttribute="centerX" id="K7y-uz-lWK"/>
+                            <constraint firstItem="ZK6-IY-tL9" firstAttribute="top" secondItem="Kqq-Ua-kSF" secondAttribute="top" constant="18" id="XLx-1b-vzh"/>
+                            <constraint firstItem="1QZ-kN-L1X" firstAttribute="top" secondItem="Kqq-Ua-kSF" secondAttribute="top" constant="30" id="i1l-sU-NxB"/>
+                            <constraint firstItem="7JY-6t-INC" firstAttribute="leading" secondItem="Kqq-Ua-kSF" secondAttribute="leading" constant="18" id="jJp-6H-MJq"/>
+                            <constraint firstItem="7JY-6t-INC" firstAttribute="top" secondItem="Kqq-Ua-kSF" secondAttribute="top" constant="33" id="l64-7b-brY"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="sg9-ic-oWr"/>
                     <connections>
-                        <outlet property="detailsNavigationBar" destination="sg9-ic-oWr" id="Rn1-uQ-QiD"/>
+                        <outlet property="promptLabel" destination="FTY-sN-TCG" id="pHw-37-Apj"/>
+                        <outlet property="starButton" destination="1QZ-kN-L1X" id="Qrc-lk-2Aq"/>
+                        <outlet property="titleLabel" destination="ZkE-1Q-BLI" id="uOK-dJ-shZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uzd-tx-673" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1915.2671755725189" y="-35.211267605633807"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="acg-6g-jkP">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tzC-BZ-zKm" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qAl-QQ-kmJ">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Es5-i4-sNK"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1oi-7d-5Q3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="130.53435114503816" y="-34.507042253521128"/>
-        </scene>
     </scenes>
     <resources>
+        <image name="Star 1" width="19" height="18"/>
         <image name="back" width="20" height="14"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
