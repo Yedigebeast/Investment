@@ -245,7 +245,51 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="LDa-YX-lWI"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rGJ-fg-GT4">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rGJ-fg-GT4">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5iQ-IQ-cM4">
+                                <rect key="frame" x="0.0" y="179.66666666666666" width="393" height="1"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.059990687086092717" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="qxU-fH-oe4"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$131.93" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWn-4j-R4v">
+                                <rect key="frame" x="147.66666666666666" y="228.66666666666666" width="97.666666666666657" height="34.333333333333343"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+$0.12 (1,15%)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MeO-ST-wB1">
+                                <rect key="frame" x="158" y="271" width="77.333333333333314" height="14.666666666666686"/>
+                                <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="12"/>
+                                <color key="textColor" red="0.14117647058823529" green="0.69803921568627447" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jEH-eu-kkw">
+                                <rect key="frame" x="16" y="742" width="361" height="56"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="gAU-lA-YE8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="16"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Buy for $132.04"/>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MpI-lo-tsV">
+                                <rect key="frame" x="16" y="646" width="359" height="44"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="DL9-20-BL5"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="j1d-9z-FIi">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -257,20 +301,38 @@
                         <viewLayoutGuide key="safeArea" id="Kqq-Ua-kSF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Kqq-Ua-kSF" firstAttribute="bottom" secondItem="jEH-eu-kkw" secondAttribute="bottom" constant="20" id="0dR-D1-gOC"/>
                             <constraint firstItem="gAO-rU-NV3" firstAttribute="top" secondItem="ZK6-IY-tL9" secondAttribute="bottom" constant="24" id="8IA-Ua-WR9"/>
                             <constraint firstItem="gAO-rU-NV3" firstAttribute="leading" secondItem="Kqq-Ua-kSF" secondAttribute="leading" constant="20" id="ABg-yj-ecT"/>
+                            <constraint firstItem="BWn-4j-R4v" firstAttribute="top" secondItem="5iQ-IQ-cM4" secondAttribute="bottom" constant="48" id="BcY-ru-Gjk"/>
+                            <constraint firstItem="MeO-ST-wB1" firstAttribute="top" secondItem="BWn-4j-R4v" secondAttribute="bottom" constant="8" id="CSR-0p-MMK"/>
                             <constraint firstItem="Kqq-Ua-kSF" firstAttribute="trailing" secondItem="1QZ-kN-L1X" secondAttribute="trailing" constant="18" id="IqR-tZ-Jku"/>
                             <constraint firstItem="Kqq-Ua-kSF" firstAttribute="trailing" secondItem="gAO-rU-NV3" secondAttribute="trailing" id="Jtx-Vv-uq7"/>
                             <constraint firstItem="ZK6-IY-tL9" firstAttribute="centerX" secondItem="Rf9-WV-qyh" secondAttribute="centerX" id="K7y-uz-lWK"/>
+                            <constraint firstItem="jEH-eu-kkw" firstAttribute="top" secondItem="MpI-lo-tsV" secondAttribute="bottom" constant="52" id="W8u-Lm-1Mg"/>
                             <constraint firstItem="ZK6-IY-tL9" firstAttribute="top" secondItem="Kqq-Ua-kSF" secondAttribute="top" constant="18" id="XLx-1b-vzh"/>
+                            <constraint firstItem="Kqq-Ua-kSF" firstAttribute="trailing" secondItem="MpI-lo-tsV" secondAttribute="trailing" constant="18" id="Zet-b1-Zd5"/>
+                            <constraint firstItem="BWn-4j-R4v" firstAttribute="centerX" secondItem="Rf9-WV-qyh" secondAttribute="centerX" id="b06-qR-UMu"/>
+                            <constraint firstItem="MpI-lo-tsV" firstAttribute="leading" secondItem="Kqq-Ua-kSF" secondAttribute="leading" constant="16" id="bDh-CD-Zep"/>
+                            <constraint firstItem="jEH-eu-kkw" firstAttribute="leading" secondItem="Kqq-Ua-kSF" secondAttribute="leading" constant="16" id="bPo-86-Ycx"/>
+                            <constraint firstItem="Kqq-Ua-kSF" firstAttribute="trailing" secondItem="5iQ-IQ-cM4" secondAttribute="trailing" id="hq2-5F-eN2"/>
                             <constraint firstItem="1QZ-kN-L1X" firstAttribute="top" secondItem="Kqq-Ua-kSF" secondAttribute="top" constant="30" id="i1l-sU-NxB"/>
                             <constraint firstItem="7JY-6t-INC" firstAttribute="leading" secondItem="Kqq-Ua-kSF" secondAttribute="leading" constant="18" id="jJp-6H-MJq"/>
                             <constraint firstItem="7JY-6t-INC" firstAttribute="top" secondItem="Kqq-Ua-kSF" secondAttribute="top" constant="33" id="l64-7b-brY"/>
+                            <constraint firstItem="Kqq-Ua-kSF" firstAttribute="trailing" secondItem="jEH-eu-kkw" secondAttribute="trailing" constant="16" id="taQ-9K-xtv"/>
+                            <constraint firstItem="5iQ-IQ-cM4" firstAttribute="top" secondItem="gAO-rU-NV3" secondAttribute="bottom" constant="14" id="utE-5t-kkf"/>
+                            <constraint firstItem="5iQ-IQ-cM4" firstAttribute="leading" secondItem="Kqq-Ua-kSF" secondAttribute="leading" id="wko-zB-VOP"/>
+                            <constraint firstItem="MeO-ST-wB1" firstAttribute="centerX" secondItem="Rf9-WV-qyh" secondAttribute="centerX" id="zoo-tg-5Ku"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="buyButton" destination="jEH-eu-kkw" id="qaV-NF-gqI"/>
+                        <outlet property="changeInPriceLabel" destination="MeO-ST-wB1" id="RWF-9i-Ury"/>
+                        <outlet property="chipsCollectionView" destination="MpI-lo-tsV" id="j5e-hc-vDA"/>
                         <outlet property="collectionView" destination="gAO-rU-NV3" id="SSC-PQ-eiw"/>
+                        <outlet property="priceLabel" destination="BWn-4j-R4v" id="RpX-cP-5jh"/>
                         <outlet property="promptLabel" destination="FTY-sN-TCG" id="pHw-37-Apj"/>
+                        <outlet property="separatorLine" destination="5iQ-IQ-cM4" id="oZc-Jr-iC0"/>
                         <outlet property="starButton" destination="1QZ-kN-L1X" id="Qrc-lk-2Aq"/>
                         <outlet property="titleLabel" destination="ZkE-1Q-BLI" id="uOK-dJ-shZ"/>
                     </connections>
@@ -283,6 +345,9 @@
     <resources>
         <image name="Star 1" width="19" height="18"/>
         <image name="back" width="20" height="14"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

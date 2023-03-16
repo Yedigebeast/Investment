@@ -24,6 +24,9 @@
 		FE74114A299A2FA1008A68EF /* Investment.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FE741148299A2FA1008A68EF /* Investment.xcdatamodeld */; };
 		FE74114C299A2FA2008A68EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE74114B299A2FA2008A68EF /* Assets.xcassets */; };
 		FE74114F299A2FA2008A68EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE74114D299A2FA2008A68EF /* LaunchScreen.storyboard */; };
+		FE7E334329C2F6C100E5C2CE /* ChipsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE7E334229C2F6C100E5C2CE /* ChipsCell.xib */; };
+		FE7E334529C2F6CA00E5C2CE /* ChipsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7E334429C2F6CA00E5C2CE /* ChipsCell.swift */; };
+		FE7E334729C2F87A00E5C2CE /* ChipsVButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7E334629C2F87A00E5C2CE /* ChipsVButton.swift */; };
 		FE7FB83629A7AEC5009896F2 /* CompanyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE7FB83529A7AEC5009896F2 /* CompanyCell.xib */; };
 		FE7FB83829A7B113009896F2 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE7FB83729A7B113009896F2 /* Montserrat-SemiBold.ttf */; };
 		FE8ADBFF29C1D00400479FB1 /* DetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8ADBFE29C1D00400479FB1 /* DetailsCollectionViewCell.swift */; };
@@ -57,6 +60,9 @@
 		FE74114B299A2FA2008A68EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE74114E299A2FA2008A68EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE741150299A2FA2008A68EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE7E334229C2F6C100E5C2CE /* ChipsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChipsCell.xib; sourceTree = "<group>"; };
+		FE7E334429C2F6CA00E5C2CE /* ChipsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsCell.swift; sourceTree = "<group>"; };
+		FE7E334629C2F87A00E5C2CE /* ChipsVButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsVButton.swift; sourceTree = "<group>"; };
 		FE7FB83529A7AEC5009896F2 /* CompanyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompanyCell.xib; sourceTree = "<group>"; };
 		FE7FB83729A7B113009896F2 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		FE8ADBFE29C1D00400479FB1 /* DetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -116,6 +122,8 @@
 				FEA3E97029B77FD600DE2A0A /* SearchCell.swift */,
 				FE440B7D29C1C7DF00ADFF6A /* DetailsCollectionViewCell.xib */,
 				FE8ADBFE29C1D00400479FB1 /* DetailsCollectionViewCell.swift */,
+				FE7E334229C2F6C100E5C2CE /* ChipsCell.xib */,
+				FE7E334429C2F6CA00E5C2CE /* ChipsCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -136,6 +144,7 @@
 				FE09548129A8BFB0005F7CB6 /* Company.swift */,
 				FE07605529B0E4A70091EA1F /* Price.swift */,
 				FE440B7B29C1C55900ADFF6A /* collectionVButton.swift */,
+				FE7E334629C2F87A00E5C2CE /* ChipsVButton.swift */,
 				FEEA7EC429AA079C0083DF6B /* CompanyData.swift */,
 				FE07605329B0E41A0091EA1F /* PriceData.swift */,
 				FEEA7EC229AA04230083DF6B /* CompanyManager.swift */,
@@ -253,6 +262,7 @@
 				FE74114F299A2FA2008A68EF /* LaunchScreen.storyboard in Resources */,
 				FE440B7E29C1C7DF00ADFF6A /* DetailsCollectionViewCell.xib in Resources */,
 				FE7FB83629A7AEC5009896F2 /* CompanyCell.xib in Resources */,
+				FE7E334329C2F6C100E5C2CE /* ChipsCell.xib in Resources */,
 				FEA3E96F29B77FC100DE2A0A /* SearchCell.xib in Resources */,
 				FE74114C299A2FA2008A68EF /* Assets.xcassets in Resources */,
 				FE741147299A2FA1008A68EF /* Main.storyboard in Resources */,
@@ -308,6 +318,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE7E334729C2F87A00E5C2CE /* ChipsVButton.swift in Sources */,
 				FE440B7C29C1C55900ADFF6A /* collectionVButton.swift in Sources */,
 				FEEA7EC329AA04230083DF6B /* CompanyManager.swift in Sources */,
 				FEA3E97129B77FD600DE2A0A /* SearchCell.swift in Sources */,
@@ -321,6 +332,7 @@
 				FE09548429A8C126005F7CB6 /* CompanyCell.swift in Sources */,
 				FE741140299A2FA1008A68EF /* AppDelegate.swift in Sources */,
 				FE8ADBFF29C1D00400479FB1 /* DetailsCollectionViewCell.swift in Sources */,
+				FE7E334529C2F6CA00E5C2CE /* ChipsCell.swift in Sources */,
 				FEEA7EC129A9FEC60083DF6B /* Secret.swift in Sources */,
 				FE741142299A2FA1008A68EF /* SceneDelegate.swift in Sources */,
 				FE09548229A8BFB0005F7CB6 /* Company.swift in Sources */,

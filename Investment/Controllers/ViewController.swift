@@ -390,6 +390,8 @@ extension ViewController: UITableViewDelegate {
             let destinationVC = segue.destination as! DetailsViewController
             destinationVC.companyName = companies[tappedCellIndex].companyName
             destinationVC.ticker = companies[tappedCellIndex].ticker
+            destinationVC.price = companies[tappedCellIndex].currentPrice
+            destinationVC.changeInPrice = companies[tappedCellIndex].changePrice
             destinationVC.delegate = self
             
             var have: Bool = false
