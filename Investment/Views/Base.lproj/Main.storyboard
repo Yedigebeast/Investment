@@ -192,6 +192,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5iQ-IQ-cM4">
+                                <rect key="frame" x="0.0" y="59.000000000000007" width="393" height="120.66666666666669"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7JY-6t-INC">
                                 <rect key="frame" x="18" y="92" width="20" height="14"/>
                                 <constraints>
@@ -253,21 +256,14 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5iQ-IQ-cM4">
-                                <rect key="frame" x="0.0" y="179.66666666666666" width="393" height="1"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.059990687086092717" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="qxU-fH-oe4"/>
-                                </constraints>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$131.93" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWn-4j-R4v">
-                                <rect key="frame" x="147.66666666666666" y="228.66666666666666" width="97.666666666666657" height="34.333333333333343"/>
+                                <rect key="frame" x="147.66666666666666" y="235.66666666666666" width="97.666666666666657" height="34.333333333333343"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+$0.12 (1,15%)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MeO-ST-wB1">
-                                <rect key="frame" x="158" y="271" width="77.333333333333314" height="14.666666666666686"/>
+                                <rect key="frame" x="158" y="278" width="77.333333333333314" height="14.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="12"/>
                                 <color key="textColor" red="0.14117647058823529" green="0.69803921568627447" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -304,7 +300,7 @@
                             <constraint firstItem="Kqq-Ua-kSF" firstAttribute="bottom" secondItem="jEH-eu-kkw" secondAttribute="bottom" constant="20" id="0dR-D1-gOC"/>
                             <constraint firstItem="gAO-rU-NV3" firstAttribute="top" secondItem="ZK6-IY-tL9" secondAttribute="bottom" constant="24" id="8IA-Ua-WR9"/>
                             <constraint firstItem="gAO-rU-NV3" firstAttribute="leading" secondItem="Kqq-Ua-kSF" secondAttribute="leading" constant="20" id="ABg-yj-ecT"/>
-                            <constraint firstItem="BWn-4j-R4v" firstAttribute="top" secondItem="5iQ-IQ-cM4" secondAttribute="bottom" constant="48" id="BcY-ru-Gjk"/>
+                            <constraint firstItem="5iQ-IQ-cM4" firstAttribute="bottom" secondItem="gAO-rU-NV3" secondAttribute="bottom" constant="14" id="BcY-ru-Gjk"/>
                             <constraint firstItem="MeO-ST-wB1" firstAttribute="top" secondItem="BWn-4j-R4v" secondAttribute="bottom" constant="8" id="CSR-0p-MMK"/>
                             <constraint firstItem="Kqq-Ua-kSF" firstAttribute="trailing" secondItem="1QZ-kN-L1X" secondAttribute="trailing" constant="18" id="IqR-tZ-Jku"/>
                             <constraint firstItem="Kqq-Ua-kSF" firstAttribute="trailing" secondItem="gAO-rU-NV3" secondAttribute="trailing" id="Jtx-Vv-uq7"/>
@@ -320,8 +316,9 @@
                             <constraint firstItem="7JY-6t-INC" firstAttribute="leading" secondItem="Kqq-Ua-kSF" secondAttribute="leading" constant="18" id="jJp-6H-MJq"/>
                             <constraint firstItem="7JY-6t-INC" firstAttribute="top" secondItem="Kqq-Ua-kSF" secondAttribute="top" constant="33" id="l64-7b-brY"/>
                             <constraint firstItem="Kqq-Ua-kSF" firstAttribute="trailing" secondItem="jEH-eu-kkw" secondAttribute="trailing" constant="16" id="taQ-9K-xtv"/>
-                            <constraint firstItem="5iQ-IQ-cM4" firstAttribute="top" secondItem="gAO-rU-NV3" secondAttribute="bottom" constant="14" id="utE-5t-kkf"/>
+                            <constraint firstItem="5iQ-IQ-cM4" firstAttribute="top" secondItem="Kqq-Ua-kSF" secondAttribute="top" id="utE-5t-kkf"/>
                             <constraint firstItem="5iQ-IQ-cM4" firstAttribute="leading" secondItem="Kqq-Ua-kSF" secondAttribute="leading" id="wko-zB-VOP"/>
+                            <constraint firstItem="BWn-4j-R4v" firstAttribute="top" secondItem="5iQ-IQ-cM4" secondAttribute="bottom" constant="56" id="zfz-NR-hVk"/>
                             <constraint firstItem="MeO-ST-wB1" firstAttribute="centerX" secondItem="Rf9-WV-qyh" secondAttribute="centerX" id="zoo-tg-5Ku"/>
                         </constraints>
                     </view>

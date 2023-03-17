@@ -51,8 +51,6 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         titleLabel.text = ticker
         promptLabel.text = companyName
-        priceLabel.text = price
-        changeInPriceLabel.text = changeInPrice
         if isTickerFavourite == true {
             starButton.tintColor = UIColor(red: 1.0, green: 0.79, blue: 0.11, alpha: 1.0)
         }
@@ -61,6 +59,12 @@ class DetailsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: Constants.detailsCellNibName, bundle: nil), forCellWithReuseIdentifier: Constants.detailsCellIdentifier)
         collectionView.tag = 0
+        
+        separatorLine.dropShadow()
+        separatorLine.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        
+        priceLabel.text = price
+        changeInPriceLabel.text = changeInPrice
         
         chipsCollectionView.delegate = self
         chipsCollectionView.dataSource = self
@@ -223,4 +227,20 @@ extension DetailsViewController: ChipsCellDelegate {
     }
 
 
+}
+
+extension UIView {
+    
+    func dropShadow(scale: Bool = true) {
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.05).cgColor
+        layer.shadowOpacity = 1
+        layer.shadowOffset = CGSize(width: 0, height: 2)
+        layer.shadowRadius = 2
+
+        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+      }
+    
 }
