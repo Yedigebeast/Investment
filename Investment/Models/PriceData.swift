@@ -12,5 +12,6 @@ struct PriceData: Decodable {
     let c: Double
     let d: Double
     let dp: Double
+    let h: Double
     
 }

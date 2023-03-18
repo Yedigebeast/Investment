@@ -293,6 +293,10 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jhD-Yr-Kcp">
+                                <rect key="frame" x="-10" y="292.66666666666674" width="413" height="313.33333333333326"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Kqq-Ua-kSF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -305,21 +309,25 @@
                             <constraint firstItem="Kqq-Ua-kSF" firstAttribute="trailing" secondItem="1QZ-kN-L1X" secondAttribute="trailing" constant="18" id="IqR-tZ-Jku"/>
                             <constraint firstItem="Kqq-Ua-kSF" firstAttribute="trailing" secondItem="gAO-rU-NV3" secondAttribute="trailing" id="Jtx-Vv-uq7"/>
                             <constraint firstItem="ZK6-IY-tL9" firstAttribute="centerX" secondItem="Rf9-WV-qyh" secondAttribute="centerX" id="K7y-uz-lWK"/>
+                            <constraint firstItem="jhD-Yr-Kcp" firstAttribute="trailing" secondItem="Rf9-WV-qyh" secondAttribute="trailing" constant="10" id="NKg-kt-hwe"/>
                             <constraint firstItem="jEH-eu-kkw" firstAttribute="top" secondItem="MpI-lo-tsV" secondAttribute="bottom" constant="52" id="W8u-Lm-1Mg"/>
                             <constraint firstItem="ZK6-IY-tL9" firstAttribute="top" secondItem="Kqq-Ua-kSF" secondAttribute="top" constant="18" id="XLx-1b-vzh"/>
                             <constraint firstItem="Kqq-Ua-kSF" firstAttribute="trailing" secondItem="MpI-lo-tsV" secondAttribute="trailing" constant="18" id="Zet-b1-Zd5"/>
                             <constraint firstItem="BWn-4j-R4v" firstAttribute="centerX" secondItem="Rf9-WV-qyh" secondAttribute="centerX" id="b06-qR-UMu"/>
                             <constraint firstItem="MpI-lo-tsV" firstAttribute="leading" secondItem="Kqq-Ua-kSF" secondAttribute="leading" constant="16" id="bDh-CD-Zep"/>
                             <constraint firstItem="jEH-eu-kkw" firstAttribute="leading" secondItem="Kqq-Ua-kSF" secondAttribute="leading" constant="16" id="bPo-86-Ycx"/>
+                            <constraint firstItem="jhD-Yr-Kcp" firstAttribute="top" secondItem="MeO-ST-wB1" secondAttribute="bottom" id="hTG-WV-ebG"/>
                             <constraint firstItem="Kqq-Ua-kSF" firstAttribute="trailing" secondItem="5iQ-IQ-cM4" secondAttribute="trailing" id="hq2-5F-eN2"/>
                             <constraint firstItem="1QZ-kN-L1X" firstAttribute="top" secondItem="Kqq-Ua-kSF" secondAttribute="top" constant="30" id="i1l-sU-NxB"/>
                             <constraint firstItem="7JY-6t-INC" firstAttribute="leading" secondItem="Kqq-Ua-kSF" secondAttribute="leading" constant="18" id="jJp-6H-MJq"/>
                             <constraint firstItem="7JY-6t-INC" firstAttribute="top" secondItem="Kqq-Ua-kSF" secondAttribute="top" constant="33" id="l64-7b-brY"/>
+                            <constraint firstItem="jhD-Yr-Kcp" firstAttribute="leading" secondItem="Rf9-WV-qyh" secondAttribute="leading" constant="-10" id="qru-xP-qUf"/>
                             <constraint firstItem="Kqq-Ua-kSF" firstAttribute="trailing" secondItem="jEH-eu-kkw" secondAttribute="trailing" constant="16" id="taQ-9K-xtv"/>
                             <constraint firstItem="5iQ-IQ-cM4" firstAttribute="top" secondItem="Kqq-Ua-kSF" secondAttribute="top" id="utE-5t-kkf"/>
                             <constraint firstItem="5iQ-IQ-cM4" firstAttribute="leading" secondItem="Kqq-Ua-kSF" secondAttribute="leading" id="wko-zB-VOP"/>
                             <constraint firstItem="BWn-4j-R4v" firstAttribute="top" secondItem="5iQ-IQ-cM4" secondAttribute="bottom" constant="56" id="zfz-NR-hVk"/>
                             <constraint firstItem="MeO-ST-wB1" firstAttribute="centerX" secondItem="Rf9-WV-qyh" secondAttribute="centerX" id="zoo-tg-5Ku"/>
+                            <constraint firstItem="MpI-lo-tsV" firstAttribute="top" secondItem="jhD-Yr-Kcp" secondAttribute="bottom" constant="40" id="zyM-L4-lwh"/>
                         </constraints>
                     </view>
                     <connections>
@@ -332,6 +340,7 @@
                         <outlet property="separatorLine" destination="5iQ-IQ-cM4" id="oZc-Jr-iC0"/>
                         <outlet property="starButton" destination="1QZ-kN-L1X" id="Qrc-lk-2Aq"/>
                         <outlet property="titleLabel" destination="ZkE-1Q-BLI" id="uOK-dJ-shZ"/>
+                        <outlet property="viewInOrderOfChart" destination="jhD-Yr-Kcp" id="AP9-32-xdc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uzd-tx-673" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

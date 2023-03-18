@@ -11,7 +11,7 @@ import UIKit
 protocol CompanyManagerDelegate {
     
     func didUpdateCompany(_ companyManager: CompanyManager, company: Company)
-    func didFailWithError(error: Error)
+    func companyManagerDidFailWithError(error: Error)
     
 }
 
@@ -37,7 +37,7 @@ struct CompanyManager {
                 
                 if error != nil {
                         
-                    self.delegate?.didFailWithError(error: error!)
+                    self.delegate?.companyManagerDidFailWithError(error: error!)
                     return
                     
                 }
@@ -70,13 +70,13 @@ struct CompanyManager {
             let ticker = decodedData.ticker
             let imageLink = decodedData.logo
             
-            let company = Company(ticker: ticker, companyName: companyName, imageLink: imageLink, currentPrice: "$100", changePrice: "+0,5%", img: UIImageView(frame: CGRect(x: 0, y: 0, width: 52, height: 52)))
+            let company = Company(ticker: ticker, companyName: companyName, imageLink: imageLink, currentPrice: "$100", changePrice: "+0,5%", buyPrice: "$110", img: UIImageView(frame: CGRect(x: 0, y: 0, width: 52, height: 52)))
             
             return company
             
         } catch {
             
-            delegate?.didFailWithError(error: error)
+            delegate?.companyManagerDidFailWithError(error: error)
             return nil
             
         }

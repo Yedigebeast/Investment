@@ -100,7 +100,7 @@ class ViewController: UIViewController {
         
         for ticker in tickersOfCompanies {
             
-            companies.append(Company(ticker: ticker, companyName: "-", imageLink: "-", currentPrice: "-", changePrice: "-", img: UIImageView(frame: CGRect(x: 0, y: 0, width: 52, height: 52))))
+            companies.append(Company(ticker: ticker, companyName: "-", imageLink: "-", currentPrice: "-", changePrice: "-", buyPrice: "-", img: UIImageView(frame: CGRect(x: 0, y: 0, width: 52, height: 52))))
             
         }
         
@@ -392,6 +392,7 @@ extension ViewController: UITableViewDelegate {
             destinationVC.ticker = companies[tappedCellIndex].ticker
             destinationVC.price = companies[tappedCellIndex].currentPrice
             destinationVC.changeInPrice = companies[tappedCellIndex].changePrice
+            destinationVC.buyPrice = companies[tappedCellIndex].buyPrice
             destinationVC.delegate = self
             
             var have: Bool = false
@@ -690,7 +691,7 @@ extension ViewController: CompanyManagerDelegate {
         
     }
     
-    func didFailWithError(error: Error) {
+    func companyManagerDidFailWithError(error: Error) {
         
         print(error)
         
@@ -712,20 +713,30 @@ extension ViewController: PriceManagerDelegate {
             
                 if (self.companies[i].ticker == ticker) {
                     
-                    var s = addingSpaceInNumber(price: "\(price.currentPrice)")
+                    var s = "\(price.currentPrice)"
+                    s = s.addingSpaceInNumber()
                     
                     self.companies[i].currentPrice = "$\(s)"
                     
+                    s = "\(price.buyPrice)"
+                    s = s.addingSpaceInNumber()
+                    
+                    self.companies[i].buyPrice = "$\(s)"
+                    
                     if price.change >= 0 {
                         
-                        s = addingSpaceInNumber(price: "\(price.change)")
-                        let s1 = addingSpaceInNumber(price: "\(price.percentChange)")
+                        s = "\(price.change)"
+                        s = s.addingSpaceInNumber()
+                        var s1 = "\(price.percentChange)"
+                        s1 = s1.addingSpaceInNumber()
                         self.companies[i].changePrice = "+$\(s) (\(s1)%)"
                         
                     } else {
                         
-                        s = addingSpaceInNumber(price: "\(-1 * price.change)")
-                        let s1 = addingSpaceInNumber(price: "\(-1 * price.percentChange)")
+                        s = "\(-1 * price.change)"
+                        s = s.addingSpaceInNumber()
+                        var s1 = "\(-1 * price.percentChange)"
+                        s1 = s1.addingSpaceInNumber()
                         self.companies[i].changePrice = "-$\(s) (\(s1)%)"
 
                     }
@@ -751,57 +762,11 @@ extension ViewController: PriceManagerDelegate {
         
     }
     
-    func functionPriceManagerDidFailWithError(error: Error) {
+    func priceManagerDidFailWithError(error: Error) {
         
         print(error)
         
     }
-    
-}
-
-func addingSpaceInNumber (price: String) -> String {
-    
-    var cntr: Int = 0
-    var saw: Bool = false
-    var p = price
-    
-    for i in stride(from: price.count - 1, through: 0, by: -1) {
-        
-        if p.characterAtIndex(index: i) == "." {
-            
-            saw = true
-            
-        }
-        
-        if let character = p.characterAtIndex(index: i){
-            
-            if "0" <= character && character <= "9" {
-                
-                if saw == true {
-                    cntr += 1
-                }
-                
-            }
-            
-        }
-        
-        if cntr == 3 && i != 0 {
-            
-            p.insert(" ", at: p.index(p.startIndex, offsetBy: i))
-            cntr = 0
-            
-        }
-
-    }
-    
-    if p.suffix(2) == ".0" {
-        
-        p = String(p.dropLast())
-        p = String(p.dropLast())
-        
-    }
-    
-    return p
     
 }
 
@@ -1057,6 +1022,48 @@ extension String {
         let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
         let boundingBox = self.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedString.Key.font: font], context: nil)
         return boundingBox.width
+        
+    }
+    
+}
+
+//MARK: - Adding Space in Number
+
+extension String {
+    
+    func addingSpaceInNumber () -> String {
+        
+        var cntr: Int = 0
+        var saw: Bool = false
+        var p = self
+        
+        for i in stride(from: self.count - 1, through: 0, by: -1) {
+            
+            if p.characterAtIndex(index: i) == "." {
+                saw = true
+            }
+            
+            if let character = p.characterAtIndex(index: i){
+                if "0" <= character && character <= "9" {
+                    if saw == true {
+                        cntr += 1
+                    }
+                }
+            }
+            
+            if cntr == 3 && i != 0 {
+                p.insert(" ", at: p.index(p.startIndex, offsetBy: i))
+                cntr = 0
+            }
+
+        }
+        
+        if p.suffix(2) == ".0" {
+            p = String(p.dropLast())
+            p = String(p.dropLast())
+        }
+        
+        return p
         
     }
     

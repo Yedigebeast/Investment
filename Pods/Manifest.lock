@@ -2,6 +2,10 @@ PODS:
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
+  - Charts (4.1.0):
+    - Charts/Core (= 4.1.0)
+  - Charts/Core (4.1.0):
+    - SwiftAlgorithms (~> 1.0)
   - CocoaLumberjack (3.8.0):
     - CocoaLumberjack/Core (= 3.8.0)
   - CocoaLumberjack/Core (3.8.0)
@@ -9,18 +13,22 @@ PODS:
   - Kingfisher (7.6.2)
   - SVGKit (3.1.0):
     - CocoaLumberjack (~> 3.0)
+  - SwiftAlgorithms (1.0.0)
 
 DEPENDENCIES:
   - ChameleonFramework/Swift (from `https://github.com/wowansm/Chameleon.git`, branch `swift5`)
+  - Charts (~> 4.1)
   - IQKeyboardManagerSwift (= 6.5.0)
   - Kingfisher (~> 7.6)
   - SVGKit (from `https://github.com/SVGKit/SVGKit.git`, branch `3.x`)
 
 SPEC REPOS:
   trunk:
+    - Charts
     - CocoaLumberjack
     - IQKeyboardManagerSwift
     - Kingfisher
+    - SwiftAlgorithms
 
 EXTERNAL SOURCES:
   ChameleonFramework:
@@ -40,11 +48,13 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  Charts: 354f86803d11d9c35de280587fef50d1af063978
   CocoaLumberjack: 78abfb691154e2a9df8ded4350d504ee19d90732
   IQKeyboardManagerSwift: 6cd19976c6e871907c4ed9127c2d3affdd4defc2
   Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
   SVGKit: 3c8468aab0026048532a3b27a0c81cdd939f0649
+  SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
 
-PODFILE CHECKSUM: e60ce4694de25081b39a90bf46f164f4ebf0f083
+PODFILE CHECKSUM: ff4f44d3332958864b592a8fd2fcb01ac817449d
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.0

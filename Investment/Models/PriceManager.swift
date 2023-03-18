@@ -10,7 +10,7 @@ import Foundation
 protocol PriceManagerDelegate {
     
     func didUpdatePrice(_ priceManager: PriceManager, price: Price, ticker: String)
-    func functionPriceManagerDidFailWithError(error: Error)
+    func priceManagerDidFailWithError(error: Error)
     
 }
 
@@ -36,7 +36,7 @@ struct PriceManager {
                 
                 if error != nil {
                         
-                    self.delegate?.functionPriceManagerDidFailWithError(error: error!)
+                    self.delegate?.priceManagerDidFailWithError(error: error!)
                     return
                     
                 }
@@ -68,14 +68,15 @@ struct PriceManager {
             let currentPrice = round(decodedData.c * 100) / 100
             let change = round(decodedData.d * 100) / 100
             let percentChange = round(decodedData.dp * 100) / 100
+            let buyPrice = round(decodedData.h * 100) / 100
             
-            let price = Price(currentPrice: "\(currentPrice)", change: change, percentChange: percentChange)
+            let price = Price(currentPrice: "\(currentPrice)", change: change, percentChange: percentChange, buyPrice: "\(buyPrice)")
             
             return price
             
         } catch {
             
-            delegate?.functionPriceManagerDidFailWithError(error: error)
+            delegate?.priceManagerDidFailWithError(error: error)
             return nil
             
         }

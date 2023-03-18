@@ -10,5 +10,6 @@ target 'Investment' do
   pod 'SVGKit', :git => 'https://github.com/SVGKit/SVGKit.git', :branch => '3.x'
   pod 'IQKeyboardManagerSwift', '6.5.0'
   pod 'ChameleonFramework/Swift', :git => 'https://github.com/wowansm/Chameleon.git', :branch => 'swift5'
+  pod 'Charts', '~> 4.1'
 
 end

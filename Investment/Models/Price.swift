@@ -12,5 +12,6 @@ struct Price {
     var currentPrice: String
     var change: Double
     var percentChange: Double
+    var buyPrice: String
     
 }

@@ -15,6 +15,7 @@ struct Company {
     var imageLink: String
     var currentPrice: String
     var changePrice: String
+    var buyPrice: String
     var img: UIImageView
     
 }

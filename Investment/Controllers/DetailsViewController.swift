@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Charts
+import ChameleonFramework
 
 protocol DetailsViewControllerDelegate {
     
@@ -22,6 +24,7 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var separatorLine: UIView!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var changeInPriceLabel: UILabel!
+    @IBOutlet weak var viewInOrderOfChart: UIView!
     @IBOutlet weak var chipsCollectionView: UICollectionView!
     @IBOutlet weak var buyButton: UIButton!
     
@@ -30,6 +33,7 @@ class DetailsViewController: UIViewController {
     var ticker: String = ""
     var price: String = ""
     var changeInPrice: String = ""
+    var buyPrice: String = ""
     var isTickerFavourite: Bool = false
     
     var collectionViewButtons: [collectionVButton] = [
@@ -45,6 +49,11 @@ class DetailsViewController: UIViewController {
         ChipsVButton(text: "6M", backgroundColor: UIColor(red: 0.94, green: 0.96, blue: 0.97, alpha: 1.0), textColor: UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)),
         ChipsVButton(text: "1Y", backgroundColor: UIColor(red: 0.94, green: 0.96, blue: 0.97, alpha: 1.0), textColor: UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)),
         ChipsVButton(text: "All", backgroundColor: UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0), textColor: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))]
+    
+    var lineChart = LineChartView()
+    
+    var candleManager = CandleManager()
+    var candles: Candle = Candle(prices: [], status: "ok", timestamps: [])
     
     override func viewDidLoad() {
         
@@ -66,13 +75,29 @@ class DetailsViewController: UIViewController {
         priceLabel.text = price
         changeInPriceLabel.text = changeInPrice
         
+        lineChart.delegate = self
+        lineChart.frame = viewInOrderOfChart.frame
+        
+        lineChart.doubleTapToZoomEnabled = false
+        
+        lineChart.rightAxis.enabled = false
+        lineChart.rightAxis.axisLineWidth = 0
+        lineChart.leftAxis.enabled = false
+        lineChart.xAxis.enabled = false
+        lineChart.legend.enabled = false
+    
+        view.addSubview(lineChart)
+        
+        candleManager.delegate = self
+        setData(button: "All")
+        
         chipsCollectionView.delegate = self
         chipsCollectionView.dataSource = self
         chipsCollectionView.register(UINib(nibName: Constants.chipsCellNibName, bundle: nil), forCellWithReuseIdentifier: Constants.chipsCellIdentifier)
         chipsCollectionView.tag = 1
         
         buyButton.layer.cornerRadius = 16
-        buyButton.setTitle("Buy for \(price)", for: .normal)
+        buyButton.setTitle(buyPrice, for: .normal)
         
     }
     
@@ -207,6 +232,69 @@ extension DetailsViewController: DetailsCollectionViewCellDelegate {
 
 }
 
+//MARK: - Candle Manager Delegate Methods
+
+extension DetailsViewController: CandleManagerDelegate {
+    
+    func didUpdateCandles(_ candleManager: CandleManager, candle: Candle) {
+        
+        DispatchQueue.main.async {
+            
+            self.candles = candle
+
+            var entries = [ChartDataEntry]()
+            
+            for x in 0..<self.candles.prices.count {
+                
+                entries.append(ChartDataEntry(x: Double(self.candles.timestamps[x]), y: self.candles.prices[x]))
+                
+            }
+            
+            let set = LineChartDataSet(entries: entries)
+            set.drawCirclesEnabled = false
+            set.mode = .cubicBezier
+            set.lineWidth = 2
+            set.setColor(.black)
+            set.setDrawHighlightIndicators(false)
+            
+            let colors = [UIColor.black, UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)]
+            set.fillColor = NSUIColor(cgColor: GradientColor(.topToBottom, frame: self.lineChart.frame, colors: colors).cgColor)
+            set.drawFilledEnabled = true
+            
+            let data = LineChartData(dataSet: set)
+            data.setDrawValues(false)
+            
+            self.lineChart.data = data
+            self.lineChart.animate(xAxisDuration: 2.0)
+            
+        }
+        
+    }
+    
+    func candleManagerDidFailWithError(error: Error) {
+    
+        print(error)
+        
+    }
+    
+}
+
+//MARK: - Line Chart Delegate Methods
+extension DetailsViewController: ChartViewDelegate {
+    
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        
+        let selectedXValue = NSDate(timeIntervalSince1970: entry.x)
+        
+        var selectedYValue = "\(entry.y)"
+        selectedYValue = selectedYValue.addingSpaceInNumber()
+        
+        print(selectedXValue, " ", selectedYValue)
+        
+    }
+    
+}
+
 //MARK: - Chips Cell Delegate Methods
 
 extension DetailsViewController: ChipsCellDelegate {
@@ -223,11 +311,14 @@ extension DetailsViewController: ChipsCellDelegate {
         chipsViewButtons[tag].backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
         chipsViewButtons[tag].textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         chipsCollectionView.reloadData()
+        setData(button: chipsViewButtons[tag].text)
 
     }
 
 
 }
+
+//MARK: - Drop Shadow Effect
 
 extension UIView {
     
@@ -242,5 +333,57 @@ extension UIView {
         layer.shouldRasterize = true
         layer.rasterizationScale = scale ? UIScreen.main.scale : 1
       }
+    
+}
+
+//MARK: - Get Candle Information According to the Button selected
+
+extension DetailsViewController {
+    
+    func setData(button: String) {
+        
+        candleManager.ticker = ticker
+        candleManager.to = Int(NSDate().timeIntervalSince1970)
+        if button == "D" {
+            
+            candleManager.from = candleManager.to - (24 * 60 * 60)
+            candleManager.resolution = "30"
+//            print("selected the chart to look for a day")
+            
+        } else if button == "W" {
+            
+            candleManager.from = candleManager.to - (7 * 24 * 60 * 60)
+            candleManager.resolution = "60"
+//            print("selected the chart to look for a week")
+            
+        } else if button == "M" {
+            
+            candleManager.from = candleManager.to - (30 * 24 * 60 * 60)
+            candleManager.resolution = "D"
+//            print("selected the chart to look for a month")
+            
+        } else if button == "6M" {
+            
+            candleManager.from = candleManager.to - (6 * 30 * 24 * 60 * 60)
+            candleManager.resolution = "W"
+//            print("selected the chart to look for 6 months")
+            
+        } else if button == "1Y" {
+         
+            candleManager.from = candleManager.to - (12 * 30 * 24 * 60 * 60)
+            candleManager.resolution = "W"
+//            print("selected the chart to look for a year")
+            
+        }else if button == "All" {
+            
+            candleManager.from = 0
+            candleManager.resolution = "M"
+//            print("selected the chart to look for all history")
+            
+        }
+        
+        candleManager.getCandleInfo()
+        
+    }
     
 }
