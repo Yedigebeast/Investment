@@ -395,6 +395,16 @@ extension ViewController: UITableViewDelegate {
             destinationVC.buyPrice = companies[tappedCellIndex].buyPrice
             destinationVC.delegate = self
             
+            if companies[tappedCellIndex].changePrice.prefix(1) == "-" {
+                
+                destinationVC.colorOfChangeInPrice = UIColor(red: 0.7, green: 0.14, blue: 0.14, alpha: 1.0)
+                
+            } else {
+                
+                destinationVC.colorOfChangeInPrice = UIColor(red: 0.14, green: 0.7, blue: 0.36, alpha: 1.0)
+                
+            }
+            
             var have: Bool = false
             for item in favourites {
                 if item.ticker == companies[tappedCellIndex].ticker {

@@ -256,11 +256,15 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jhD-Yr-Kcp">
+                                <rect key="frame" x="0.0" y="292.66666666666674" width="393" height="313.33333333333326"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$131.93" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWn-4j-R4v">
                                 <rect key="frame" x="147.66666666666666" y="235.66666666666666" width="97.666666666666657" height="34.333333333333343"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="28"/>
                                 <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
+                                <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="displayP3"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+$0.12 (1,15%)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MeO-ST-wB1">
                                 <rect key="frame" x="158" y="278" width="77.333333333333314" height="14.666666666666686"/>
@@ -268,18 +272,7 @@
                                 <color key="textColor" red="0.14117647058823529" green="0.69803921568627447" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jEH-eu-kkw">
-                                <rect key="frame" x="16" y="742" width="361" height="56"/>
-                                <color key="backgroundColor" systemColor="labelColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="gAU-lA-YE8"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="16"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Buy for $132.04"/>
-                            </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MpI-lo-tsV">
+                            <collectionView clipsSubviews="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MpI-lo-tsV">
                                 <rect key="frame" x="16" y="646" width="359" height="44"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -293,10 +286,17 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jhD-Yr-Kcp">
-                                <rect key="frame" x="-10" y="292.66666666666674" width="413" height="313.33333333333326"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jEH-eu-kkw">
+                                <rect key="frame" x="16" y="742" width="361" height="56"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="gAU-lA-YE8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="16"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Buy for $132.04"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Kqq-Ua-kSF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -307,9 +307,9 @@
                             <constraint firstItem="5iQ-IQ-cM4" firstAttribute="bottom" secondItem="gAO-rU-NV3" secondAttribute="bottom" constant="14" id="BcY-ru-Gjk"/>
                             <constraint firstItem="MeO-ST-wB1" firstAttribute="top" secondItem="BWn-4j-R4v" secondAttribute="bottom" constant="8" id="CSR-0p-MMK"/>
                             <constraint firstItem="Kqq-Ua-kSF" firstAttribute="trailing" secondItem="1QZ-kN-L1X" secondAttribute="trailing" constant="18" id="IqR-tZ-Jku"/>
-                            <constraint firstItem="Kqq-Ua-kSF" firstAttribute="trailing" secondItem="gAO-rU-NV3" secondAttribute="trailing" id="Jtx-Vv-uq7"/>
+                            <constraint firstItem="gAO-rU-NV3" firstAttribute="trailing" secondItem="Rf9-WV-qyh" secondAttribute="trailing" id="Jtx-Vv-uq7"/>
                             <constraint firstItem="ZK6-IY-tL9" firstAttribute="centerX" secondItem="Rf9-WV-qyh" secondAttribute="centerX" id="K7y-uz-lWK"/>
-                            <constraint firstItem="jhD-Yr-Kcp" firstAttribute="trailing" secondItem="Rf9-WV-qyh" secondAttribute="trailing" constant="10" id="NKg-kt-hwe"/>
+                            <constraint firstItem="jhD-Yr-Kcp" firstAttribute="trailing" secondItem="Rf9-WV-qyh" secondAttribute="trailing" id="NKg-kt-hwe"/>
                             <constraint firstItem="jEH-eu-kkw" firstAttribute="top" secondItem="MpI-lo-tsV" secondAttribute="bottom" constant="52" id="W8u-Lm-1Mg"/>
                             <constraint firstItem="ZK6-IY-tL9" firstAttribute="top" secondItem="Kqq-Ua-kSF" secondAttribute="top" constant="18" id="XLx-1b-vzh"/>
                             <constraint firstItem="Kqq-Ua-kSF" firstAttribute="trailing" secondItem="MpI-lo-tsV" secondAttribute="trailing" constant="18" id="Zet-b1-Zd5"/>
@@ -321,7 +321,7 @@
                             <constraint firstItem="1QZ-kN-L1X" firstAttribute="top" secondItem="Kqq-Ua-kSF" secondAttribute="top" constant="30" id="i1l-sU-NxB"/>
                             <constraint firstItem="7JY-6t-INC" firstAttribute="leading" secondItem="Kqq-Ua-kSF" secondAttribute="leading" constant="18" id="jJp-6H-MJq"/>
                             <constraint firstItem="7JY-6t-INC" firstAttribute="top" secondItem="Kqq-Ua-kSF" secondAttribute="top" constant="33" id="l64-7b-brY"/>
-                            <constraint firstItem="jhD-Yr-Kcp" firstAttribute="leading" secondItem="Rf9-WV-qyh" secondAttribute="leading" constant="-10" id="qru-xP-qUf"/>
+                            <constraint firstItem="jhD-Yr-Kcp" firstAttribute="leading" secondItem="Rf9-WV-qyh" secondAttribute="leading" id="qru-xP-qUf"/>
                             <constraint firstItem="Kqq-Ua-kSF" firstAttribute="trailing" secondItem="jEH-eu-kkw" secondAttribute="trailing" constant="16" id="taQ-9K-xtv"/>
                             <constraint firstItem="5iQ-IQ-cM4" firstAttribute="top" secondItem="Kqq-Ua-kSF" secondAttribute="top" id="utE-5t-kkf"/>
                             <constraint firstItem="5iQ-IQ-cM4" firstAttribute="leading" secondItem="Kqq-Ua-kSF" secondAttribute="leading" id="wko-zB-VOP"/>

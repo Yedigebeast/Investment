@@ -33,6 +33,7 @@ class DetailsViewController: UIViewController {
     var ticker: String = ""
     var price: String = ""
     var changeInPrice: String = ""
+    var colorOfChangeInPrice: UIColor = .black
     var buyPrice: String = ""
     var isTickerFavourite: Bool = false
     
@@ -51,6 +52,7 @@ class DetailsViewController: UIViewController {
         ChipsVButton(text: "All", backgroundColor: UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0), textColor: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))]
     
     var lineChart = LineChartView()
+    let customMarker = LineChartCustomMarker()
     
     var candleManager = CandleManager()
     var candles: Candle = Candle(prices: [], status: "ok", timestamps: [])
@@ -68,20 +70,25 @@ class DetailsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: Constants.detailsCellNibName, bundle: nil), forCellWithReuseIdentifier: Constants.detailsCellIdentifier)
         collectionView.tag = 0
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
         
-        separatorLine.dropShadow()
+        separatorLine.dropShadow(alpha: 0.05, offsetWidth: 0, offsetHeight: 2, radius: 2)
         separatorLine.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
         priceLabel.text = price
         changeInPriceLabel.text = changeInPrice
+        changeInPriceLabel.textColor = colorOfChangeInPrice
         
         lineChart.delegate = self
         lineChart.frame = viewInOrderOfChart.frame
+        customMarker.chartView = lineChart
+        lineChart.marker = customMarker
         
         lineChart.doubleTapToZoomEnabled = false
         
+        lineChart.minOffset = 0
         lineChart.rightAxis.enabled = false
-        lineChart.rightAxis.axisLineWidth = 0
         lineChart.leftAxis.enabled = false
         lineChart.xAxis.enabled = false
         lineChart.legend.enabled = false
@@ -100,6 +107,8 @@ class DetailsViewController: UIViewController {
         buyButton.setTitle(buyPrice, for: .normal)
         
     }
+    
+//MARK: - Button Pressed
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
         
@@ -252,12 +261,12 @@ extension DetailsViewController: CandleManagerDelegate {
             
             let set = LineChartDataSet(entries: entries)
             set.drawCirclesEnabled = false
-            set.mode = .cubicBezier
+            set.mode = .horizontalBezier
             set.lineWidth = 2
             set.setColor(.black)
             set.setDrawHighlightIndicators(false)
             
-            let colors = [UIColor.black, UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)]
+            let colors = [HexColor("#000000", 1.0)!, HexColor("#FFFFFF", 0.0)!]
             set.fillColor = NSUIColor(cgColor: GradientColor(.topToBottom, frame: self.lineChart.frame, colors: colors).cgColor)
             set.drawFilledEnabled = true
             
@@ -284,12 +293,21 @@ extension DetailsViewController: ChartViewDelegate {
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         
-        let selectedXValue = NSDate(timeIntervalSince1970: entry.x)
+        lineChart.marker = customMarker
         
+        let selectedXValue = NSDate(timeIntervalSince1970: (entry.x + 6 * 60 * 60))
+
         var selectedYValue = "\(entry.y)"
         selectedYValue = selectedYValue.addingSpaceInNumber()
         
-        print(selectedXValue, " ", selectedYValue)
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX") as Locale
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        
+        customMarker.price.text = "$\(selectedYValue)"
+        customMarker.date.text = dateFormatter.string(from: selectedXValue as Date).lowercased()
+
+        //print(entry.x, " ", selectedXValue, " ", selectedYValue)
         
     }
     
@@ -311,8 +329,8 @@ extension DetailsViewController: ChipsCellDelegate {
         chipsViewButtons[tag].backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
         chipsViewButtons[tag].textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         chipsCollectionView.reloadData()
+        lineChart.marker = nil
         setData(button: chipsViewButtons[tag].text)
-
     }
 
 
@@ -322,12 +340,12 @@ extension DetailsViewController: ChipsCellDelegate {
 
 extension UIView {
     
-    func dropShadow(scale: Bool = true) {
+    func dropShadow(scale: Bool = true, alpha: Double, offsetWidth: Int, offsetHeight: Int, radius: Double) {
         layer.masksToBounds = false
-        layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.05).cgColor
+        layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: alpha).cgColor
         layer.shadowOpacity = 1
-        layer.shadowOffset = CGSize(width: 0, height: 2)
-        layer.shadowRadius = 2
+        layer.shadowOffset = CGSize(width: offsetWidth, height: offsetHeight)
+        layer.shadowRadius = radius
 
         layer.shadowPath = UIBezierPath(rect: bounds).cgPath
         layer.shouldRasterize = true
