@@ -60,17 +60,16 @@
                         <constraint firstAttribute="width" constant="14" id="kEg-uV-3Bk"/>
                     </constraints>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" translatesAutoresizingMaskIntoConstraints="NO" id="Nwk-A7-KMi">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="circle" translatesAutoresizingMaskIntoConstraints="NO" id="Nwk-A7-KMi">
                     <rect key="frame" x="46" y="82" width="28" height="28"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="tintColor" systemColor="systemBlueColor"/>
                 </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="QfC-tR-Q30"/>
             <constraints>
-                <constraint firstItem="Nwk-A7-KMi" firstAttribute="centerX" secondItem="jjE-QL-s2x" secondAttribute="centerX" id="9J9-FT-2hY"/>
                 <constraint firstItem="yq5-hG-aae" firstAttribute="centerX" secondItem="jjE-QL-s2x" secondAttribute="centerX" id="G1q-N6-3jd"/>
                 <constraint firstItem="aSm-Sx-6ek" firstAttribute="top" secondItem="jjE-QL-s2x" secondAttribute="top" id="MMF-RK-K4B"/>
-                <constraint firstItem="Nwk-A7-KMi" firstAttribute="top" secondItem="yq5-hG-aae" secondAttribute="bottom" constant="12" id="MPx-Kh-Q9p"/>
                 <constraint firstItem="aSm-Sx-6ek" firstAttribute="leading" secondItem="jjE-QL-s2x" secondAttribute="leading" id="Ne4-Fy-Wvj"/>
                 <constraint firstItem="yq5-hG-aae" firstAttribute="top" secondItem="aSm-Sx-6ek" secondAttribute="bottom" constant="-1" id="k0q-Ie-Fo6"/>
                 <constraint firstAttribute="trailing" secondItem="aSm-Sx-6ek" secondAttribute="trailing" id="lQf-cQ-vot"/>

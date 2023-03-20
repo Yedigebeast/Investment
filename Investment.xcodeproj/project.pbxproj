@@ -37,6 +37,7 @@
 		FE8ADBFF29C1D00400479FB1 /* DetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8ADBFE29C1D00400479FB1 /* DetailsCollectionViewCell.swift */; };
 		FEA3E96F29B77FC100DE2A0A /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEA3E96E29B77FC100DE2A0A /* SearchCell.xib */; };
 		FEA3E97129B77FD600DE2A0A /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3E97029B77FD600DE2A0A /* SearchCell.swift */; };
+		FEA5FC8E29C8217C00FA5CFF /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA5FC8D29C8217C00FA5CFF /* BalloonMarker.swift */; };
 		FEEA7EC129A9FEC60083DF6B /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEA7EC029A9FEC60083DF6B /* Secret.swift */; };
 		FEEA7EC329AA04230083DF6B /* CompanyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEA7EC229AA04230083DF6B /* CompanyManager.swift */; };
 		FEEA7EC529AA079C0083DF6B /* CompanyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEA7EC429AA079C0083DF6B /* CompanyData.swift */; };
@@ -78,6 +79,7 @@
 		FE8ADBFE29C1D00400479FB1 /* DetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewCell.swift; sourceTree = "<group>"; };
 		FEA3E96E29B77FC100DE2A0A /* SearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
 		FEA3E97029B77FD600DE2A0A /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		FEA5FC8D29C8217C00FA5CFF /* BalloonMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		FEEA7EC029A9FEC60083DF6B /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		FEEA7EC229AA04230083DF6B /* CompanyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyManager.swift; sourceTree = "<group>"; };
 		FEEA7EC429AA079C0083DF6B /* CompanyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyData.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				FE5E07DA29C5BCB500D13539 /* CandleManager.swift */,
 				FE440B7B29C1C55900ADFF6A /* collectionVButton.swift */,
 				FE7E334629C2F87A00E5C2CE /* ChipsVButton.swift */,
+				FEA5FC8D29C8217C00FA5CFF /* BalloonMarker.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				FE741144299A2FA1008A68EF /* ViewController.swift in Sources */,
 				FE09548429A8C126005F7CB6 /* CompanyCell.swift in Sources */,
 				FE741140299A2FA1008A68EF /* AppDelegate.swift in Sources */,
+				FEA5FC8E29C8217C00FA5CFF /* BalloonMarker.swift in Sources */,
 				FE8ADBFF29C1D00400479FB1 /* DetailsCollectionViewCell.swift in Sources */,
 				FE5E07E329C709A700D13539 /* LineChartCustomMarker.swift in Sources */,
 				FE5E07D729C5BBF900D13539 /* Candle.swift in Sources */,

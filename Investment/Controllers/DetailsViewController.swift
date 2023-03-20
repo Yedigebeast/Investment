@@ -52,7 +52,7 @@ class DetailsViewController: UIViewController {
         ChipsVButton(text: "All", backgroundColor: UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0), textColor: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))]
     
     var lineChart = LineChartView()
-    let customMarker = LineChartCustomMarker()
+    //let customMarker = LineChartCustomMarker()
     
     var candleManager = CandleManager()
     var candles: Candle = Candle(prices: [], status: "ok", timestamps: [])
@@ -82,8 +82,8 @@ class DetailsViewController: UIViewController {
         
         lineChart.delegate = self
         lineChart.frame = viewInOrderOfChart.frame
-        customMarker.chartView = lineChart
-        lineChart.marker = customMarker
+//        customMarker.chartView = lineChart
+//        lineChart.marker = customMarker
         
         lineChart.doubleTapToZoomEnabled = false
         
@@ -112,6 +112,8 @@ class DetailsViewController: UIViewController {
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
         
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+
         delegate?.didUpdateFavouriteButton(isTickerFavourite: isTickerFavourite, ticker: ticker)
         self.dismiss(animated: false)
         
@@ -120,12 +122,20 @@ class DetailsViewController: UIViewController {
     
     @IBAction func favouriteButtonPressed(_ sender: UIButton) {
         
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+
         if isTickerFavourite == false {
             starButton.tintColor = UIColor(red: 1.0, green: 0.79, blue: 0.11, alpha: 1.0)
         } else {
             starButton.tintColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
         }
         isTickerFavourite = !isTickerFavourite
+        
+    }
+    
+    @IBAction func buyButtonPressed(_ sender: UIButton) {
+    
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         
     }
     
@@ -197,8 +207,8 @@ extension DetailsViewController: UICollectionViewDelegateFlowLayout {
             return 20
             
         } else {
-            
-            return 16.8
+                        
+            return (view.frame.width - 274.512 - 32) / 5 - 1
             
         }
         
@@ -211,6 +221,8 @@ extension DetailsViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: collectionViewButtons[indexPath.row].text.getStringwidth(height: 24, font: collectionViewButtons[indexPath.row].font), height: 24)
             
         } else {
+            
+//            print(chipsViewButtons[indexPath.row].text.getStringwidth(height: 16, font: UIFont(name: "Montserrat-Semibold", size: 12)!) + 32)
             
             return CGSize(width: chipsViewButtons[indexPath.row].text.getStringwidth(height: 16, font: UIFont(name: "Montserrat-Semibold", size: 12)!) + 32, height: 44)
             
@@ -226,6 +238,8 @@ extension DetailsViewController: DetailsCollectionViewCellDelegate {
 
     func didButtonPressed(tag: Int) {
 
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        
         for i in 0..<collectionViewButtons.count {
 
             collectionViewButtons[i].font = UIFont(name: "Montserrat-SemiBold", size: 14)!
@@ -293,21 +307,26 @@ extension DetailsViewController: ChartViewDelegate {
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         
-        lineChart.marker = customMarker
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         
-        let selectedXValue = NSDate(timeIntervalSince1970: (entry.x + 6 * 60 * 60))
-
-        var selectedYValue = "\(entry.y)"
-        selectedYValue = selectedYValue.addingSpaceInNumber()
+        let marker = BalloonMarker(color: .black, font: UIFont(name: "Montserrat-SemiBold", size: 16)!, textColor: .white, insets: UIEdgeInsets(top: 12, left: 20, bottom: 12, right: 20))
+        marker.minimumSize = CGSize(width: 99, height: 64)
+        marker.refreshContent(entry: entry, highlight: highlight)
+        lineChart.marker = marker
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX") as Locale
-        dateFormatter.dateFormat = "dd MMM yyyy"
-        
-        customMarker.price.text = "$\(selectedYValue)"
-        customMarker.date.text = dateFormatter.string(from: selectedXValue as Date).lowercased()
-
-        //print(entry.x, " ", selectedXValue, " ", selectedYValue)
+//        lineChart.marker = customMarker
+//
+//        let selectedXValue = NSDate(timeIntervalSince1970: (entry.x + 6 * 60 * 60))
+//
+//        var selectedYValue = "\(entry.y)"
+//        selectedYValue = selectedYValue.addingSpaceInNumber()
+//
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX") as Locale
+//        dateFormatter.dateFormat = "dd MMM yyyy"
+//
+//        customMarker.price.text = "$\(selectedYValue)"
+//        customMarker.date.text = dateFormatter.string(from: selectedXValue as Date).lowercased()
         
     }
     
@@ -319,6 +338,8 @@ extension DetailsViewController: ChipsCellDelegate {
 
     func didChipsButtonPressed(tag: Int) {
 
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        
         for i in 0..<chipsViewButtons.count {
             
             chipsViewButtons[i].backgroundColor = UIColor(red: 0.94, green: 0.96, blue: 0.97, alpha: 1.0)
@@ -332,7 +353,6 @@ extension DetailsViewController: ChipsCellDelegate {
         lineChart.marker = nil
         setData(button: chipsViewButtons[tag].text)
     }
-
 
 }
 

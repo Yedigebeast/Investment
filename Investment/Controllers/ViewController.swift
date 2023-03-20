@@ -50,6 +50,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        Constants.phoneViewWidth = view.frame.size.width
        
         searchBar.searchTextField.font = UIFont(name: "Montserrat-Semibold", size: 16)
         searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Find company or ticker", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
@@ -123,6 +124,8 @@ extension ViewController {
 
     @IBAction func goBackButtonPressed(_ sender: UIButton){
         
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        
         DispatchQueue.main.async {
             self.searchBar.resignFirstResponder()
         }
@@ -151,6 +154,8 @@ extension ViewController {
     
     @IBAction func showMoreButtonPressed(_ sender: UIButton) {
         
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        
         DispatchQueue.main.async {
             self.searchBar.resignFirstResponder()
         }
@@ -173,6 +178,8 @@ extension ViewController {
     
     @IBAction func StocksButtonPressed(_ sender: UIButton) {
     
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        
         favouriteButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 18)
         stocksButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 28)
         stocksButton.setTitleColor(UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0), for: .normal)
@@ -188,6 +195,8 @@ extension ViewController {
     }
     
     @IBAction func FavouriteButtonPressed(_ sender: UIButton) {
+        
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         
         stocksButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 18)
         favouriteButton.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 28)
@@ -377,6 +386,7 @@ extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         tappedCellIndex = indexPath.row
         performSegue(withIdentifier: Constants.segueIdentifier, sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
@@ -497,6 +507,8 @@ extension ViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        
         DispatchQueue.main.async {
             searchBar.resignFirstResponder()
         }
@@ -505,6 +517,8 @@ extension ViewController: UISearchBarDelegate {
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
 
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        
         searchBar.text = ""
         searchBar.isHidden = false
         searchbarHeight.constant = 56
@@ -786,6 +800,8 @@ extension ViewController: SearchCellDelegate {
     
     func searchCellPressed(tag: Int, viewTag: Int) {
 
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        
         if viewTag == 1 {
             
             searchBar.text = popularSearches[tag]
@@ -826,7 +842,9 @@ extension ViewController: SearchCellDelegate {
 extension ViewController: CompanyCellDelegate {
     
     func cellFavouriteButtonPressed(tag: Int) {
-                
+             
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        
         var have = false
         var id = -1
         for i in 0..<favourites.count {
