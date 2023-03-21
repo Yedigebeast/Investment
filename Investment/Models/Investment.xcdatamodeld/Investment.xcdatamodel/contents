@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Favourite" representedClassName=".Favourite" syncable="YES" codeGenerationType="class">
         <attribute name="ticker" attributeType="String" defaultValueString="yedige"/>
+    </entity>
+    <entity name="InitialCompanies" representedClassName=".InitialCompanies" syncable="YES" codeGenerationType="class">
+        <attribute name="buyPrice" attributeType="String" defaultValueString="-"/>
+        <attribute name="changePrice" attributeType="String" defaultValueString="-"/>
+        <attribute name="companyName" attributeType="String" defaultValueString="-"/>
+        <attribute name="currentPrice" attributeType="String" defaultValueString="-"/>
+        <attribute name="imageLink" attributeType="String" defaultValueString="-"/>
+        <attribute name="img" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="index" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="ticker" attributeType="String" defaultValueString="-"/>
     </entity>
     <entity name="PreviousSearchResults" representedClassName=".PreviousSearchResults" syncable="YES" codeGenerationType="class">
         <attribute name="index" attributeType="Integer 16" defaultValueString="0" allowsCloudEncryption="YES" usesScalarValueType="YES"/>

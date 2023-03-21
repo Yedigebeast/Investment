@@ -146,9 +146,9 @@ class DetailsViewController: UIViewController {
                 let number: Double = (textField.text! as NSString).doubleValue
                 let price: Double = ((self.buyPrice.dropFirst()) as NSString).doubleValue
                 
-                print(self.buyPrice)
-                print(number, " ", price)
-                print(number / price)
+                //print(self.buyPrice)
+                //print(number, " ", price)
+                //print(number / price)
                 
                 let alert1 = UIAlertController(title: "Are you Sure?", message: "Amount of Stocks of \(self.ticker) you are buying: \(number / price)", preferredStyle: .actionSheet)
                 let action2 = UIAlertAction(title: "Yes", style: .default)

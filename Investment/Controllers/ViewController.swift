@@ -37,6 +37,7 @@ class ViewController: UIViewController {
     var baseCompanies: [Company] = []
     var favourites = [Favourite]()
     var previousSearches = [PreviousSearchResults]()
+    var initialCompanies = [InitialCompanies]()
         
     var tappedCellIndex: Int = 0
     var chosedStocksButton = true
@@ -98,10 +99,38 @@ class ViewController: UIViewController {
         
         loadItems()
         loadSearches()
+        loadCompanies()
         
-        for ticker in tickersOfCompanies {
+        initialCompanies = initialCompanies.sorted { (lhs, rhs) in
+            return lhs.index < rhs.index
+        }
+        
+        for i in 0..<initialCompanies.count {
+                            
+            var item = Company(ticker: "-", companyName: "-", imageLink: "-", currentPrice: "-", changePrice: "-", buyPrice: "-", img: UIImageView(frame: CGRect(x: 0, y: 0, width: 52, height: 52)))
+                                        
+            item.ticker = initialCompanies[i].ticker!
+            item.companyName = initialCompanies[i].companyName!
+            item.imageLink = initialCompanies[i].imageLink!
+            item.currentPrice = initialCompanies[i].currentPrice!
+            item.changePrice = initialCompanies[i].changePrice!
+            item.buyPrice = initialCompanies[i].buyPrice!
+            if initialCompanies[i].img != nil {
+                item.img = UIImageView(image: UIImage(data: initialCompanies[i].img!))
+            }
             
-            companies.append(Company(ticker: ticker, companyName: "-", imageLink: "-", currentPrice: "-", changePrice: "-", buyPrice: "-", img: UIImageView(frame: CGRect(x: 0, y: 0, width: 52, height: 52))))
+            companies.append(item)
+            
+        }
+        baseCompanies = companies
+        
+        if companies.count == 0 {
+            
+            for ticker in tickersOfCompanies {
+                
+                companies.append(Company(ticker: ticker, companyName: "-", imageLink: "-", currentPrice: "-", changePrice: "-", buyPrice: "-", img: UIImageView(frame: CGRect(x: 0, y: 0, width: 52, height: 52))))
+                
+            }
             
         }
         
@@ -116,6 +145,13 @@ class ViewController: UIViewController {
         }
         
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        saveItems()
+        
+    }
+    
 }
 
 //MARK: - Buttons Pressed
@@ -318,6 +354,11 @@ extension ViewController: UITableViewDataSource {
                 
                 cell.companyImage.kf.setImage(with: url)
                 
+            }
+            
+            if cell.companyImage.image?.jpegData(compressionQuality: 1.0) != nil {
+                initialCompanies[indexPath.row].img = cell.companyImage.image?.jpegData(compressionQuality: 1.0)
+                saveItems()
             }
             
             cell.selectedBackgroundView = {
@@ -708,7 +749,8 @@ extension ViewController: CompanyManagerDelegate {
                 
                 self.baseCompanies = self.companies
                 self.tableView.reloadData()
-                
+                self.saveItems()
+                                
             }
             
         }
@@ -779,7 +821,8 @@ extension ViewController: PriceManagerDelegate {
                 
                 self.baseCompanies = self.companies
                 self.tableView.reloadData()
-                
+                self.saveItems()
+                                
             }
             
         }
@@ -955,20 +998,6 @@ extension ViewController {
                 
     }
     
-    func saveItems() {
-        
-        do {
-            
-            try context.save()
-            
-        } catch {
-            
-            print("Error saving context \(error)")
-            
-        }
-        
-    }
-    
     func loadSearches() {
         
         let request: NSFetchRequest<PreviousSearchResults> = PreviousSearchResults.fetchRequest()
@@ -980,6 +1009,59 @@ extension ViewController {
         } catch {
             
             print("Error loading context \(error)")
+            
+        }
+        
+    }
+    
+    func loadCompanies() {
+        
+        let request: NSFetchRequest<InitialCompanies> = InitialCompanies.fetchRequest()
+        
+        do {
+            
+            initialCompanies = try context.fetch(request)
+            
+        } catch {
+            
+            print("Error loading companies \(error)")
+            
+        }
+        
+    }
+    
+    func saveItems() {
+        
+        for i in 0..<initialCompanies.count {
+                    
+            context.delete(initialCompanies[0])
+            initialCompanies.remove(at: 0)
+            
+        }
+        
+        for i in 0..<baseCompanies.count {
+            
+            //print(baseCompanies[i].ticker)
+            let item = InitialCompanies(context: context)
+            item.index = Int16(i)
+            item.ticker = baseCompanies[i].ticker
+            item.companyName = baseCompanies[i].companyName
+            item.imageLink = baseCompanies[i].imageLink
+            item.currentPrice = baseCompanies[i].currentPrice
+            item.changePrice = baseCompanies[i].changePrice
+            item.buyPrice = baseCompanies[i].buyPrice
+            item.img = baseCompanies[i].img.image?.jpegData(compressionQuality: 1.0)
+            initialCompanies.append(item)
+            
+        }
+        
+        do {
+            
+            try context.save()
+            
+        } catch {
+            
+            print("Error saving context \(error)")
             
         }
         
