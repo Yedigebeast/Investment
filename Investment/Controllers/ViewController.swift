@@ -90,7 +90,7 @@ class ViewController: UIViewController {
         tableView.delegate = self
         searchBar.delegate = self
         
-        tableView.rowHeight = 76
+        tableView.rowHeight = 99
         tableView.register(UINib(nibName: Constants.cellNibName, bundle: nil), forCellReuseIdentifier: Constants.cellIdentifier)
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
@@ -322,7 +322,7 @@ extension ViewController: UITableViewDataSource {
             
             cell.selectedBackgroundView = {
                
-                let selectedBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: cell.frame.size.width, height: 68))
+                let selectedBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: cell.frame.size.width, height: cell.frame.size.height))
                 selectedBackgroundView.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
                 selectedBackgroundView.layer.cornerRadius = 16
                 return selectedBackgroundView

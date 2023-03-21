@@ -137,6 +137,45 @@ class DetailsViewController: UIViewController {
     
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
         
+        let alert = UIAlertController(title: "What is your budget?", message: "Write down how much money you have", preferredStyle: .alert)
+        
+        var textField = UITextField()
+        
+        let action = UIAlertAction(title: "Buy!", style: .default) { action in
+            if textField.text != "" {
+                let number: Double = (textField.text! as NSString).doubleValue
+                let price: Double = ((self.buyPrice.dropFirst()) as NSString).doubleValue
+                
+                print(self.buyPrice)
+                print(number, " ", price)
+                print(number / price)
+                
+                let alert1 = UIAlertController(title: "Are you Sure?", message: "Amount of Stocks of \(self.ticker) you are buying: \(number / price)", preferredStyle: .actionSheet)
+                let action2 = UIAlertAction(title: "Yes", style: .default)
+                let action3 = UIAlertAction(title: "No", style: .cancel)
+                
+                alert1.addAction(action2)
+                alert1.addAction(action3)
+                
+                self.present(alert1, animated: true, completion: nil)
+            }
+        }
+        let action1 = UIAlertAction(title: "Cancel", style: .destructive) { action in
+//            print("tapped Cancel")
+        }
+        
+        alert.addAction(action)
+        alert.addAction(action1)
+        
+        alert.addTextField { alertTextField in
+            alertTextField.placeholder = "Dollars ($)"
+            alertTextField.font = UIFont(name: "Montserrat-Semibold", size: 16)
+            alertTextField.keyboardType = .decimalPad
+            textField = alertTextField
+        }
+        
+        present(alert, animated: true, completion: nil)
+        
     }
     
 }

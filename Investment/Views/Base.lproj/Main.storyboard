@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -22,11 +22,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Investment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" text="" placeholder="Find company or ticker" translatesAutoresizingMaskIntoConstraints="NO" id="IJz-kj-CYR">
-                                <rect key="frame" x="16" y="48" width="382" height="56"/>
+                                <rect key="frame" x="16" y="59" width="361" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="ygv-e0-VHn"/>
                                 </constraints>
@@ -41,7 +41,7 @@
                                 </connections>
                             </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zvd-Tt-GXw">
-                                <rect key="frame" x="36" y="67" width="24" height="18"/>
+                                <rect key="frame" x="36" y="78" width="24" height="18"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title=" " image="back"/>
@@ -50,7 +50,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0bh-3s-WmJ">
-                                <rect key="frame" x="20" y="124" width="207" height="47"/>
+                                <rect key="frame" x="20" y="135" width="207" height="47"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLu-7p-Zd6">
                                         <rect key="frame" x="0.0" y="0.0" width="98" height="47"/>
@@ -75,7 +75,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFb-rs-EaX">
-                                <rect key="frame" x="324" y="124" width="70" height="51"/>
+                                <rect key="frame" x="303" y="135" width="70" height="51"/>
                                 <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="12"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -85,13 +85,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular requests" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5v6-Oh-bGp">
-                                <rect key="frame" x="20" y="124" width="161" height="22"/>
+                                <rect key="frame" x="20" y="135" width="161" height="22"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VAJ-RR-aFi">
-                                <rect key="frame" x="16" y="157" width="398" height="88"/>
+                                <rect key="frame" x="16" y="168" width="377" height="88"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="88" id="1zm-ZM-Z5R"/>
@@ -105,13 +105,13 @@
                                 <cells/>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You've searched for this" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8K-cj-gvH">
-                                <rect key="frame" x="20" y="273" width="224.5" height="22"/>
+                                <rect key="frame" x="19.999999999999986" y="284" width="224.66666666666663" height="22"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Pxc-zr-e3G">
-                                <rect key="frame" x="16" y="306" width="398" height="88"/>
+                                <rect key="frame" x="16" y="317" width="377" height="88"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="88" id="MFA-V8-qhV"/>
@@ -125,7 +125,7 @@
                                 <cells/>
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IGl-FQ-L4t">
-                                <rect key="frame" x="16" y="187" width="382" height="709"/>
+                                <rect key="frame" x="16" y="198" width="361" height="654"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -189,14 +189,14 @@
             <objects>
                 <viewController id="dKd-31-h1t" customClass="DetailsViewController" customModule="Investment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rf9-WV-qyh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5iQ-IQ-cM4">
-                                <rect key="frame" x="0.0" y="48" width="414" height="121"/>
+                                <rect key="frame" x="0.0" y="59.000000000000007" width="393" height="120.66666666666669"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7JY-6t-INC">
-                                <rect key="frame" x="18" y="81" width="20" height="14"/>
+                                <rect key="frame" x="18" y="92" width="20" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="WOm-ZI-Yzf"/>
                                     <constraint firstAttribute="width" constant="20" id="yFZ-en-B83"/>
@@ -211,7 +211,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ZK6-IY-tL9">
-                                <rect key="frame" x="176" y="66" width="62" height="41"/>
+                                <rect key="frame" x="165.66666666666666" y="77" width="62" height="40.666666666666657"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AAPL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZkE-1Q-BLI">
                                         <rect key="frame" x="5" y="0.0" width="52" height="22"/>
@@ -220,7 +220,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apple Inc." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTY-sN-TCG">
-                                        <rect key="frame" x="0.0" y="26" width="62" height="15"/>
+                                        <rect key="frame" x="0.0" y="26.000000000000004" width="62" height="14.666666666666668"/>
                                         <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -228,7 +228,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1QZ-kN-L1X">
-                                <rect key="frame" x="374" y="78" width="22" height="22"/>
+                                <rect key="frame" x="353" y="89" width="22" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="JgI-Hv-iH8"/>
                                     <constraint firstAttribute="height" constant="22" id="pRr-mK-5fZ"/>
@@ -243,7 +243,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gAO-rU-NV3">
-                                <rect key="frame" x="20" y="131" width="394" height="24"/>
+                                <rect key="frame" x="20" y="141.66666666666666" width="373" height="24"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="LDa-YX-lWI"/>
@@ -257,23 +257,23 @@
                                 <cells/>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jhD-Yr-Kcp">
-                                <rect key="frame" x="0.0" y="282.5" width="414" height="367.5"/>
+                                <rect key="frame" x="0.0" y="292.66666666666674" width="393" height="313.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$131.93" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWn-4j-R4v">
-                                <rect key="frame" x="158" y="225" width="98" height="34.5"/>
+                                <rect key="frame" x="147.66666666666666" y="235.66666666666666" width="97.666666666666657" height="34.333333333333343"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <color key="highlightedColor" red="0.0" green="0.0" blue="0.0" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="displayP3"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+$0.12 (1,15%)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MeO-ST-wB1">
-                                <rect key="frame" x="168.5" y="267.5" width="77.5" height="15"/>
+                                <rect key="frame" x="158" y="278" width="77.333333333333314" height="14.666666666666686"/>
                                 <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="12"/>
                                 <color key="textColor" red="0.14117647058823529" green="0.69803921568627447" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MpI-lo-tsV">
-                                <rect key="frame" x="16" y="690" width="380" height="44"/>
+                                <rect key="frame" x="16" y="646" width="359" height="44"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="DL9-20-BL5"/>
@@ -287,7 +287,7 @@
                                 <cells/>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jEH-eu-kkw">
-                                <rect key="frame" x="16" y="786" width="382" height="56"/>
+                                <rect key="frame" x="16" y="742" width="361" height="56"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="gAU-lA-YE8"/>
