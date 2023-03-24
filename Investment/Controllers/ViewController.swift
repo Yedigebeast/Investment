@@ -429,43 +429,35 @@ extension ViewController: UITableViewDelegate {
         
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
         tappedCellIndex = indexPath.row
-        performSegue(withIdentifier: Constants.segueIdentifier, sender: self)
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == Constants.segueIdentifier {
-            
-            let destinationVC = segue.destination as! DetailsViewController
-            destinationVC.companyName = companies[tappedCellIndex].companyName
-            destinationVC.ticker = companies[tappedCellIndex].ticker
-            destinationVC.price = companies[tappedCellIndex].currentPrice
-            destinationVC.changeInPrice = companies[tappedCellIndex].changePrice
-            destinationVC.buyPrice = companies[tappedCellIndex].buyPrice
-            destinationVC.delegate = self
-            
-            if companies[tappedCellIndex].changePrice.prefix(1) == "-" {
-                
-                destinationVC.colorOfChangeInPrice = UIColor(red: 0.7, green: 0.14, blue: 0.14, alpha: 1.0)
-                
-            } else {
-                
-                destinationVC.colorOfChangeInPrice = UIColor(red: 0.14, green: 0.7, blue: 0.36, alpha: 1.0)
-                
-            }
-            
-            var have: Bool = false
-            for item in favourites {
-                if item.ticker == companies[tappedCellIndex].ticker {
-                    have = true
-                }
-            }
-            destinationVC.isTickerFavourite = have
-                        
+        let destinationVC = DetailsViewController()
+        destinationVC.companyName = companies[tappedCellIndex].companyName
+        destinationVC.ticker = companies[tappedCellIndex].ticker
+        destinationVC.price = companies[tappedCellIndex].currentPrice
+        destinationVC.changeInPrice = companies[tappedCellIndex].changePrice
+        destinationVC.buyPrice = companies[tappedCellIndex].buyPrice
+        destinationVC.delegate = self
+
+        if companies[tappedCellIndex].changePrice.prefix(1) == "-" {
+
+            destinationVC.colorOfChangeInPrice = UIColor(red: 0.7, green: 0.14, blue: 0.14, alpha: 1.0)
+
+        } else {
+
+            destinationVC.colorOfChangeInPrice = UIColor(red: 0.14, green: 0.7, blue: 0.36, alpha: 1.0)
+
         }
-        
+
+        var have: Bool = false
+        for item in favourites {
+            if item.ticker == companies[tappedCellIndex].ticker {
+                have = true
+            }
+        }
+        destinationVC.isTickerFavourite = have
+        destinationVC.modalPresentationStyle = .fullScreen
+        present(destinationVC, animated: false, completion: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
+    
     }
     
 }
@@ -1032,7 +1024,7 @@ extension ViewController {
     
     func saveItems() {
         
-        for i in 0..<initialCompanies.count {
+        for _ in 0..<initialCompanies.count {
                     
             context.delete(initialCompanies[0])
             initialCompanies.remove(at: 0)

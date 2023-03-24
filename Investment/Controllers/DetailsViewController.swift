@@ -16,17 +16,106 @@ protocol DetailsViewControllerDelegate {
 }
 
 class DetailsViewController: UIViewController {
+    
+    private var separatorLine: UIView = {
+        let view = UIView()
+        view.dropShadow(alpha: 0.05, offsetWidth: 0, offsetHeight: 2, radius: 2)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private var backButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "back"), for: .normal)
+        button.tintColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Montserrat-Bold", size: 18)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private var promptLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Montserrat-Semibold", size: 12)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.spacing = 4
+        stackView.alignment = .center
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private var starButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "Star 1"), for: .normal)
+        button.tintColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private var collectionView: UICollectionView = {
         
-    @IBOutlet weak var starButton: UIButton!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var promptLabel: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var separatorLine: UIView!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var changeInPriceLabel: UILabel!
-    @IBOutlet weak var viewInOrderOfChart: UIView!
-    @IBOutlet weak var chipsCollectionView: UICollectionView!
-    @IBOutlet weak var buyButton: UIButton!
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
+        
+    }()
+    
+    private var priceLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Montserrat-Bold", size: 28)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private var changeInPriceLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Montserrat-Semibold", size: 12)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private var lineChart = {
+        let lineChartView = LineChartView()
+        lineChartView.translatesAutoresizingMaskIntoConstraints = false
+        return lineChartView
+    }()
+    //let customMarker = LineChartCustomMarker()
+    
+    private var chipsCollectionView: UICollectionView = {
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
+        
+    }()
+    
+    private var buyButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.titleLabel?.font = UIFont(name: "Montserrat-Semibold", size: 16)
+        button.backgroundColor = .black
+        button.tintColor = .white
+        button.layer.cornerRadius = 16
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     
     var delegate: DetailsViewControllerDelegate?
     var companyName: String = ""
@@ -51,17 +140,91 @@ class DetailsViewController: UIViewController {
         ChipsVButton(text: "1Y", backgroundColor: UIColor(red: 0.94, green: 0.96, blue: 0.97, alpha: 1.0), textColor: UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)),
         ChipsVButton(text: "All", backgroundColor: UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0), textColor: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))]
     
-    var lineChart = LineChartView()
-    //let customMarker = LineChartCustomMarker()
-    
     var candleManager = CandleManager()
     var candles: Candle = Candle(prices: [], status: "ok", timestamps: [])
+    
+    override func viewWillLayoutSubviews() {
+        
+        super.viewWillLayoutSubviews()
+        separatorLine.dropShadow(alpha: 0.05, offsetWidth: 0, offsetHeight: 2, radius: 2)
+        separatorLine.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+
+    }
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        view.backgroundColor = .white
+        
         titleLabel.text = ticker
         promptLabel.text = companyName
+        stackView.addArrangedSubview(self.titleLabel)
+        stackView.addArrangedSubview(self.promptLabel)
+        
+        view.addSubview(separatorLine)
+        view.addSubview(stackView)
+        view.addSubview(backButton)
+        view.addSubview(starButton)
+        view.addSubview(collectionView)
+        view.addSubview(priceLabel)
+        view.addSubview(changeInPriceLabel)
+        view.addSubview(lineChart)
+        view.addSubview(chipsCollectionView)
+        view.addSubview(buyButton)
+    
+        NSLayoutConstraint.activate([
+            
+            separatorLine.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            separatorLine.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 14),
+            separatorLine.rightAnchor.constraint(equalTo: view.rightAnchor),
+            separatorLine.leftAnchor.constraint(equalTo: view.leftAnchor),
+            
+            backButton.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 33),
+            backButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 18),
+            backButton.heightAnchor.constraint(equalToConstant: 14),
+            backButton.widthAnchor.constraint(equalToConstant: 20),
+            
+            starButton.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 30),
+            starButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -18),
+            starButton.heightAnchor.constraint(equalToConstant: 22),
+            starButton.widthAnchor.constraint(equalToConstant: 22),
+            
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 18),
+            
+            collectionView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 24),
+            collectionView.heightAnchor.constraint(equalToConstant: 24),
+            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            
+            priceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            priceLabel.topAnchor.constraint(equalTo: separatorLine.bottomAnchor, constant: 56),
+            
+            changeInPriceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            changeInPriceLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 8),
+            
+            lineChart.topAnchor.constraint(equalTo: changeInPriceLabel.bottomAnchor),
+            lineChart.rightAnchor.constraint(equalTo: view.rightAnchor),
+            lineChart.leftAnchor.constraint(equalTo: view.leftAnchor),
+            
+            chipsCollectionView.topAnchor.constraint(equalTo: lineChart.bottomAnchor, constant: 40),
+            chipsCollectionView.heightAnchor.constraint(equalToConstant: 44),
+            chipsCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -18),
+            chipsCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            
+            buyButton.topAnchor.constraint(equalTo: chipsCollectionView.bottomAnchor, constant: 52),
+            buyButton.heightAnchor.constraint(equalToConstant: 56),
+            buyButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -20),
+            buyButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            buyButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16)
+            
+        ])
+        
+        starButton.addTarget(self, action: #selector(favouriteButtonPressed), for: .touchUpInside)
+        buyButton.addTarget(self, action: #selector(buyButtonPressed), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+
         if isTickerFavourite == true {
             starButton.tintColor = UIColor(red: 1.0, green: 0.79, blue: 0.11, alpha: 1.0)
         }
@@ -72,16 +235,12 @@ class DetailsViewController: UIViewController {
         collectionView.tag = 0
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
-        
-        separatorLine.dropShadow(alpha: 0.05, offsetWidth: 0, offsetHeight: 2, radius: 2)
-        separatorLine.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        
+            
         priceLabel.text = price
         changeInPriceLabel.text = changeInPrice
         changeInPriceLabel.textColor = colorOfChangeInPrice
         
         lineChart.delegate = self
-        lineChart.frame = viewInOrderOfChart.frame
 //        customMarker.chartView = lineChart
 //        lineChart.marker = customMarker
         
@@ -92,9 +251,7 @@ class DetailsViewController: UIViewController {
         lineChart.leftAxis.enabled = false
         lineChart.xAxis.enabled = false
         lineChart.legend.enabled = false
-    
-        view.addSubview(lineChart)
-        
+            
         candleManager.delegate = self
         setData(button: "All")
         
@@ -103,14 +260,13 @@ class DetailsViewController: UIViewController {
         chipsCollectionView.register(UINib(nibName: Constants.chipsCellNibName, bundle: nil), forCellWithReuseIdentifier: Constants.chipsCellIdentifier)
         chipsCollectionView.tag = 1
         
-        buyButton.layer.cornerRadius = 16
         buyButton.setTitle(buyPrice, for: .normal)
         
     }
     
 //MARK: - Button Pressed
     
-    @IBAction func backButtonPressed(_ sender: UIButton) {
+    @objc func backButtonPressed() {
         
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
 
@@ -120,7 +276,7 @@ class DetailsViewController: UIViewController {
     }
     
     
-    @IBAction func favouriteButtonPressed(_ sender: UIButton) {
+    @objc func favouriteButtonPressed() {
         
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
 
@@ -133,8 +289,8 @@ class DetailsViewController: UIViewController {
         
     }
     
-    @IBAction func buyButtonPressed(_ sender: UIButton) {
-    
+    @objc func buyButtonPressed() {
+        
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
         
         let alert = UIAlertController(title: "What is your budget?", message: "Write down how much money you have", preferredStyle: .alert)
@@ -400,11 +556,11 @@ extension DetailsViewController: ChipsCellDelegate {
 extension UIView {
     
     func dropShadow(scale: Bool = true, alpha: Double, offsetWidth: Int, offsetHeight: Int, radius: Double) {
-        layer.masksToBounds = false
         layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: alpha).cgColor
         layer.shadowOpacity = 1
         layer.shadowOffset = CGSize(width: offsetWidth, height: offsetHeight)
         layer.shadowRadius = radius
+        layer.masksToBounds = false
 
         layer.shadowPath = UIBezierPath(rect: bounds).cgPath
         layer.shouldRasterize = true

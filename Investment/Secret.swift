@@ -9,6 +9,6 @@ import Foundation
 
 struct Secret {
     
-    static let token = "cfs9fvpr01qr5t5spr8gcfs9fvpr01qr5t5spr90"
+    static let token = "cgd9o6hr01qum7u5v05gcgd9o6hr01qum7u5v060"
     
 }
