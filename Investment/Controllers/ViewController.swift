@@ -11,24 +11,115 @@ import SVGKit
 import CoreData
 
 class ViewController: UIViewController {
+        
+    private var searchBar: UISearchBar = {
+        let bar = UISearchBar()
+        bar.translatesAutoresizingMaskIntoConstraints = false
+        return bar
+    }()
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var favouriteButton: UIButton!
-    @IBOutlet weak var stocksButton: UIButton!
-    @IBOutlet weak var showMoreButton: UIButton!
-    @IBOutlet weak var goBack: UIButton!
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var stackView: UIStackView!
+    var searchbarHeight: NSLayoutConstraint = {
+        let constraint = NSLayoutConstraint()
+        return constraint
+    }()
     
-    @IBOutlet weak var popularRequestsLabel: UILabel!
-    @IBOutlet weak var popularRequestsCollectionView: UICollectionView!
-    @IBOutlet weak var previousSearchesLabel: UILabel!
-    @IBOutlet weak var previousSearchesCollectionView: UICollectionView!
-           
-    @IBOutlet weak var constraint1: NSLayoutConstraint!
-    @IBOutlet weak var constraint2: NSLayoutConstraint!
-    @IBOutlet weak var searchbarHeight: NSLayoutConstraint!
+    private var goBack: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "back"), for: .normal)
+        button.tintColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     
+    private var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
+        stackView.spacing = 20
+        stackView.alignment = .bottom
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private var constraint1: NSLayoutConstraint = {
+        let constraint = NSLayoutConstraint()
+        return constraint
+    }()
+    
+    private var constraint2: NSLayoutConstraint = {
+        let constraint = NSLayoutConstraint()
+        return constraint
+    }()
+    
+    private var stocksButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Stocks", for: .normal)
+        button.setTitleColor(UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0), for: .normal)
+        button.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 28)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private var favouriteButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Favourite", for: .normal)
+        button.setTitleColor(UIColor(red: 0.73, green: 0.73, blue: 0.73, alpha: 1.0), for: .normal)
+        button.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 18)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private var popularRequestsLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Montserrat-Bold", size: 18)
+        label.text = "Popular Requests"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private var popularRequestsCollectionView: UICollectionView = {
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.estimatedItemSize = CGSize(width: 1000, height: 40)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
+    }()
+    
+    private var previousSearchesLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Montserrat-Bold", size: 18)
+        label.text = "You've searched for this"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private var showMoreButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Show More", for: .normal)
+        button.setTitleColor(UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0), for: .normal)
+        button.titleLabel?.font = UIFont(name: "Montserrat-SemiBold", size: 12)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private var previousSearchesCollectionView: UICollectionView = {
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.estimatedItemSize = CGSize(width: 1000, height: 40)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
+    }()
+    
+    
+    private var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
 
     var companyManager = CompanyManager()
     var priceManager = PriceManager()
@@ -47,16 +138,12 @@ class ViewController: UIViewController {
     
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillLayoutSubviews() {
         
-        //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-        Constants.phoneViewWidth = view.frame.size.width
-       
+        super.viewWillLayoutSubviews()
+                
         searchBar.searchTextField.font = UIFont(name: "Montserrat-Semibold", size: 16)
         searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Find company or ticker", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
-        searchBar.setImage(UIImage(named: "searchGlass"), for: UISearchBar.Icon.search, state: .normal)
-        searchBar.setImage(UIImage(named: "cancel"), for: UISearchBar.Icon.clear, state: .normal)
         searchBar.layer.borderWidth = 1
         searchBar.clipsToBounds = true
         searchBar.layer.cornerRadius = searchBar.frame.height / 2
@@ -64,6 +151,82 @@ class ViewController: UIViewController {
         searchBar.searchTextPositionAdjustment = UIOffset(horizontal: 13, vertical: 0)
         searchBar.setPositionAdjustment(UIOffset(horizontal: -10, vertical: 1), for: UISearchBar.Icon.clear)
         searchBar.setPositionAdjustment(UIOffset(horizontal: 10, vertical: 1), for: UISearchBar.Icon.search)
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .white
+        
+        stackView.addArrangedSubview(stocksButton)
+        stackView.addArrangedSubview(favouriteButton)
+        
+        view.addSubview(searchBar)
+        view.addSubview(goBack)
+        view.addSubview(stackView)
+        view.addSubview(popularRequestsLabel)
+        view.addSubview(popularRequestsCollectionView)
+        view.addSubview(previousSearchesLabel)
+        view.addSubview(previousSearchesCollectionView)
+        view.addSubview(showMoreButton)
+        view.addSubview(tableView)
+        
+        searchbarHeight = NSLayoutConstraint(item: searchBar, attribute: .height, relatedBy: .equal, toItem: .none, attribute: .height, multiplier: 1.0, constant: 56)
+        constraint1 = NSLayoutConstraint(item: stackView, attribute: .top, relatedBy: .equal, toItem: view.layoutMarginsGuide, attribute: .top, multiplier: 1.0, constant: 76)
+        constraint2 = NSLayoutConstraint(item: tableView, attribute: .top, relatedBy: .equal, toItem: stackView, attribute: .bottom, multiplier: 1.0, constant: 16)
+        
+        searchbarHeight.isActive = true
+        constraint1.isActive = true
+        constraint2.isActive = true
+        
+        NSLayoutConstraint.activate([
+          
+            searchBar.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            searchBar.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            searchBar.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            
+            goBack.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 19),
+            goBack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 36),
+            
+            stackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            
+            popularRequestsLabel.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 20),
+            popularRequestsLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+
+            popularRequestsCollectionView.topAnchor.constraint(equalTo: popularRequestsLabel.bottomAnchor, constant: 11),
+            popularRequestsCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            popularRequestsCollectionView.bottomAnchor.constraint(equalTo: previousSearchesLabel.topAnchor, constant: -28),
+            popularRequestsCollectionView.heightAnchor.constraint(equalToConstant: 88),
+            popularRequestsCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            
+            previousSearchesLabel.bottomAnchor.constraint(equalTo: previousSearchesCollectionView.topAnchor, constant: -11),
+            previousSearchesLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            
+            previousSearchesCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            previousSearchesCollectionView.heightAnchor.constraint(equalToConstant: 88),
+            previousSearchesCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            
+            showMoreButton.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 20),
+            showMoreButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            showMoreButton.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -12),
+
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            
+        ])
+        
+        goBack.addTarget(self, action: #selector(goBackButtonPressed), for: .touchUpInside)
+        stocksButton.addTarget(self, action: #selector(StocksButtonPressed), for: .touchUpInside)
+        favouriteButton.addTarget(self, action: #selector(FavouriteButtonPressed), for: .touchUpInside)
+        showMoreButton.addTarget(self, action: #selector(showMoreButtonPressed), for: .touchUpInside)
+
+        //print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        Constants.phoneViewWidth = view.frame.size.width
+        
+        searchBar.setImage(UIImage(named: "searchGlass"), for: .search, state: .normal)
+        searchBar.setImage(UIImage(named: "cancel"), for: .clear, state: .normal)
         
         popularRequestsLabel.isHidden = true
         popularRequestsCollectionView.isHidden = true
@@ -158,7 +321,7 @@ class ViewController: UIViewController {
 
 extension ViewController {
 
-    @IBAction func goBackButtonPressed(_ sender: UIButton){
+    @objc func goBackButtonPressed(){
         
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
         
@@ -188,7 +351,7 @@ extension ViewController {
         
     }
     
-    @IBAction func showMoreButtonPressed(_ sender: UIButton) {
+    @objc func showMoreButtonPressed() {
         
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
         
@@ -212,7 +375,7 @@ extension ViewController {
         
     }
     
-    @IBAction func StocksButtonPressed(_ sender: UIButton) {
+    @objc func StocksButtonPressed() {
     
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
         
@@ -230,7 +393,7 @@ extension ViewController {
         
     }
     
-    @IBAction func FavouriteButtonPressed(_ sender: UIButton) {
+    @objc func FavouriteButtonPressed() {
         
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
         
@@ -556,6 +719,7 @@ extension ViewController: UISearchBarDelegate {
         searchBar.isHidden = false
         searchbarHeight.constant = 56
         searchBar.layer.cornerRadius = searchbarHeight.constant / 2
+        searchBar.setImage(UIImage(named: "white"), for: .search, state: .normal)
 
         constraint1.constant = 76
         constraint2.constant = 16
@@ -583,9 +747,7 @@ extension ViewController: UISearchBarDelegate {
         previousSearchesCollectionView.isHidden = false
         goBack.isHidden = false
         isGoBackButtonHidden = false
-        
-        searchBar.setImage(UIImage(named: "white"), for: UISearchBar.Icon.search, state: .normal)
-        
+                
         return true
 
     }
