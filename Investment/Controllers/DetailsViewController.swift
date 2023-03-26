@@ -94,7 +94,6 @@ class DetailsViewController: UIViewController {
         lineChartView.translatesAutoresizingMaskIntoConstraints = false
         return lineChartView
     }()
-    //let customMarker = LineChartCustomMarker()
     
     private var chipsCollectionView: UICollectionView = {
         
@@ -231,7 +230,7 @@ class DetailsViewController: UIViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(UINib(nibName: Constants.detailsCellNibName, bundle: nil), forCellWithReuseIdentifier: Constants.detailsCellIdentifier)
+        collectionView.register(DetailsCollectionViewCell.self, forCellWithReuseIdentifier: Constants.detailsCellIdentifier)
         collectionView.tag = 0
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
@@ -241,8 +240,6 @@ class DetailsViewController: UIViewController {
         changeInPriceLabel.textColor = colorOfChangeInPrice
         
         lineChart.delegate = self
-//        customMarker.chartView = lineChart
-//        lineChart.marker = customMarker
         
         lineChart.doubleTapToZoomEnabled = false
         
@@ -257,7 +254,7 @@ class DetailsViewController: UIViewController {
         
         chipsCollectionView.delegate = self
         chipsCollectionView.dataSource = self
-        chipsCollectionView.register(UINib(nibName: Constants.chipsCellNibName, bundle: nil), forCellWithReuseIdentifier: Constants.chipsCellIdentifier)
+        chipsCollectionView.register(ChipsCell.self, forCellWithReuseIdentifier: Constants.chipsCellIdentifier)
         chipsCollectionView.tag = 1
         
         buyButton.setTitle(buyPrice, for: .normal)
@@ -378,7 +375,6 @@ extension DetailsViewController: UICollectionViewDataSource {
             cell.button.tag = indexPath.row
             cell.delegate = self
             
-            cell.layer.cornerRadius = 12
             cell.label.text = chipsViewButtons[indexPath.row].text
             cell.contentView.backgroundColor = chipsViewButtons[indexPath.row].backgroundColor
             cell.label.textColor = chipsViewButtons[indexPath.row].textColor
@@ -508,20 +504,6 @@ extension DetailsViewController: ChartViewDelegate {
         marker.minimumSize = CGSize(width: 99, height: 64)
         marker.refreshContent(entry: entry, highlight: highlight)
         lineChart.marker = marker
-        
-//        lineChart.marker = customMarker
-//
-//        let selectedXValue = NSDate(timeIntervalSince1970: (entry.x + 6 * 60 * 60))
-//
-//        var selectedYValue = "\(entry.y)"
-//        selectedYValue = selectedYValue.addingSpaceInNumber()
-//
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX") as Locale
-//        dateFormatter.dateFormat = "dd MMM yyyy"
-//
-//        customMarker.price.text = "$\(selectedYValue)"
-//        customMarker.date.text = dateFormatter.string(from: selectedXValue as Date).lowercased()
         
     }
     

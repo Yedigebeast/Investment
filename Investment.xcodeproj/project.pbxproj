@@ -16,25 +16,19 @@
 		FE09548429A8C126005F7CB6 /* CompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE09548329A8C126005F7CB6 /* CompanyCell.swift */; };
 		FE10FD1429A7AA06009932BB /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE10FD1329A7AA06009932BB /* Montserrat-Bold.ttf */; };
 		FE440B7C29C1C55900ADFF6A /* collectionVButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE440B7B29C1C55900ADFF6A /* collectionVButton.swift */; };
-		FE440B7E29C1C7DF00ADFF6A /* DetailsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE440B7D29C1C7DF00ADFF6A /* DetailsCollectionViewCell.xib */; };
 		FE5E07D729C5BBF900D13539 /* Candle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5E07D629C5BBF900D13539 /* Candle.swift */; };
 		FE5E07D929C5BC1A00D13539 /* CandleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5E07D829C5BC1A00D13539 /* CandleData.swift */; };
 		FE5E07DB29C5BCB500D13539 /* CandleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5E07DA29C5BCB500D13539 /* CandleManager.swift */; };
-		FE5E07E129C709A000D13539 /* LineChartCustomMarker.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE5E07E029C709A000D13539 /* LineChartCustomMarker.xib */; };
-		FE5E07E329C709A700D13539 /* LineChartCustomMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5E07E229C709A700D13539 /* LineChartCustomMarker.swift */; };
 		FE741140299A2FA1008A68EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE74113F299A2FA1008A68EF /* AppDelegate.swift */; };
 		FE741142299A2FA1008A68EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE741141299A2FA1008A68EF /* SceneDelegate.swift */; };
 		FE741144299A2FA1008A68EF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE741143299A2FA1008A68EF /* ViewController.swift */; };
 		FE74114A299A2FA1008A68EF /* Investment.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FE741148299A2FA1008A68EF /* Investment.xcdatamodeld */; };
 		FE74114C299A2FA2008A68EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE74114B299A2FA2008A68EF /* Assets.xcassets */; };
 		FE74114F299A2FA2008A68EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE74114D299A2FA2008A68EF /* LaunchScreen.storyboard */; };
-		FE7E334329C2F6C100E5C2CE /* ChipsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE7E334229C2F6C100E5C2CE /* ChipsCell.xib */; };
 		FE7E334529C2F6CA00E5C2CE /* ChipsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7E334429C2F6CA00E5C2CE /* ChipsCell.swift */; };
 		FE7E334729C2F87A00E5C2CE /* ChipsVButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7E334629C2F87A00E5C2CE /* ChipsVButton.swift */; };
-		FE7FB83629A7AEC5009896F2 /* CompanyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE7FB83529A7AEC5009896F2 /* CompanyCell.xib */; };
 		FE7FB83829A7B113009896F2 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE7FB83729A7B113009896F2 /* Montserrat-SemiBold.ttf */; };
 		FE8ADBFF29C1D00400479FB1 /* DetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8ADBFE29C1D00400479FB1 /* DetailsCollectionViewCell.swift */; };
-		FEA3E96F29B77FC100DE2A0A /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEA3E96E29B77FC100DE2A0A /* SearchCell.xib */; };
 		FEA3E97129B77FD600DE2A0A /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3E97029B77FD600DE2A0A /* SearchCell.swift */; };
 		FEA5FC8E29C8217C00FA5CFF /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA5FC8D29C8217C00FA5CFF /* BalloonMarker.swift */; };
 		FEEA7EC129A9FEC60083DF6B /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEA7EC029A9FEC60083DF6B /* Secret.swift */; };
@@ -55,12 +49,9 @@
 		FE09548329A8C126005F7CB6 /* CompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
 		FE10FD1329A7AA06009932BB /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		FE440B7B29C1C55900ADFF6A /* collectionVButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = collectionVButton.swift; sourceTree = "<group>"; };
-		FE440B7D29C1C7DF00ADFF6A /* DetailsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsCollectionViewCell.xib; sourceTree = "<group>"; };
 		FE5E07D629C5BBF900D13539 /* Candle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Candle.swift; sourceTree = "<group>"; };
 		FE5E07D829C5BC1A00D13539 /* CandleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleData.swift; sourceTree = "<group>"; };
 		FE5E07DA29C5BCB500D13539 /* CandleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleManager.swift; sourceTree = "<group>"; };
-		FE5E07E029C709A000D13539 /* LineChartCustomMarker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LineChartCustomMarker.xib; sourceTree = "<group>"; };
-		FE5E07E229C709A700D13539 /* LineChartCustomMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartCustomMarker.swift; sourceTree = "<group>"; };
 		FE74113C299A2FA1008A68EF /* Investment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Investment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE74113F299A2FA1008A68EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE741141299A2FA1008A68EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,13 +60,10 @@
 		FE74114B299A2FA2008A68EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE74114E299A2FA2008A68EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE741150299A2FA2008A68EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FE7E334229C2F6C100E5C2CE /* ChipsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChipsCell.xib; sourceTree = "<group>"; };
 		FE7E334429C2F6CA00E5C2CE /* ChipsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsCell.swift; sourceTree = "<group>"; };
 		FE7E334629C2F87A00E5C2CE /* ChipsVButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsVButton.swift; sourceTree = "<group>"; };
-		FE7FB83529A7AEC5009896F2 /* CompanyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompanyCell.xib; sourceTree = "<group>"; };
 		FE7FB83729A7B113009896F2 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		FE8ADBFE29C1D00400479FB1 /* DetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCollectionViewCell.swift; sourceTree = "<group>"; };
-		FEA3E96E29B77FC100DE2A0A /* SearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
 		FEA3E97029B77FD600DE2A0A /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		FEA5FC8D29C8217C00FA5CFF /* BalloonMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		FEEA7EC029A9FEC60083DF6B /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
@@ -125,16 +113,10 @@
 		FE3A3AE5299A389A00DD812A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FE7FB83529A7AEC5009896F2 /* CompanyCell.xib */,
 				FE09548329A8C126005F7CB6 /* CompanyCell.swift */,
-				FEA3E96E29B77FC100DE2A0A /* SearchCell.xib */,
 				FEA3E97029B77FD600DE2A0A /* SearchCell.swift */,
-				FE440B7D29C1C7DF00ADFF6A /* DetailsCollectionViewCell.xib */,
 				FE8ADBFE29C1D00400479FB1 /* DetailsCollectionViewCell.swift */,
-				FE7E334229C2F6C100E5C2CE /* ChipsCell.xib */,
 				FE7E334429C2F6CA00E5C2CE /* ChipsCell.swift */,
-				FE5E07E029C709A000D13539 /* LineChartCustomMarker.xib */,
-				FE5E07E229C709A700D13539 /* LineChartCustomMarker.swift */,
 				FEA5FC8D29C8217C00FA5CFF /* BalloonMarker.swift */,
 			);
 			path = Views;
@@ -273,13 +255,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE7FB83829A7B113009896F2 /* Montserrat-SemiBold.ttf in Resources */,
-				FE5E07E129C709A000D13539 /* LineChartCustomMarker.xib in Resources */,
 				FE10FD1429A7AA06009932BB /* Montserrat-Bold.ttf in Resources */,
 				FE74114F299A2FA2008A68EF /* LaunchScreen.storyboard in Resources */,
-				FE440B7E29C1C7DF00ADFF6A /* DetailsCollectionViewCell.xib in Resources */,
-				FE7FB83629A7AEC5009896F2 /* CompanyCell.xib in Resources */,
-				FE7E334329C2F6C100E5C2CE /* ChipsCell.xib in Resources */,
-				FEA3E96F29B77FC100DE2A0A /* SearchCell.xib in Resources */,
 				FE74114C299A2FA2008A68EF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,7 +327,6 @@
 				FE741140299A2FA1008A68EF /* AppDelegate.swift in Sources */,
 				FEA5FC8E29C8217C00FA5CFF /* BalloonMarker.swift in Sources */,
 				FE8ADBFF29C1D00400479FB1 /* DetailsCollectionViewCell.swift in Sources */,
-				FE5E07E329C709A700D13539 /* LineChartCustomMarker.swift in Sources */,
 				FE5E07D729C5BBF900D13539 /* Candle.swift in Sources */,
 				FE7E334529C2F6CA00E5C2CE /* ChipsCell.swift in Sources */,
 				FEEA7EC129A9FEC60083DF6B /* Secret.swift in Sources */,

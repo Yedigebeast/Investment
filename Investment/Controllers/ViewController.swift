@@ -235,8 +235,8 @@ class ViewController: UIViewController {
         showMoreButton.isHidden = true
         goBack.isHidden = true
         
-        popularRequestsCollectionView.register(UINib(nibName: Constants.collectionViewCellNibName, bundle: nil), forCellWithReuseIdentifier: Constants.collectionViewCellIdentifier)
-        previousSearchesCollectionView.register(UINib(nibName: Constants.collectionViewCellNibName, bundle: nil), forCellWithReuseIdentifier: Constants.collectionViewCellIdentifier)
+        popularRequestsCollectionView.register(SearchCell.self, forCellWithReuseIdentifier: Constants.collectionViewCellIdentifier)
+        previousSearchesCollectionView.register(SearchCell.self, forCellWithReuseIdentifier: Constants.collectionViewCellIdentifier)
         popularRequestsCollectionView.tag = 1
         previousSearchesCollectionView.tag = 2
         popularRequestsCollectionView.showsVerticalScrollIndicator = false
@@ -254,8 +254,7 @@ class ViewController: UIViewController {
         tableView.delegate = self
         searchBar.delegate = self
         
-        tableView.rowHeight = 99
-        tableView.register(UINib(nibName: Constants.cellNibName, bundle: nil), forCellReuseIdentifier: Constants.cellIdentifier)
+        tableView.register(CompanyCell.self, forCellReuseIdentifier: Constants.cellIdentifier)
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
@@ -542,6 +541,12 @@ extension ViewController: UITableViewDataSource {
         }
         
         return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 99
         
     }
     

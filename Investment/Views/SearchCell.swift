@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 protocol SearchCellDelegate {
     
@@ -15,20 +16,63 @@ protocol SearchCellDelegate {
 
 class SearchCell: UICollectionViewCell {
     
-    @IBOutlet weak var cellLabel: UILabel!
-    @IBOutlet weak var button: UIButton!
     var collectionViewTag: Int = 1
     var delegate: SearchCellDelegate?
     
-    override func awakeFromNib() {
+    var cellLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Montserrat-SemiBold", size: 12)
+        label.text = "-"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    var button: UIButton = {
+        let button = UIButton(type: .custom)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    override init(frame: CGRect) {
         
-        super.awakeFromNib()
+        super.init(frame: frame)
+        setupUI()
         
     }
     
-    @IBAction func searchButtonPressed(_ sender: UIButton) {
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupUI() {
         
-        delegate?.searchCellPressed(tag: sender.tag, viewTag: collectionViewTag)
+        contentView.layer.cornerRadius = 20
+        contentView.backgroundColor = HexColor("#F0F4F7")
+        
+        contentView.addSubview(cellLabel)
+        contentView.addSubview(button)
+        
+        NSLayoutConstraint.activate([
+              
+            cellLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
+            cellLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            cellLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
+            cellLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
+            
+            button.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            button.topAnchor.constraint(equalTo: contentView.topAnchor),
+            button.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            button.rightAnchor.constraint(equalTo: contentView.rightAnchor)
+
+        ])
+        
+        button.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
+        
+    }
+    
+    @objc func searchButtonPressed() {
+        
+        delegate?.searchCellPressed(tag: button.tag, viewTag: collectionViewTag)
         
     }
     
